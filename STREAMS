@@ -1,0 +1,4 @@
+List<String> strings= List.of("java","sql","as","apring","iq");
+	
+	List<String> collect = strings.stream().map(m-> m.substring(0,1).toUpperCase()+ m.substring(1) ).collect(Collectors.toList());
+	
