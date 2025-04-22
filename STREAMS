@@ -38,8 +38,45 @@ public class InterviewQuestions {
 		
 		list.stream().filter(f-> f.charAt(1)=='e').collect(Collectors.toList());
 //============================================================================================================
+//Write a Java 8 lambda expression to sort a list of doubles in ascending order
+	
+	List<Double> list=Arrays.asList(2.3,1.2,3.5,5.0,3.2,3.0);
+	list.stream().sorted().forEach(System.out::println);
+	list.sort((a,b)-> Double.compare(a, b));
+	System.out.println(list);
+
+//=========================================================================================
+	//list of strings and returns a new list containing only the strings that are not longer than four characters
+		List<String> str = List.of("java", "sql", "aws", "ms", "spring");
+		List<String> collect = str.stream().filter(f -> f.length() <= 4).collect(Collectors.toList());
+		System.out.println(collect);
+//==============================================================================================================
+		// list of integers and returns a new list containing only the numbers that are divisible by 3. 
+		List<Integer> li=List.of(1,2,3,4,6,9,21,30,5,7,8);
+		li.stream().filter(f->f%3==0).forEach(System.out::println);
+//=============================================================================================================
+//list of strings and returns a new list containing the strings in uppercase.
+		str.stream().map(f-> f.toUpperCase()).forEach(System.out::println);
+//===========================================================================================================
+// a list of strings and returns a new list containing only the strings that start with a vowel.
+
+		str.stream().filter(f -> f.startsWith("a") || f.startsWith("e") || f.startsWith("i") || f.startsWith("o")
+				|| f.startsWith("u")).forEach(System.out::println);
+	str.stream().filter(f->f.matches("^[aeiouAEIOU].*")).forEach(System.out::println);
+//=======================================================================================================
+		
+//a list of integers and returns a new list containing the absolute value of each number in the original list. 
+		List<Integer> abs  =List.of(1,-5,3,-7,9);
+		abs.stream().map(Math::abs).forEach(System.out::println);
+
+//===============================================================================
+str.stream().filter(f-> f.endsWith("s")).forEach(System.out::println);
+		
+		
+	}
 
 
+//
 
 	}
 
