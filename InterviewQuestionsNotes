@@ -1,0 +1,67 @@
+copart Interview
+
+1. Coding Question :
+ 
+input : "abc", "def", "ghi"
+output : ["adg", "beh", "cfi"]
+ 
+2. Explain some of inbuilt functional Interfaces introduced in Java 8 ?
+3. What will happen when I throw an exception from foreach method of java 8 ?
+4. What are the module you know in spring boot
+5. How can you handle exceptions in spring boot
+ 
+6. You are given a requirement where
+1. sales person needs to accept pdf file and process it and return it
+2. Marketing person needs to accept doc and process it and return it
+3. Enterprise person needs to accept excel and process it and return it
+ 
+   Design and Create an application which includes security as well using single method.
+7. Create a custom exception in java
+8. Lets say you have two DB operations you need to perform where you need to save data.where one second operation got failed how can you handle this scenario with out interrupting application ?
+9. Follow up to qn 8 where in between two db operations in b/w one statement is  there where exception occurs, this exception is not related to db how can you handle this ?
+10. What do you know about actuators in spring boot ?
+11. Lets say you have kafka dependency, where kafka is down. what would be the status of Actuator at this point(UP/DOWN) ?
+12. Explain asynchronous programming in java and how can you achieve this using spring boot ?
+13. How can we create threads in java other than runnable/Thread class ?
+14. When Actually the return type Future will come in asynchronous programming ?
+15. How many ways to create thread pools in Java
+ 
+ 
+ 
+16. What are the projects you have worked on ?
+17. How was your day as a java developer every day. explain your roles and responsibilities ?
+18. Explain ConcurrentHashMap in Java ?
+ 
+ 
+19. How you have implemented security in your project ?
+20. Have you seen the code that had written in project for JWT authentication ? Explain how it works ?
+21. What are the differences you have observed while migrating from SB-2 to SB-3 ?
+22. Lets say we have 2 db's where you need to connect two db's in same environment with two tables. How can you achieve this.
+
+
+===========================================================================================================
+ 1. cognizant  
+
+core java to git dep
+inheritance override code
+exception handling
+final and finalize
+arraylist and linkedlist
+fruits counting using stream
+funtionalInterface
+beanscop
+objectmapper(xml) file -> you are getting xml file instead of json what u will do
+jdbc
+duplicate remove ( in sql using distent keyword)
+duplicate (using groupby)
+microservice
+git conflit vasthe em chesthava
+deployment
+git 
+limit(m,n)
+sercuity 
+deployment 
+last interview questions
+1.on what type of project we will work on
+2.feedback
+//==============================================================================
