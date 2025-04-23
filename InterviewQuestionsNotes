@@ -4,12 +4,101 @@ copart Interview
  
 input : "abc", "def", "ghi"
 output : ["adg", "beh", "cfi"]
- 
+=================================================================== 
 2. Explain some of inbuilt functional Interfaces introduced in Java 8 ?
+Ans : function, supplier, predict, consumer and bifuction
+BiFuntion: Similar to Function<T, R>, but takes two inputs (T, U) and returns a result (R).
+example - reduce.
+=================================================================================================
 3. What will happen when I throw an exception from foreach method of java 8 ?
+import java.util.List;
+Ans :- If an exception occurs in forEach, the iteration stops immediately, and remaining elements will not be processed.
+
+public class ForEachExceptionDemo {
+    public static void main(String[] args) {
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5);
+
+        try {
+            numbers.forEach(num -> {
+                if (num == 3) {
+                    throw new RuntimeException("Exception at number " + num);
+                }
+                System.out.println(num);
+            });
+        } catch (Exception e) {
+            System.out.println("Caught Exception: " + e.getMessage());
+        }
+    }
+}
+output 
+1
+2
+Caught Exception: Exception at number 3
+
+ If you want to continue processing despite errors, use try-catch inside forEach
+numbers.forEach(num -> {
+    try {
+        if (num == 3) throw new RuntimeException("Exception at number " + num);
+        System.out.println(num);
+    } catch (Exception e) {
+        System.out.println("Handled Exception: " + e.getMessage());
+    }
+});
+output
+1
+2
+Handled Exception: Exception at number 3
+4
+5
+=======================================================================================
 4. What are the module you know in spring boot
+Spring Boot Starter Modules
+spring-boot-starter-web – For building web applications with Spring MVC.
+spring-boot-starter-data-jpa – For working with relational databases using JPA and Hibernate.
+spring-boot-starter-security – For security and authentication features.
+spring-boot-starter-test – For testing Spring Boot applications
+
+Spring Boot Core Modules:
+
+Spring Boot Auto Configuration – Automatically configures beans based on dependencies.
+Spring Boot Actuator – Provides production-ready monitoring and management endpoints.
+Spring Boot DevTools – Enhances development experience with live reload and debugging.
+Spring Boot Configuration Processor – Generates metadata for configurations.
+
+3️⃣ Spring Boot Integration Modules
+Spring Boot integrates seamlessly with different tools and technologies:
+
+Spring Boot with Spring Cloud – Supports microservices architecture.
+Spring Boot with Spring Batch – Simplifies batch processing.
+Spring Boot with Spring Kafka – Enables Kafka-based messaging.
+Spring Boot with Spring AMQP – Supports RabbitMQ for messaging.
+
+4️⃣ Spring Boot Database Modules
+Spring Boot provides modules for database interactions:
+
+Spring Boot with JDBC – Supports traditional database connectivity.
+Spring Boot with JPA – Provides ORM capabilities.
+Spring Boot with NoSQL – Supports MongoDB, Redis, Cassandra, etc.
+=======================================================================================
 5. How can you handle exceptions in spring boot
- 
+ Ans- @RestControllerAdvice and @ExceptionalHandler 
+@RestControllerAdvice
+public class GlobalExceptionHandler {
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<String> handleGlobalException(Exception ex) {
+        return new ResponseEntity<>("Something went wrong: " + ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+}
+using responseStatusException for simple exception without defining in custom handlers
+@GetMapping("/user/{id}")
+public String getUser(@PathVariable int id) {
+    if (id <= 0) {
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid User ID");
+    }
+    return "User " + id;
+}
+============================================================================
 6. You are given a requirement where
 1. sales person needs to accept pdf file and process it and return it
 2. Marketing person needs to accept doc and process it and return it
