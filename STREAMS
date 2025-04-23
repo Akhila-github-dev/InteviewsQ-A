@@ -71,7 +71,22 @@ public class InterviewQuestions {
 
 //===============================================================================
 str.stream().filter(f-> f.endsWith("s")).forEach(System.out::println);
-		
+//==========================================================================
+//Java 8 lambda expression to sort a list of longs in descending order.
+		 List<Long> numbers = Arrays.asList(5L, 3L, 8L, 1L, 7L);
+		 
+		 numbers.sort((a,b)-> Long.compare(b, a));
+		// Sorting in descending order using lambda expression
+		 System.out.println(numbers);
+//====================================================================================
+//a list of integers and returns the smallest prime number in the list
+		Optional<Integer> max = li.stream()
+		        .filter(number -> number > 1 && 
+		                IntStream.rangeClosed(2, (int) Math.sqrt(number))
+		                         .noneMatch(i -> number % i == 0)).min(Integer::compareTo);
+		System.out.println(max.get());
+//================================================================================================
+
 		
 	}
 
