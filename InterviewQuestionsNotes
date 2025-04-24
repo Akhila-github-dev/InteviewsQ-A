@@ -105,12 +105,99 @@ public String getUser(@PathVariable int id) {
 3. Enterprise person needs to accept excel and process it and return it
  
    Design and Create an application which includes security as well using single method.
+============================================================================
 7. Create a custom exception in java
+by extending with exception class
+===========================================================================
 8. Lets say you have two DB operations you need to perform where you need to save data.where one second operation got failed how can you handle this scenario with out interrupting application ?
+using @Transtional annotation
+if the second save opertion fails, the first one will also be rolled back, preventing inconsistent data
+@Service
+class myservice{
+@Autowired
+private MyRepository res;
+
+@Transactional 
+public void saveData(DataEntity entity1, DataEntity entity2){
+try{
+res.save(entity1);
+res.save(entity2);
+}catch(Exception e){
+syso("second operation failed");
+throw e;
+}
+}
+If you don't want to roll back the first operation and want the application to keep running, you can catch the exception for the second operation and log it instead of rolling back the first.
+public void saveDate(DataEntity e1, DataEntity e2){
+try{
+rep.save(e1);
+}catch(Exception e){
+syso("first opertion failed");
+}
+try{
+rep.save(e2);
+}catch(Exception e){
+syso("second opertion failed");
+}
+}
+===========================================================================
+
 9. Follow up to qn 8 where in between two db operations in b/w one statement is  there where exception occurs, this exception is not related to db how can you handle this ?
+If the exception should not affect the database operations, you can catch it separately
+@Transactional
+public void saveDate(DataEntity e1, DataEntity e2){
+try{
+rep.save(e1);
+processSomething();
+}catch(NonDatabaseException e){
+syso("non db opertion failed");
+}
+}
+if processSomething() throws an exception, it is caught, and the transaction continues.
+The database operations will not be rolled back, so entity1 and entity2 are still saved.
+(or)
+If you want everything to roll back, including the database operations, you need to throw a runtime exception
+@Transactional
+public void saveDate(DataEntity e1, DataEntity e2){
+rep.save(e1);
+try{
+processSomething();
+}catch(Exception e){
+syso("critical failure");
+throw new CustomException("rolling back due to failure");
+}
+rep.save(e2);
+}
+Since CustomException is thrown, Spring’s transaction manager will roll back everything.
+(or)
+Using Propagation.REQUIRES_NEW for Independent Transactions
+If you want each operation to run independently, so failure in one part doesn’t impact the other:
+@Transactional(propagation= Progagation.Requires_NEW)
+public void saveEntity(DataEntity entity){
+rep.save(entity):
+}
+this ensures each db operation runs in its own transaction, meaning failure in one does not impact the others
+================================================================================
+
 10. What do you know about actuators in spring boot ?
+used for monitoring and managing the application health check metrics
+adding spring boot starter actuator dependency and in app.properties
+managment.endpoints.web.exposure.include=health,metrics,info
+and http://localhost:8080/actuator/health
+=========================================================================
 11. Lets say you have kafka dependency, where kafka is down. what would be the status of Actuator at this point(UP/DOWN) ?
+By default, Spring Boot does not automatically mark the application as DOWN if Kafka is unavailable.
+The Actuator /actuator/health endpoint will still return UP, unless an explicit health check is defined for Kafka.
+Configuring Kafka Health Indicator
+Spring Boot supports Kafka health indicators, but you must include Actuator’s health monitoring for Kafka:
+management.health.kafka.enabled=true
+Once enabled:
+If Kafka is running, /actuator/health → UP
+If Kafka is down, /actuator/health → DOWN
+==================================================================================
 12. Explain asynchronous programming in java and how can you achieve this using spring boot ?
+
+
 13. How can we create threads in java other than runnable/Thread class ?
 14. When Actually the return type Future will come in asynchronous programming ?
 15. How many ways to create thread pools in Java
