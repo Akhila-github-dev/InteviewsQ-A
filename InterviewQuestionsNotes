@@ -243,3 +243,6 @@ last interview questions
 //==============================================================================
 completablefuture:
  used in asynchronous programming. which run multiple tasks simultaneously without blocking the main thread.
+========================================================================================
+ @Transactional annotation in Spring Boot is used to manage database transactions automatically. When applied to a method or class, it ensures that all database operations within the method are executed within a single transaction. If any exception occurs, the transaction is rolled back, ensuring data consistency. It simplifies transaction management in applications
+
