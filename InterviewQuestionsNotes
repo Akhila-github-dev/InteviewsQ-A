@@ -241,3 +241,5 @@ last interview questions
 1.on what type of project we will work on
 2.feedback
 //==============================================================================
+completablefuture:
+ used in asynchronous programming. which run multiple tasks simultaneously without blocking the main thread.
