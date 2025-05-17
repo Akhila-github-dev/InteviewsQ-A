@@ -196,10 +196,50 @@ If Kafka is running, /actuator/health → UP
 If Kafka is down, /actuator/health → DOWN
 ==================================================================================
 12. Explain asynchronous programming in java and how can you achieve this using spring boot ?
+Ans - Asynchronous programming allows tasks to run independently without blocking the main execution thread. 
+This improves performance, especially for tasks involving I/O operations, network calls, or computations.
+Approaches for Asynchronous Programming in Java:
+1. Using Threads 2. ExecutorService & Future 3.completableFuture 4.Reactive Programming
+
+Achieving Asynchronous Programming in Spring Boot using @Async
 
 
+@Configuration
+@EnableAsync
+public class AsyncConfig {
+}
+
+->Use @Async on methods that should run asynchronously.
+
+@Service
+public class AsyncService {
+    @Async
+    public CompletableFuture<String> asyncMethod() {
+        return CompletableFuture.supplyAsync(() -> "Hello, Async!");
+    }
+}
+
+->Call the Async Method: The method executes in a separate thread without blocking the caller.
+
+@Autowired
+private AsyncService asyncService;
+
+public void executeAsyncTask() {
+    CompletableFuture<String> result = asyncService.asyncMethod();
+    result.thenAccept(System.out::println);
+}
+
+
+===============================================================================================
 13. How can we create threads in java other than runnable/Thread class ?
+1. callable
+Callable is similar to Runnable, but it can return a result and throw exceptions.Future is used to retrieve the result of an asynchronous computation.
+
+2. ExecutorService 
+3. CompletableFuture
+==============================================================================================
 14. When Actually the return type Future will come in asynchronous programming ?
+
 15. How many ways to create thread pools in Java
  
  
