@@ -252,8 +252,15 @@ Callable is similar to Runnable, but it can return a result and throw exceptions
 19. How you have implemented security in your project ?
 20. Have you seen the code that had written in project for JWT authentication ? Explain how it works ?
 21. What are the differences you have observed while migrating from SB-2 to SB-3 ?
+===============================================================================================
 22. Lets say we have 2 db's where you need to connect two db's in same environment with two tables. How can you achieve this.
-
+To achieve this, we configured multiple DataSource beans in Spring Boot, defining connection details in 
+application.yml. We then created separate EntityManagerFactory instances for both databases, ensuring 
+independent transaction management.
+For data access, we implemented two JpaRepository interfaces—one for each database—allowing seamless 
+retrieval and updates. With this setup, our service layer could fetch data from both databases
+simultaneously, ensuring efficient communication.
+we will use  @Primary in for primary db connection in configuration class
 
 ===========================================================================================================
  1. cognizant  
