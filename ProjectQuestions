@@ -20,5 +20,90 @@ weekly report account monitoring activity
 change requests
 incidents
 batch processing
+=======================================================================
+Can you describe a challenging project you worked on?
+the challenges i have faced in my project in security setup. like managing the user login token across the 
+all the services. to reslove this we have jwt filter. should say about security u have implemented.
+============================================================================
+What technologies did you use?
+java, spring , spring jdbc, sql.
+======================================================================
+How did you optimize performance in your project?
+we noticed that API response times were slow due to redundant database queries. Using a profiling tool, 
+we identified excessive calls to the same table. To fix this, we introduced Redis caching to store
+frequently accessed data, reducing database load. Additionally, we optimized SQL queries by adding indexes.
+As a result, response times improved from 1.5s to 200ms, significantly enhancing system performance and user
+experience.
+===========================================================================
+Did you use caching, multithreading, or database indexing?
+In our banking project, we implemented multithreading for concurrent transaction processing. 
+When multiple users initiate transactions, we use Java’s ExecutorService to ensure efficient parallel
+execution while maintaining data integrity."
+=================================================================================
+How did you measure performance improvements?
+In our banking project, we integrated Spring Boot Actuator to monitor API performance.
+Using /actuator/metrics/http.server.requests, we tracked response times before and after caching 
+implementation. This helped us validate the optimization, reducing latency from 1.8s to 300ms."
+=================================================================================
+Explain a scenario where you had to debug a complex issue in your project.
+security issue we can say.
+=================================================================================
+What debugging tools or techniques did you use?
+we used Splunk to analyze application logs and identify transaction failures. 
+It helped us pinpoint errors quickly and reduce debugging time.
+
+IDE Debuggers: Used Eclipse for setting breakpoints and stepping through code.
+Logging & Monitoring: Used Log4j, SLF4J, and Spring Boot Actuator for application health tracking.
+Profiling Tools: Utilized JProfiler, VisualVM, JConsole to analyze performance bottlenecks.
+Load Testing: Used JMeter & Gatling for identifying scaling issues.
+
+
+=================================================================================
+How did you resolve the issue?
+by using splunk only we have analyze the issue where it is causing and debugging it and tried to reslove it.
+=================================================================================
+How do you ensure code quality in your projects?
+using junit test cases and checking the code coverage we can check the code quality.sonar qube for code quality.
+=================================================================================
+Do you follow design patterns, unit testing, or code reviews?
+=================================================================================
+How do you handle technical debt?
+=================================================================================
+Have you worked with microservices architecture?
+=================================================================================
+How did you design and implement microservices?
+=================================================================================
+What challenges did you face in inter-service communication?
+=================================================================================
+How do you handle database transactions in your project?
+=================================================================================
+Have you used Hibernate, JPA, or JDBC?
+=================================================================================
+How do you ensure data consistency?
+=================================================================================
+What security measures did you implement in your project?
+=================================================================================
+Did you use authentication, authorization, or encryption?
+=================================================================================
+How did you prevent SQL injection or XSS attacks?
+=================================================================================
+How do you manage dependencies in your Java projects?
+=================================================================================
+Have you used Maven or Gradle?
+yes i have used maven build tool.
+=================================================================================
+How do you handle version conflicts?
+
+Can you explain a scenario where you improved the scalability of your application?
+
+Did you use load balancing, caching, or asynchronous processing?
+
+How do you handle exceptions in your project?
+
+Do you use custom exception handling?
+yes we have used custom exception handling like usernotfound exception, reportgenerationexception.
+
+How do you log and monitor errors?
+
 
 
