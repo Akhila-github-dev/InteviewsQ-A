@@ -1,7 +1,8 @@
 1.roles and responsibilities in project?
 i am one of the developer in the project. I have worked on agile methodology. Based on the requirement from the 
 story we use to do code configuration. we use to analyze the story, make necessary code changes. i use to do local
-deployment, local testing and committing code changes and do deployment.
+deployment, local testing and committing code changes and do deployment. if we got any issue we use to analyze
+the issue , debugging the issue checking splunck logs and resloving it.
 =======================================================================
 what are the code changes you have done?
 code changes i have done are i have written Junit test cases,
