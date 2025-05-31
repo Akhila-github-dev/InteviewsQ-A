@@ -2,7 +2,7 @@
 i am one of the developer in the project. I have worked on agile methodology. Based on the requirement from the 
 story we use to do code configuration. we use to analyze the story, make necessary code changes. i use to do local
 deployment, local testing and committing code changes and do deployment.
-
+=======================================================================
 what are the code changes you have done?
 code changes i have done are i have written Junit test cases,
 2. i have to populate one id in report. i have worked on report geneartion model there we need to populate one Id
@@ -15,7 +15,7 @@ we have removed it(better not to say)
 6. zero should not be shown at frontend 
 7. we need to unnecessary code which is take more deployment time. after doing it deployement speed is increased
 8. oracle db migration from 12c to 19c. db testing i have done. checking 2 db has same data.
-in tallyman
+In tallyman Application 
 weekly report account monitoring activity
 change requests
 incidents
