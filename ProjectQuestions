@@ -24,7 +24,7 @@ batch processing
 =======================================================================
 Can you describe a challenging project you worked on?
 the challenges i have faced in my project in security setup. like managing the user login token across the 
-all the services. to reslove this we have jwt filter. should say about security u have implemented.
+all the services. to reslove this we have jwt filter. 
 ============================================================================
 What technologies did you use?
 java, spring , spring jdbc, sql.
