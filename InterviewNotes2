@@ -8,6 +8,11 @@
 6.What is Agile Methodologies.
  
 7.When you run a spring boot application, what is initialization process, and what steps will be executed in background
+When a Spring Boot application starts, several key steps happen in the background. First, the JVM starts the 
+execution. Then, Spring Boot initializes the SpringApplication class, which sets up the environment and loads
+configurations. Next, the ApplicationContext is created, and Spring scans for beans, injecting dependencies 
+accordingly. Any lifecycle callbacks, such as methods annotated with @PostConstruct, get executed. If it's a
+web application, the embedded Tomcat or other server starts, allowing the application to listen for requests. Finally, event listeners and command-line runners execute before the application is fully ready to serv
  
 8.How you implemented the functionality of cache, About @CachePut Related to my project.
  
@@ -19,43 +24,20 @@
 12.What is use of HTTP Filters
 13.What is interceptors SPRING MVC and How interceptors used in Spring MVC
  
-14.I have to make a query which cannot be executed by default JPA Repository methods like findById and findByAll etc,I need to find all employees whose name starts with "A" and whose department is IT AND Location is pune ,How can we achieve data retrieval without using default methods
+14.I have to make a query which cannot be executed by default JPA Repository methods like findById and
+findByAll etc,I need to find all employees whose name starts with "A" and whose department is IT AND 
+Location is pune ,How can we achieve data retrieval without using default methods
 15. How Database Objects are mapped to Java Objects.
-16.Example::: When we create a new record, Its incremented by one, right,i want to increment by 10 0r 100,So the next employee id that needs to  be added to table should be 110,How you can implement the logic in spring data JPA.
+16.Example::: When we create a new record, Its incremented by one, right,i want to increment by 10 0r 100,
+So the next employee id that needs to  be added to table should be 110,How you can implement the logic in 
+spring data JPA.
 17.Table has composite key how you can map that to java Object in Spring DATA JPA
 18.What is indexes and types of indexes SQL
-19.lets say if i have to execute any stored procedure using Spring data JPA, What all code changes required and how you will store the results of the stored procedure
-20. Write a program  to convert list into Map using Java8
-21.What is the Purpose of the @SpringBootApplication  annotation
-22.What is priority queue
-23.What is Array List and LinkedList.1.About roles and responsibilities in my project
- 
-2.What is Multithreading
-3.What is lazy loading and How Spring Handles it
- 
-4.Spring data JPA Questions
-5.Difference between @Controller and @RestController
-6.What is Agile Methodologies.
- 
-7.When you run a spring boot application, what is initialization process, and what steps will be executed in background
- 
-8.How you implemented the functionality of cache, About @CachePut Related to my project.
- 
-9.How You expose endpoints using @RestController
- 
-10.How to configure to XML Data for rest controller related to Consumes and Produces concepts in Microservices.
- 
-11.How do we handle tokens, What is the rule or structure of JWT Token  (Spring Security ) 
-12.What is use of HTTP Filters
-13.What is interceptors SPRING MVC and How interceptors used in Spring MVC
- 
-14.I have to make a query which cannot be executed by default JPA Repository methods like findById and findByAll etc,I need to find all employees whose name starts with "A" and whose department is IT AND Location is pune ,How can we achieve data retrieval without using default methods
-15. How Database Objects are mapped to Java Objects.
-16.Example::: When we create a new record, Its incremented by one, right,i want to increment by 10 0r 100,So the next employee id that needs to  be added to table should be 110,How you can implement the logic in spring data JPA.
-17.Table has composite key how you can map that to java Object in Spring DATA JPA
-18.What is indexes and types of indexes SQL
-19.lets say if i have to execute any stored procedure using Spring data JPA, What all code changes required and how you will store the results of the stored procedure
+https://copilot.microsoft.com/shares/sqqKcWwTmMS8VXKbcusET
+19.lets say if i have to execute any stored procedure using Spring data JPA, What all code changes required 
+and how you will store the results of the stored procedure
 20. Write a program  to convert list into Map using Java8
 21.What is the Purpose of the @SpringBootApplication  annotation
 22.What is priority queue
 23.What is Array List and LinkedList.
+
