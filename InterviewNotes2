@@ -1,7 +1,5 @@
-1.About roles and responsibilities in my project
- 
-2.What is Multithreading
-3.What is lazy loading and How Spring Handles it
+https://copilot.microsoft.com/shares/sqqKcWwTmMS8VXKbcusET
+What is lazy loading and How Spring Handles it
  
 4.Spring data JPA Questions
 5.Difference between @Controller and @RestController
@@ -35,7 +33,7 @@ So the next employee id that needs to  be added to table should be 110,How you c
 spring data JPA.
 17.Table has composite key how you can map that to java Object in Spring DATA JPA
 18.What is indexes and types of indexes SQL
-https://copilot.microsoft.com/shares/sqqKcWwTmMS8VXKbcusET
+
 19.lets say if i have to execute any stored procedure using Spring data JPA, What all code changes required 
 and how you will store the results of the stored procedure
 20. Write a program  to convert list into Map using Java8
