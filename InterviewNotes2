@@ -9,12 +9,14 @@ how can we create custom annotation
 how can we check wethere it is not custom exception class are not with one annotation
  can we implement custom scope and how
 service registry and service discovery 
-Saga design pattern
+Saga design pattern:-
+Manages the transaction flow, ensuring each step executes in sequence and handling rollbacks when necessary.
 11. Idempotency in ms.
 12. Super class of all java class.
 
 13. Oops concept.
-14. How will prove that any class follows polymorphism, inheritence.
+14. How will prove that any class follows polymorphism, inheritence:-
+A: Object class
 15. In which u will use linkedList and arrayList.
 16. D/f b/w hashmap and concurrent hashmap.
 17. Remove duplicates and maintain the insertion order from duplicate array.
