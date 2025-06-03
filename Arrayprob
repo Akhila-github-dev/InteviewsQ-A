@@ -9,11 +9,56 @@ Interview question for java developer BOFA  (TEAM MATES)
 7.program to find sum of odd and even in a list using stream api concepts
 8.what is dependency injection in spring boot
 9.how to connect spring boot application with database
+==================================================================
 10.what is dispatcher servlet
+1.The Dispatcher Servlet is the main part of the Spring MVC.
+2.It gets the all incoming request,Find the (Right Controller) to handle them and Manage the flow.
+3.After (controller) process the (request) and It returns the (View Name).
+4.Dispatcher servlet uses (view Resolver) to find the  correct (view)
+5.Then,Its shows the view and sends the response back to the (issuer).
+========================================================================
 11.sql query to find the second highest salary from the table
+2nd highest salary
+SELECT MAX(SALARY) FROM EMPLOYEE
+WHERE SALARY<
+(SELECT MAX(SALARY) FROM EMPLOYEE);
+=========================================================================
 7.What is OAuth.
+
+OAuth (Open Authorization)
+is an open standard protocol for authorization of an application for using user information,
+In general, it allows a third party application access to user related info like name, DOB, email or other required data from an application like Facebook, Google etc. without giving the third party app the user password. 
+OAuth Mechanism
+OAuth Provider - This is the OAuth provider Eg. Google, FaceBook etc.
+OAuth Client - This is the website where we are sharing or authenticating the usage of our information. Eg. GeeksforGeeks etc.
+Owner - The user whose login authenticates sharing of information.
+OAuth can be implemented via google console for "Login/Sign Up with Google" on a web app.
+Pattern to be Followed
+Get OAuth 2.0 Client ID from Google API Console
+Next, Obtain an access token from the Google Authorization Server to access the API.
+Send the request with the access token to an API .
+Get Refresh token if longer access is required.
+=====================================================================================
 3.HTTP STATUS CODES
+When client sends an request to the (server),The Server will process that (request) and (Server) Will send (response to the client) With some status code
+
+1.1xx: Information
+2.2xx:Success(0K)-200-299
+3.3XX: Redirectional:
+You send an request to one server.It will redirect to another server
+
+4.4xx:Client Error(Invalid):	Sending wrong request to the server.
+5. 5xx (Server Error).
+====================================================================================
 4.Http Methods
+Every REST API METHODS should be mapped to HTTP Methods.
+
+1.GET: To get (data) from  the (server)
+2.POST: To create or insert record at the (server)
+3.PUT: To update the data at (Server).
+4.DELETE : To delete the data at (server).
+POST: take data from the client and Insert into the server.
+===============================================================================
 1.What is Stream API
 2.What is Optional
 3.What is @Qualifier Annotation
@@ -29,60 +74,13 @@ Interview question for java developer BOFA  (TEAM MATES)
 int sumOfOdd = nums.stream().filter(n->n%2==1).mapToInt(Integer:: intValue).sum();
 nums.stream().filter(n->n%2==0).mapToInt(Integer:: intEvenValue).sum();
 ============================================================================
-10.what is dispatcher servlet
 
 
-1.The Dispatcher Servlet is the main part of the Spring MVC.
-2.It gets the all incoming request,Find the (Right Controller) to handle them and Manage the flow.
-3.After (controller) process the (request) and It returns the (View Name).
-4.Dispatcher servlet uses (view Resolver) to find the  correct (view)
-5.Then,Its shows the view and sends the response back to the (issuer).
 
-2nd highest salary
-SELECT MAX(SALARY) FROM EMPLOYEE
-WHERE SALARY<
-(SELECT MAX(SALARY) FROM EMPLOYEE);
 
-3.HTTP STATUS CODES
 
-When client sends an request to the (server),The Server will process that (request) and (Server) Will send (response to the client) With some status code
-
-1.1xx: Information
-2.2xx:Success(0K)-200-299
-3.3XX: Redirectional:
-You send an request to one server.It will redirect to another server
-
-4.4xx:Client Error(Invalid):	Sending wrong request to the server.
-5. 5xx (Server Error).
 =====================================================================================================================================================>
 =====================================================================================================================================================>
-4.Http Methods
-
-Every REST API METHODS should be mapped to HTTP Methods.
-
-1.GET: To get (data) from  the (server)
-2.POST: To create or insert record at the (server)
-3.PUT: To update the data at (Server).
-4.DELETE : To delete the data at (server).
-
-
-POST: take data from the client and Insert into the server.
-
-What is OAuth.
-
-OAuth (Open Authorization)
-is an open standard protocol for authorization of an application for using user information,
-In general, it allows a third party application access to user related info like name, DOB, email or other required data from an application like Facebook, Google etc. without giving the third party app the user password. 
-OAuth Mechanism
-OAuth Provider - This is the OAuth provider Eg. Google, FaceBook etc.
-OAuth Client - This is the website where we are sharing or authenticating the usage of our information. Eg. GeeksforGeeks etc.
-Owner - The user whose login authenticates sharing of information.
-OAuth can be implemented via google console for "Login/Sign Up with Google" on a web app.
-Pattern to be Followed
-Get OAuth 2.0 Client ID from Google API Console
-Next, Obtain an access token from the Google Authorization Server to access the API.
-Send the request with the access token to an API .
-Get Refresh token if longer access is required.
 
 Splunk is a platform for (searching),(monitoring) and analyzing the (logs,events,metrics) in real time.
 2.It is used in IT Operations ,Security and application monitoring
