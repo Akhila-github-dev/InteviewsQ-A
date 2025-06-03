@@ -58,4 +58,21 @@ and how you will store the results of the stored procedure
 21.What is the Purpose of the @SpringBootApplication  annotation
 22.What is priority queue
 23.What is Array List and LinkedList.
+24.why we use interceptors when we already have jwt?
+Great question! Even though JWT (JSON Web Token) provides authentication and authorization, interceptors are still useful for additional functionalities beyond token validation. Here’s why we use interceptors along with JWT:
 
+1. Pre-Processing Requests (Logging & Modification)
+Interceptors allow you to modify requests before they reach the controller.
+
+Example: Logging incoming requests, sanitizing headers, or adding custom metadata.
+
+2. Role-Based Access Control (Authorization)
+JWT only verifies identity, but it doesn’t define access levels.
+
+Interceptors help enforce role-based access control (e.g., Admin vs. User permissions).
+
+3. Centralized Token Validation & Refresh Handling
+Instead of adding JWT validation in every controller, interceptors handle it globally.
+
+25.Can auto-refresh expired JWTs before passing the request forward.
+A: Yes using refresh token mechansim using interceptors
