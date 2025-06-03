@@ -6,7 +6,12 @@ Interview question for java developer BOFA  (TEAM MATES)
 4.what is exception handling and how to create user defined exceptions
 5.questions on multithreading, how to implement multithreading using Thread class and runnable interface hands on
 6.what is functional interface, default & static methods in interface
+==========================================================================================
 7.program to find sum of odd and even in a list using stream api concepts
+ List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+int sumOfOdd = nums.stream().filter(n->n%2==1).mapToInt(Integer:: intValue).sum();
+nums.stream().filter(n->n%2==0).mapToInt(Integer:: intEvenValue).sum();
+============================================================================
 8.what is dependency injection in spring boot
 9.how to connect spring boot application with database
 ==================================================================
@@ -71,10 +76,6 @@ POST: take data from the client and Insert into the server.
 10.What is Actuator in SpringBoot.
 11.What is Concurrent HashMap
 ==================================================================
-int sumOfOdd = nums.stream().filter(n->n%2==1).mapToInt(Integer:: intValue).sum();
-nums.stream().filter(n->n%2==0).mapToInt(Integer:: intEvenValue).sum();
-============================================================================
-
 
 
 
