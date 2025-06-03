@@ -32,7 +32,9 @@ WHERE SALARY<
 
 OAuth (Open Authorization)
 is an open standard protocol for authorization of an application for using user information,
-In general, it allows a third party application access to user related info like name, DOB, email or other required data from an application like Facebook, Google etc. without giving the third party app the user password. 
+In general, it allows a third party application access to user related info like name, DOB, email or other
+required data from an application like Facebook, Google etc. without giving the third party app the user 
+password. 
 OAuth Mechanism
 OAuth Provider - This is the OAuth provider Eg. Google, FaceBook etc.
 OAuth Client - This is the website where we are sharing or authenticating the usage of our information. Eg. GeeksforGeeks etc.
@@ -70,7 +72,49 @@ POST: take data from the client and Insert into the server.
 4.What is Synchronized Keyword.
 5.Why String is Immutable and Why and what are use cases.
 6.How to Secure REST API In java, Especially in springboot,So we use security concepts
+=============================================================
 7.How to Connect ONE REST API WITH ANOTHER API.
+RestTemplate,WebClient
+import org.springframework.web.client.RestTemplate;
+import org.springframework.http.ResponseEntity;
+
+public class ApiService {
+    private final RestTemplate restTemplate = new RestTemplate();
+
+    public String callExternalApi() {
+        String url = "https://api.example.com/data"; // Replace with actual API
+        ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+        return response.getBody();
+    }
+}
+Use WebClient (Recommended Approach)
+WebClient is the modern way to call REST APIs.
+
+Step 1: Add WebClient dependency If not already included in your Spring Boot project, add this in pom.xml:
+
+xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-webflux</artifactId>
+</dependency>
+Step 2: Define WebClient Service
+
+java
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
+
+public class ApiService {
+    private final WebClient webClient = WebClient.create("https://api.example.com");
+
+    public Mono<String> callExternalApi() {
+        return webClient.get()
+                .uri("/data") // Endpoint from the external API
+                .retrieve()
+                .bodyToMono(String.class);
+    }
+}
+This returns a reactive response (Mono<String>), which is more efficient.
+========================================================================
 8.What is Transactional Annotation
 9.How to Handle Global Exception in SpringBoot.
 10.What is Actuator in SpringBoot.
