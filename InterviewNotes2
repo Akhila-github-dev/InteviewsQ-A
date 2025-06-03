@@ -1,7 +1,36 @@
 https://copilot.microsoft.com/shares/sqqKcWwTmMS8VXKbcusET
-What is lazy loading and How Spring Handles it
-caching 
-asynchronous ans synchronous and resttemplate f
+*What is lazy loading and How Spring Handles it
+A: Lazy loading is a technique where an object or bean is initialized only when it is needed, rather than at application startup. This helps improve performance by reducing unnecessary resource consumption.
+How Spring Handles Lazy Loading
+Spring provides the @Lazy annotation to control bean initialization. By default, Spring initializes all singleton beans eagerly at startup, but using @Lazy, we can delay this until the bean is actually required.
+
+
+*What is Caching?
+Caching is a technique used to store frequently accessed data in a temporary storage location for faster retrieval. Instead of fetching data from a slow source (like a database or API), caching allows systems to reuse previously retrieved or computed data, improving performance and reducing load times.
+
+How Caching Works
+Cache Hit – If requested data is found in the cache, it is returned instantly.
+Cache Miss – If data is not in the cache, it is fetched from the original source and stored in the cache for future use.
+Eviction Policy – When the cache reaches its storage limit, older or less frequently used data is removed based on policies like LRU (Least Recently Used) or LFU (Least Frequently Used). 
+
+
+*asynchronous ans synchronous and resttemplate feign client
+A:
+Feature	           Synchronous	                                       Asynchronous
+Execution   	Waits for completion before proceeding	               Executes without waiting
+Blocking	    Blocking execution	                                   Non-blocking execution
+Use Case	    Simple tasks, sequential operations	                  Web API calls, I/O operations, long-running tasks
+Example	    Traditional method calls (RestTemplate)	               Multithreading, CompletableFuture, WebClient
+
+
+
+Feature	                    RestTemplate	                                         Feign Client
+Type                        	Standard HTTP client	                            Declarative HTTP client
+Implementation	              Manual request handling                        	Auto-generates HTTP clients
+Annotations                 	No built-in annotations	                        Uses @FeignClient
+Asynchronous Support        	Requires manual threading	                     Supports async calls with CompletableFuture
+Best For	                  Custom requests, fine-tuned control           	Simplified API calls, microservices
+
 4.Spring data JPA Questions
 5.Difference between @Controller and @RestController
 6.What is Agile Methodologies.
