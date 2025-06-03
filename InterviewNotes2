@@ -7,7 +7,22 @@ asynchronous ans synchronous and resttemplate f
 6.What is Agile Methodologies.
 how can we create custom annotation
 how can we check wethere it is not custom exception class are not with one annotation
- 
+ can we implement custom scope and how
+service registry and service discovery 
+Saga design pattern
+11. Idempotency in ms.
+12. Super class of all java class.
+
+13. Oops concept.
+14. How will prove that any class follows polymorphism, inheritence.
+15. In which u will use linkedList and arrayList.
+16. D/f b/w hashmap and concurrent hashmap.
+17. Remove duplicates and maintain the insertion order from duplicate array.
+18. Volatile keyword.
+19. Trasisient keyword.
+20. D/F b/w stringBuilder and string buffer
+21. == vs equals.
+22. Indexes in SQL and how will u create one and how it works.
 7.When you run a spring boot application, what is initialization process, and what steps will be executed in background
 When a Spring Boot application starts, several key steps happen in the background. First, the JVM starts the 
 execution. Then, Spring Boot initializes the SpringApplication class, which sets up the environment and loads
