@@ -31,10 +31,39 @@ Annotations                 	No built-in annotations	                        Use
 Asynchronous Support        	Requires manual threading	                     Supports async calls with CompletableFuture
 Best For	                  Custom requests, fine-tuned control           	Simplified API calls, microservices
 
-4.Spring data JPA Questions
+
 5.Difference between @Controller and @RestController
+A: @Controller (Traditional MVC Controller)
+Used in Spring MVC to handle web requests and return view templates (e.g., HTML, JSP).
+Typically used for server-side rendering of web applications.
+Requires @ResponseBody to return JSON or other data instead of a view.
+
+@RestController (REST API Controller)
+A combination of @Controller + @ResponseBody, simplifying REST API development.
+Directly returns JSON, XML, or other data instead of views.
+Best for creating RESTful web services.
+
+
 6.What is Agile Methodologies.
-how can we create custom annotation
+
+*how can we create custom annotation
+A:You define an annotation using @interface in Java.
+
+java
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+// Defining a Custom Annotation
+@Retention(RetentionPolicy.RUNTIME) // Available at runtime
+@Target(ElementType.METHOD) // Can be applied to methods
+public @interface MyAnnotation {
+    String value(); // Annotation attribute
+}
+✅ @Retention(RetentionPolicy.RUNTIME) → Makes the annotation available at runtime. 
+✅ @Target(ElementType.METHOD) → Restricts usage to methods.
+
 how can we check wethere it is not custom exception class are not with one annotation
  can we implement custom scope and how
 service registry and service discovery 
