@@ -159,7 +159,7 @@ Define Beans with Custom Scope
 Use @Scope("customScope") annotation in your bean definitions.
 3.Use Scoped Beans in Your Application
 Inject and use beans as needed, ensuring proper lifecycle management.
-
+===============================================================================================================
 *  service registry and service discovery 
 Saga design pattern:-
 Manages the transaction flow, ensuring each step executes in sequence and handling rollbacks when necessary.
