@@ -13,14 +13,28 @@ int sumOfOdd = numbers.stream().filter(n->n%2==1).mapToInt(Integer:: intValue).s
 numbers.stream().filter(n->n%2==0).mapToInt(Integer:: intValue).sum();
 ============================================================================
 8.what is dependency injection in spring boot
+Dependency Injection (DI) in Spring Boot is a design pattern that allows objects (dependencies) to be injected into other objects rather than creating them manually. It helps in managing dependencies efficiently and promotes loose coupling between components.
+
+How it works in Spring Boot:
+Spring Container: Manages the lifecycle of beans (objects) and their dependencies.
+Annotations: Uses annotations like @Autowired, @Component, @Service, and @Repository to automatically inject dependencies.
+Configuration: Can be done using Java-based configuration (@Configuration) or XML (though Java-based is preferred in Spring Boot).
+
+Types of DI:
+Constructor Injection - Dependencies are injected via a constructor.
+Setter Injection - Dependencies are injected via setter methods.
+Field Injection - Dependencies are directly injected into fields using @Autowired.
+===================================================================================
 9.how to connect spring boot application with database
+Ans- adding spring data jpa and mysql connector dependencies and add configuration details in application.properties
+creating entity class and repository interface using it service class.
 ==================================================================
 10.what is dispatcher servlet
 1.The Dispatcher Servlet is the main part of the Spring MVC.
-2.It gets the all incoming request,Find the (Right Controller) to handle them and Manage the flow.
-3.After (controller) process the (request) and It returns the (View Name).
-4.Dispatcher servlet uses (view Resolver) to find the  correct (view)
-5.Then,Its shows the view and sends the response back to the (issuer).
+It gets the all incoming request,Find the (Right Controller) to handle them and Manage the flow.
+After (controller) process the (request) and It returns the (View Name).
+Dispatcher servlet uses (view Resolver) to find the  correct (view)
+Then,Its shows the view and sends the response back to the (issuer).
 ========================================================================
 11.sql query to find the second highest salary from the table
 2nd highest salary
