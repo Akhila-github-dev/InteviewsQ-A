@@ -1,6 +1,7 @@
 https://copilot.microsoft.com/shares/sqqKcWwTmMS8VXKbcusET
 *What is lazy loading and How Spring Handles it
-A: Lazy loading is a technique where an object or bean is initialized only when it is needed, rather than at application startup. This helps improve performance by reducing unnecessary resource consumption.
+A: Lazy loading is a technique where an object or bean is initialized only when it is needed, rather than at 
+application startup. This helps improve performance by reducing unnecessary resource consumption.
 How Spring Handles Lazy Loading
 Spring provides the @Lazy annotation to control bean initialization. By default, Spring initializes all singleton beans eagerly at startup, but using @Lazy, we can delay this until the bean is actually required.
 
