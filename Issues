@@ -35,4 +35,18 @@ The @Transactional annotation in Spring Boot is used to manage database transact
                 .flatMap(List::stream)
                 .collect(Collectors.toList());
 --------------------------------------------------------
+API Integration: CashPro provides RESTful APIs for payments, account information, FX trading, and more, allowing businesses to automate financial operations.
+
+Security & Compliance: It ensures secure file transmission and follows industry standards for data encryption and authentication.
+
+Real-Time Processing: Supports instant payment validation and real-time treasury management, improving efficiency.
+
+Scalability & Flexibility: Businesses can customize workflows and integrate CashPro APIs into their existing ERP or financial systems.
+
+Multi-Channel Access: Offers web-based and mobile solutions, ensuring accessibility from various platforms.
+
+In an interview, you could say: "CashPro Connect is a robust treasury management platform that provides API-driven 
+solutions for businesses. As a backend Java developer, I would work on integrating its RESTful APIs for payments and
+account management, ensuring secure transactions and real-time processing. My focus would be on optimizing API calls,
+handling authentication, and ensuring seamless data flow between enterprise systems and CashPro."
 
