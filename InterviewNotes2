@@ -66,6 +66,34 @@ public @interface MyAnnotation {
 }
 ✅ @Retention(RetentionPolicy.RUNTIME) → Makes the annotation available at runtime. 
 ✅ @Target(ElementType.METHOD) → Restricts usage to methods.
+Creating a custom annotation in Java involves defining an annotation with @interface, 
+setting retention policies, and using it in your Spring Boot application. Here’s a step-by-step guide:
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+@Target({ElementType.METHOD, ElementType.TYPE}) // Specifies applicable elements
+@Retention(RetentionPolicy.RUNTIME) // Specifies visibility at runtime
+public @interface CustomAnnotation {
+    String value() default "";
+    int level() default 1;
+}
+@Target defines where the annotation can be used (methods, classes, fields, etc.).
+
+@Retention defines whether the annotation is available at runtime (RUNTIME) or only at compile time (CLASS or SOURCE).
+
+Inside the annotation, you can define attributes like value and level
+@CustomAnnotation(value = "Test", level = 5)
+public class TestClass {
+    @CustomAnnotation(value = "Method-Level")
+ public void annotatedMethod() {
+        System.out.println("This method is annotated!");
+}}
+Process Annotation Using Reflection
+
+
+================================================
 
 how can we check wethere it is not custom exception class are not with one annotation
  can we implement custom scope and how
