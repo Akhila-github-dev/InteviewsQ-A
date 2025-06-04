@@ -181,12 +181,38 @@ Manages the transaction flow, ensuring each step executes in sequence and handli
 ================================================================
 11. Idempotency in ms.
 12. Super class of all java class.
+object class
 
-13. Oops concept.
 14. How will prove that any class follows polymorphism, inheritence:-
 A: Object class
 15. In which u will use linkedList and arrayList.
+arraylist for searching
+linkedlist for adding and removing element 
+
 16. D/f b/w hashmap and concurrent hashmap.
+
+Feature                	HashMap                        	ConcurrentHashMap
+Thread Safety            	❌ No	                        ✅ Yes (bucket-level locking)
+Performance	                ✅ Fast (Single-threaded)	    ✅ Fast (Multi-threaded)
+Null Keys	                   ✅ Allowed                  	❌ Not Allowed
+Null Values                	✅ Allowed	                    ❌ Not Allowed
+Synchronization	            ❌ None                        	✅ Uses locks per segment
+
+1. HashMap
+✅ Non-thread-safe → It does not provide any synchronization, making it unsafe for multi-threaded environments.
+✅ Allows null keys & values → Supports one null key and multiple null values. 
+✅ Fast Performance → Since it has no locks, it performs better in single-threaded environments.
+
+2. ConcurrentHashMap
+✅ Thread-safe → Uses locks at the bucket level, allowing multiple threads to modify different parts of the map simultaneously. 
+✅ Better performance than synchronizedMap → Reduces contention in multi-threaded environments. 
+✅ Does NOT allow null keys or values → Prevents null-related errors in concurrent applications.
+
+Use HashMap in single-threaded applications where performance is critical.
+
+Use ConcurrentHashMap in multi-threaded environments to ensure safe concurrent access.
+===================================================================================================
+
 17. Remove duplicates and maintain the insertion order from duplicate array.
 18. Volatile keyword.
 19. Trasisient keyword.
