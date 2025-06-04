@@ -16,8 +16,8 @@ untracked files ---------->-git doesn't know
 git add .
 
 tracked file 
-1. unstaged area -code change local save 
-2. staged area -git consiger only staged area 
+1. unstaged area ->code change local lo save avuthundhi
+2. staged area ->git consider only staged area 
 
 unstaged to staged
 git add . ------->-all file
@@ -29,7 +29,7 @@ git status
 
 git commit -m "story2323 -application sever issue"
 
-git push          --------->upload rremote
+git push          --------->upload remote
 
 
 git pull remote branch name
