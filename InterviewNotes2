@@ -190,21 +190,27 @@ Imagine an online shopping app where the Checkout Service needs to talk to the P
 Saga design pattern:-
 The Saga design pattern is used to manage distributed transactions in microservices architecture. Instead of relying on traditional monolithic transactions, Saga breaks a complex transaction into a series of smaller, isolated operations, each handled by a different service2.
 How Saga Works
-A Saga consists of multiple steps, where each step represents a local transaction.
-If a step fails, compensating transactions are executed to undo the previous steps.
-It ensures eventual consistency rather than strict ACID compliance.
-Approaches to Implement Saga
-Choreography-Based Saga (Event-driven)
-Each service listens for events and triggers the next step.
-No central coordinator.
-Example: Order service places an order → Payment service processes payment → Inventory service updates stock.
-Orchestration-Based Saga (Centralized control)
-A Saga orchestrator manages the transaction flow.
-Services report success/failure to the orchestrator.
-Example: A central controller directs each step and handles rollbacks if needed.
-Manages the transaction flow, ensuring each step executes in sequence and handling rollbacks when necessary.
+A Saga is a sequence of transactions, where each step triggers the next one. If a step fails, a compensating action ensures data consistency.
+
+Types of Saga Patterns:
+-Choreography-Based Saga 🕺
+Microservices communicate directly with each other.
+Each service performs its task and triggers the next service in the sequence.
+If a failure occurs, each service executes a rollback action.
+🔹 Best for simple workflows with fewer dependencies.
+
+-Orchestration-Based Saga 🎭
+A Saga Orchestrator (a separate service) manages the transaction flow.
+It tells each service what action to take and listens for responses.
+If a failure occurs, the orchestrator triggers compensating actions.
+🔹 Best for complex workflows with multiple dependencies.
 ================================================================
 11. Idempotency in ms.
+Idempotency ensures that repeated execution of the same request produces the same result without unintended side effects. This is crucial in microservices, especially in scenarios where requests might be replayed, retried, or duplicated due to network failures or system errors.
+
+Why Is Idempotency Important?
+✅ Prevents duplicate operations (e.g., multiple payments for the same order). ✅ Ensures consistency across distributed systems. ✅ Improves fault tolerance by allowing safe retries.
+===================================================================
 12. Super class of all java class.
 object class
 
@@ -239,6 +245,7 @@ Use ConcurrentHashMap in multi-threaded environments to ensure safe concurrent a
 ===================================================================================================
 
 17. Remove duplicates and maintain the insertion order from duplicate array.
+LinkedHashset
 18. Volatile keyword.
 19. Trasisient keyword.
 20. D/F b/w stringBuilder and string buffer
