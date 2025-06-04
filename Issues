@@ -1,0 +1,38 @@
+Null Pointer Exception: "A bug where the application tries to use an object reference that hasn't been initialized, causing the program to crash."
+
+Memory Leak: "A bug where the application fails to release memory that is no longer needed, leading to increased memory usage and potential crashes."
+
+Technical Issues: "We encountered a bug that caused unexpected behavior in the application. I tackled this by debugging systematically and consulting documentation and forums for solutions."
+Bug Fixing: "We faced a bug that caused the application to crash under certain conditions. I had to debug the code, identify the root cause, and implement a fix."
+
+Performance Optimization: "The application was running slower than expected. I analyzed the performance bottlenecks and optimized the code and database queries to improve speed."
+
+Integration Problems: "Integrating a third-party service caused unexpected errors. I worked on understanding the API documentation better and adjusted our implementation to ensure compatibility."
+
+Data Migration: "Migrating data from an old system to a new one led to data inconsistencies. I developed scripts to clean and validate the data during the migration process."
+
+Security Vulnerabilities: "We discovered a security vulnerability in our application. I researched best practices and implemented security patches to protect user data."
+
+Environment Configuration: "Setting up the development environment was challenging due to dependency conflicts. I documented the setup process and used containerization tools like Docker to streamline the environment configuration."\\asyn \compliated
+
+=====================================================
+✅ Low-level HTTP Client – Requires explicit configurations for headers, authentication, and serialization. ✅ Manual Handling – You have to manually create request bodies and parse responses. ✅ More Control – Allows fine-tuned customizations.
+=============================================
+The @Transactional annotation in Spring Boot is used to manage database transactions automatically. When applied to a method or class, it ensures that all database operations within the method are executed within a single transaction. If any exception occurs, the transaction is rolled back, ensuring data consistency. It simplifies transaction management in applications
+=======================================================
+1.what are the type of problems you faced in your project?
+2. Is there any multithreading is used in you project?
+3. tell about critical business logic you developed?
+3. have you used microservices ? how many microservices you created?
+===========================================================================
+  List<List<Integer>> nestedList = Arrays.asList(
+                Arrays.asList(1, 2, 3),
+                Arrays.asList(4, 5, 6),
+                Arrays.asList(7, 8, 9)
+        );
+
+        List<Integer> flattenedList = nestedList.stream()
+                .flatMap(List::stream)
+                .collect(Collectors.toList());
+--------------------------------------------------------
+
