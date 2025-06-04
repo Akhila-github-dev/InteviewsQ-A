@@ -118,6 +118,7 @@ how can we check wethere it is not custom exception class are not with one annot
 using @ExceptionHandler and instance of 
 ========================================================
  can we implement custom scope and how
+types of bean scopes
 1.Singleton (@Scope("singleton")) (Default Scope)
 Only one instance of the bean is created and shared across the application.
 Used when a single object needs to be shared globally.
