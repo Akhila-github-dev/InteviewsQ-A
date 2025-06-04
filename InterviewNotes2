@@ -7,7 +7,9 @@ Spring provides the @Lazy annotation to control bean initialization. By default,
 
 
 *What is Caching?
-Caching is a technique used to store frequently accessed data in a temporary storage location for faster retrieval. Instead of fetching data from a slow source (like a database or API), caching allows systems to reuse previously retrieved or computed data, improving performance and reducing load times.
+Caching is a technique used to store frequently accessed data in a temporary storage location for faster retrieval. 
+Instead of fetching data from a slow source (like a database or API), caching allows systems to reuse previously 
+retrieved or computed data, improving performance and reducing load times.
 
 How Caching Works
 Cache Hit – If requested data is found in the cache, it is returned instantly.
