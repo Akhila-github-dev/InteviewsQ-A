@@ -115,7 +115,31 @@ public class AnnotationProcessor {
 ================================================
 
 how can we check wethere it is not custom exception class are not with one annotation
+using @ExceptionHandler and instance of 
+========================================================
  can we implement custom scope and how
+1.Singleton (@Scope("singleton")) (Default Scope)
+Only one instance of the bean is created and shared across the application.
+Used when a single object needs to be shared globally.
+Every time this bean is injected, the same instance is used.
+2. Prototype (@Scope("prototype"))
+New instance is created every time the bean is requested.
+Used when objects have different states and shouldn’t be shared.
+Each time this bean is requested, a new instance is provided.
+
+3. Request (@Scope("request")) (For Web Applications)
+A new bean instance is created per HTTP request.
+Used in Spring MVC controllers.
+Session (@Scope("session")) (For Web Applications)
+A new bean instance is created per user session.
+Useful for maintaining session-level data.
+5. Application (@Scope("application")) (For Web Applications)
+A single bean instance is created for the entire application lifecycle.
+It is like singleton but specific to web applications.
+6. WebSocket (@Scope("websocket")) (For WebSocket Communication)
+A single bean instance is created for each WebSocket session.
+Used in real-time messaging applications.
+========================================================
 service registry and service discovery 
 Saga design pattern:-
 Manages the transaction flow, ensuring each step executes in sequence and handling rollbacks when necessary.
