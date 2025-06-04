@@ -91,6 +91,25 @@ public class TestClass {
         System.out.println("This method is annotated!");
 }}
 Process Annotation Using Reflection
+A: 
+public class AnnotationProcessor {
+    public static void main(String[] args) throws Exception {
+        Class<TestClass> obj = TestClass.class;
+
+        // Process class-level annotation
+        if (obj.isAnnotationPresent(CustomAnnotation.class)) {
+            CustomAnnotation annotation = obj.getAnnotation(CustomAnnotation.class);
+            System.out.println("Class Annotation: " + annotation.value() + ", Level: " + annotation.level());
+        }
+// Process method-level annotation
+        for (Method method : obj.getDeclaredMethods()) {
+            if (method.isAnnotationPresent(CustomAnnotation.class)) {
+                CustomAnnotation annotation = method.getAnnotation(CustomAnnotation.class);
+                System.out.println("Method Annotation: " + annotation.value());
+            }
+        }
+    }
+}
 
 
 ================================================
