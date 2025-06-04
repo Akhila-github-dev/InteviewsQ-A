@@ -9,8 +9,8 @@ Interview question for java developer BOFA  (TEAM MATES)
 ==========================================================================================
 7.program to find sum of odd and even in a list using stream api concepts
  List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
-int sumOfOdd = nums.stream().filter(n->n%2==1).mapToInt(Integer:: intValue).sum();
-nums.stream().filter(n->n%2==0).mapToInt(Integer:: intEvenValue).sum();
+int sumOfOdd = numbers.stream().filter(n->n%2==1).mapToInt(Integer:: intValue).sum();
+numbers.stream().filter(n->n%2==0).mapToInt(Integer:: intValue).sum();
 ============================================================================
 8.what is dependency injection in spring boot
 9.how to connect spring boot application with database
