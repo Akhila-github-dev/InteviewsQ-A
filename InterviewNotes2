@@ -117,8 +117,8 @@ public class AnnotationProcessor {
 how can we check wethere it is not custom exception class are not with one annotation
 using @ExceptionHandler and instance of 
 ========================================================
- can we implement custom scope and how
-types of bean scopes
+ 
+* Types of bean scopes
 1.Singleton (@Scope("singleton")) (Default Scope)
 Only one instance of the bean is created and shared across the application.
 Used when a single object needs to be shared globally.
@@ -141,7 +141,26 @@ It is like singleton but specific to web applications.
 A single bean instance is created for each WebSocket session.
 Used in real-time messaging applications.
 ========================================================
-service registry and service discovery 
+*   can we implement custom scope and how
+A:  Yes! You can implement a custom scope in Spring by defining your own scope logic using the Scope interface. Here’s how:
+
+Steps to Implement a Custom Scope in Spring
+1.Create a Custom Scope Class
+Implement the org.springframework.beans.factory.config.Scope interface.
+Define methods for managing scoped objects (get, remove, registerDestructionCallback, etc.).
+Store scoped objects in a thread-safe map.
+2.Register the Custom Scope
+Use ConfigurableBeanFactory to register the new scope in the Spring application context.
+Example:
+java
+ConfigurableBeanFactory factory = applicationContext.getBeanFactory();
+factory.registerScope("customScope", new CustomScope());
+Define Beans with Custom Scope
+Use @Scope("customScope") annotation in your bean definitions.
+3.Use Scoped Beans in Your Application
+Inject and use beans as needed, ensuring proper lifecycle management.
+
+*  service registry and service discovery 
 Saga design pattern:-
 Manages the transaction flow, ensuring each step executes in sequence and handling rollbacks when necessary.
 11. Idempotency in ms.
