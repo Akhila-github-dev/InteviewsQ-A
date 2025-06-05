@@ -50,24 +50,25 @@ What is a repository in Git?
 Answer: A repository in Git is a storage location where all the files and their history are stored. It contains a directory named .git, which holds all the metadata and object database for the project.
 How do you create a new repository in Git?
 
-Answer: You can create a new repository using the command:
-
+Answer: You can create a new repository using the command: git init
 This initializes a new Git repository in the current directory.
+
 What is the difference between git clone and git fork?
+Answer: git clone creates a copy of an existing repository, including all its history and branches, on your local machine.
+git fork, on the other hand, is typically used on platforms like GitHub to create a personal copy of someone else's repository, which you can then clone to your local machine.
 
-Answer: git clone creates a copy of an existing repository, including all its history and branches, on your local machine. git fork, on the other hand, is typically used on platforms like GitHub to create a personal copy of someone else's repository, which you can then clone to your local machine.
 How do you stage and commit changes in Git?
+Answer: To stage changes, use:git add <file-name>
 
-Answer: To stage changes, use:
-
-To commit the staged changes, use:
-
+To commit the staged changes, use:git commit -m "Your commit message"
 
 What is a branch in Git and how do you create one?
 
-Answer: A branch in Git is a separate line of development. You can create a new branch using:
+Answer: A branch in Git is a separate line of development. You can create a new branch using:git branch <branch-name>
 
-To switch to the new branch, use:
+
+To switch to the new branch, use:git checkout <branch-name>
+
 
 Explain the difference between git merge and git rebase.
 
@@ -79,10 +80,11 @@ What is Git stash and how is it used?
 
 Answer: Git stash temporarily saves your changes and reverts your working directory to a clean state. You can stash changes using:
 
-To apply stashed changes later, use:
+To apply stashed changes later, use:git stash apply
 
 How do you revert a commit in Git?
 
-Answer: You can revert a commit using:
+Answer: You can revert a commit using:git revert <commit-hash>
+
 
 This creates a new commit that undoes the changes from the specified commit.
