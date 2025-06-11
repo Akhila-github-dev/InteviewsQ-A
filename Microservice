@@ -1,4 +1,9 @@
-
+Senarios and Issues with Monolythic Architechture:
+		--------------------------------------------------
+		1) If an issues (Any Runtime exception) occured in one module, that blocks entire application.
+		2) If the application has more number modules and it requires more number of developers. It is chalenging to those many developers.
+		3) If I want to address some issues fixes for one of the modules, I need to stop the server and apply the fix. But this impact other module's functionality
+		============================================================
 Microservices is an architectural approach to building a software application that involves breaking down a large application into a collection of small independent and loosly coupled services.
 - Each service is designed to perform a specifc function and communicate with other through a well defined API's.
 
