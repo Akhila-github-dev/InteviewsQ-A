@@ -67,6 +67,16 @@ How do you ensure code quality in your projects?
 using junit test cases and checking the code coverage we can check the code quality.sonar qube for code quality.
 =================================================================================
 Do you follow design patterns, unit testing, or code reviews?
+Design Patterns "Yes, I follow design patterns to ensure code scalability, maintainability, and efficiency. In CashPro Connect,
+given its focus on secure financial transactions, patterns like Singleton for managing shared configurations, Factory for object creation, 
+and Observer for event-driven processing are particularly useful."
+
+Unit Testing "I prioritize writing unit tests to ensure code reliability and prevent regressions. I use JUnit and Mockito for testing 
+services, controllers, and repositories. In a banking project like CashPro Connect, testing edge cases such as transaction failures,
+concurrency handling, and security validation is crucial."
+
+Code Reviews "I actively participate in code reviews to maintain code quality and align with best practices. I look for readability,
+performance optimization, adherence to design patterns, and security considerations—especially relevant in a financial platform like CashPro Connect."
 =================================================================================
 How do you handle technical debt?
 =================================================================================
@@ -79,6 +89,7 @@ What challenges did you face in inter-service communication?
 How do you handle database transactions in your project?
 =================================================================================
 Have you used Hibernate, JPA, or JDBC?
+we have used jpa 
 =================================================================================
 How do you ensure data consistency?
 =================================================================================
