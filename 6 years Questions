@@ -88,3 +88,56 @@ Round 3: [13:14]
    * Scenario-based question: If an interface has three implementations, what happens if you autowire a list of that interface? [17:12]
  * Java Memory Management
 
+=========================================================================
+Round 1: Technical
+ * Build a REST API to store employees using Spring Boot [00:49]
+   * Includes writing the controller, service layer, and repository.
+   * Also covers Spring Boot project structure and dependencies.
+ * Implement a filter in a Spring Boot project [01:38]
+ * Rate limiter: What it is and how to implement it [01:50]
+ * Singleton pattern [01:56]
+   * What it is, how to break it, real-time usage, and how to make a class thread-safe.
+ * Garbage collection [02:41]
+   * Scenarios of object eligibility for garbage collection.
+   * Different types of garbage collectors.
+ * Scopes of a bean [03:45]
+   * Different scopes and real-time examples of when to use each.
+ * Marker interface [04:13]
+   * Usage, purpose, and examples of built-in marker interfaces in Java.
+ * Functional interfaces and predefined functional interfaces [04:37]
+ * Coding question: Extract strings ending with ".xls" using Java 8 streams [04:50]
+ * Coding question: Filter even numbers from a list and multiply them by 2 [05:33]
+ * Garbage collection algorithm used in Java 8 and later versions [05:51]
+ * SQL query to swap 'Male' and 'Female' in a gender column [05:58]
+ * Explanation of your project's architecture diagram [06:24]
+ * How to handle conflicts of opinion within a team [06:31]
+ * Can lambdas be used with normal interfaces, and why? [07:03]
+ * Real-time usage of Singleton and Prototype design patterns [07:19]
+ * If a Singleton class is extended, does it break the pattern? [07:42]
+ * Synchronization: What it is and different levels of synchronization [08:11]
+ * Serialization and Deserialization [08:41]
+   * What is JEP 290?
+   * What is jdk.serial.filter?
+   * What is the fundamental problem and how Java 9 addresses it.
+Round 2: Techno-Managerial
+ * Password rotation and encryption policies [09:46]
+ * How to decide thread pool size [10:22]
+ * How to decide the number of instances required for a microservice [10:35]
+ * OAuth [10:49]
+   * What it is, 2-legged vs 3-legged, public/private keys, JWT, certificate expiry, etc.
+ * Spring Boot flow [11:23]
+   * Filter, interceptor, controller, service, repository, DTOs, etc.
+   * Where to put authentication/authorization.
+ * Are WebLogic and Tomcat servers single-threaded or multi-threaded? [12:13]
+ * Java 8 features [12:18]
+   * Including CompletableFuture and how to handle exceptions.
+ * Design a REST API to construct SQL queries based on the input language [12:55]
+ * Microservices design patterns [14:19]
+   * Strangler, Saga (Orchestrator vs Choreography), CQRS.
+ * Logging in microservices [14:41]
+   * Trace ID, Span ID, Micrometer.
+ * What is Actuator? [14:47]
+   * Its purpose and how it's used for health checks.
+ * How to estimate effort for a user story in Agile [15:05]
+ * How to handle requirement changes two days before the iteration completion date [15:33]
+ * How to handle requirement changes after all changes have been completed and tested
