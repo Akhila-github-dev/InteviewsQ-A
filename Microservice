@@ -119,6 +119,8 @@ Tools like Zipkin or Jaeger help track data flow and identify inconsistencies or
 Ultimately, the choice depends on the business requirements, latency tolerance, and data criticality."
 
 =====================================================================================
+API Gateway acts as a single entry point for clients and routes requests to appropriate microservices, often handling authentication, rate limiting, and caching.
+=====================================================================================
 2. Advantages of MS
 1. Scalability - this allows to scale up or down independently based on the demand.
 - 1. Horizontal Up Scaling- here we increase the no of servers.
