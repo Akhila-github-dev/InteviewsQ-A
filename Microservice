@@ -36,6 +36,11 @@ The balancer queries the registry and routes requests dynamically.
 
 Example in Real Life:
 Imagine an online shopping app where the Checkout Service needs to talk to the Payment Service. Instead of hardcoding the Payment Service’s location, it queries the Service Registry, gets the latest available instance, and sends the request.
+==========================================================================================
+3. What Strategies Do You Use for Service Discovery?
+In a dynamic microservices environment, services need to find each other without hardcoded URLs. Service discovery solves this challenge elegantly.
+@EnableEurekaServer
+@EnableDiscoveryClient
 =========================================================================================
  How Would You Handle Distributed Transactions in Microservices?
 Saga design pattern:-
@@ -93,6 +98,27 @@ resilience4j.circuitbreaker:
       waitDurationInOpenState: 10s
 
 =========================================================================
+ How Do You Handle Data Consistency Across Microservice
+"Data consistency across microservices is complex because each service typically has its own database. To handle this, we use strategies like eventual consistency, distributed transactions, and event-driven communication.
+
+1. Eventual Consistency:
+This is the most common approach. Services communicate via events (e.g., using Kafka or RabbitMQ). When one service updates data, it publishes an event, and other services react to it. This ensures consistency over time, not instantly.
+
+2. Saga Pattern:
+For long-running transactions across services, we use the Saga pattern. It breaks a transaction into smaller steps, each managed by a different service. If one step fails, compensating transactions are triggered to undo previous steps.
+
+3. CQRS (Command Query Responsibility Segregation):
+This separates read and write operations. It allows services to maintain their own data models and sync via events, improving scalability and consistency.
+
+4. Idempotency and Retries:
+To ensure reliable communication, services should be idempotent and support retries without causing duplicate data or inconsistent states.
+
+5. Distributed Tracing and Monitoring:
+Tools like Zipkin or Jaeger help track data flow and identify inconsistencies or failures in inter-service communication.
+
+Ultimately, the choice depends on the business requirements, latency tolerance, and data criticality."
+
+=====================================================================================
 2. Advantages of MS
 1. Scalability - this allows to scale up or down independently based on the demand.
 - 1. Horizontal Up Scaling- here we increase the no of servers.
