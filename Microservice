@@ -121,6 +121,21 @@ Ultimately, the choice depends on the business requirements, latency tolerance, 
 =====================================================================================
 API Gateway acts as a single entry point for clients and routes requests to appropriate microservices, often handling authentication, rate limiting, and caching.
 =====================================================================================
+Load Balancer is an old concept which is used to distribute load or traffic across multiple instances. It can be implemented as a Hardware solution or as a Software Solution but distributing load is its main function and it can be used not just on Microservices architecture but also on Monolith and Service oriented architecture. 
+
+On the other hand, API Gateway is a Microservice pattern which not only does load balancing but also can be used for lookup and can also simplify client code. Instead of remember 10s and 100s of Microservices, client can only remember API gateway host and port details. 
+
+You can also implement authentication, authorization, security, and other cross-cutting concern at API Gateway level instead of implementing them on each Microservice. 
+========================================================== 
+to implement synchronous communication in Microservices architecture like you can use REST API calls, gRPC or GraphQL API to retrieve data from server in synchronous manner and also to upload data to server. ==
+Well, like synchronous communication there are multiple ways to achieve asynchronous communication in Microservices architecture like you can use Apache Kafka, RabbitMQ, and ActiveMQ. Message brokers allows senders to send and forget and receiver then can process when they are free giving both sender and receiver freedom to work on their speed. 
+========================================
+20. What is CQRS Pattern in Microservices? What problem does it solve? (answer)
+ CQRS is an essential design pattern for Microservice architecture.
+CQRS stands for Command and Query System in which data operations are separated into two, command which writes data into database
+and Query system which reads data from database or data store. By splitting your application into two component you can better optimize your 
+application depending upon whether its write heavy or read heavy application. 
+-==========================================================================================
 2. Advantages of MS
 1. Scalability - this allows to scale up or down independently based on the demand.
 - 1. Horizontal Up Scaling- here we increase the no of servers.
