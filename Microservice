@@ -62,7 +62,37 @@ Idempotency ensures that repeated execution of the same request produces the sam
 Why Is Idempotency Important?
 ✅ Prevents duplicate operations (e.g., multiple payments for the same order). ✅ Ensures consistency across distributed systems. ✅ Improves fault tolerance by allowing safe retries.
 ===================================================================
+The Circuit Breaker Pattern is a design pattern used in microservices to prevent cascading failures and improve system resilience. It works like an electrical circuit breaker: it monitors calls to external services and 'trips' if a service fails repeatedly.
 
+There are three states:
+
+Closed: Requests flow normally. If failures exceed a threshold, it moves to Open.
+Open: Requests are blocked immediately to prevent further strain on the failing service.
+Half-Open: After a timeout, a few test requests are allowed. If they succeed, the circuit closes again.
+In Spring Boot, we typically implement this using Resilience4j. For example, we annotate a method with @CircuitBreaker and provide a fallback method to handle failures gracefully. This helps maintain user experience even when a downstream service is down.
+
+This pattern is especially useful in distributed systems where services depend on each other, and it helps isolate failures and recover faster
+=======================================================================================================
+
+@CircuitBreaker(name = "myService", fallbackMethod = "fallbackMethod")
+public String callExternalService() {
+    // Call to another microservice
+    return restTemplate.getForObject("http://external-service/api", String.class);
+}
+
+public String fallbackMethod(Exception e) {
+    return "Fallback response: Service is currently unavailable.";
+}
+in app.yml
+resilience4j.circuitbreaker:
+  instances:
+    myService:
+      registerHealthIndicator: true
+      slidingWindowSize: 10
+      failureRateThreshold: 50
+      waitDurationInOpenState: 10s
+
+=========================================================================
 2. Advantages of MS
 1. Scalability - this allows to scale up or down independently based on the demand.
 - 1. Horizontal Up Scaling- here we increase the no of servers.
