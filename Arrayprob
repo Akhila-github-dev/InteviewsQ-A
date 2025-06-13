@@ -134,9 +134,13 @@ This returns a reactive response (Mono<String>), which is more efficient.
 10.What is Actuator in SpringBoot.
 11.What is Concurrent HashMap
 ==================================================================
-
-
-
+Migrating from Spring Boot 5 to Spring Boot 6 mainly involves updating to the new Jakarta EE namespace,
+which means changing javax.* to jakarta.*. I also need to check compatibility of third-party libraries, 
+update security configurations, and make sure the application runs on Java 17 or higher. I would test everything thoroughly and do the migration step-by-step to avoid breaking changes.
+=================================================================================
+To fix POM file errors and ensure compatibility, I update the Spring Boot version, make sure the 
+Java version is correct, and use the right dependencies. I also clean and rebuild the project using 
+mvn clean install to check for any issues.
 
 =====================================================================================================================================================>
 =====================================================================================================================================================>
