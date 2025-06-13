@@ -6,7 +6,10 @@ Senarios and Issues with Monolythic Architechture:
 		============================================================
 Microservices is an architectural approach to building a software application that involves breaking down a large application into a collection of small independent and loosly coupled services.
 - Each service is designed to perform a specifc function and communicate with other through a well defined API's.
-
+========================================
+Name the main components of Microservices?.
+Answer: Containers, cloud infrastructure, API gateway, Service delivery, IaC, and Service bus.
+===================================================
 2. Advantages of MS
 1. Scalability - this allows to scale up or down independently based on the demand.
 - 1. Horizontal Up Scaling- here we increase the no of servers.
@@ -21,7 +24,6 @@ Microservices is an architectural approach to building a software application th
 1. Operational Overhead - it includes the cost, deployment complexity and higher resource consumption.
 2. Increased Testing Complexity
 3. Increased Database opration overhead.
-
 4. Walkthrough of the Monolithic Application
 
 5. Factors Need to be considered for converting the Monolithic to Microservices.
