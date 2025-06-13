@@ -10,6 +10,59 @@ Microservices is an architectural approach to building a software application th
 Name the main components of Microservices?.
 Answer: Containers, cloud infrastructure, API gateway, Service delivery, IaC, and Service bus.
 ===================================================
+*  service registry and service discovery 
+
+Service Registry vs. Service Discovery in Microservices
+In a microservices architecture, managing how services find and communicate with each other is crucial. This is where Service Registry and Service Discovery come into play.
+1. Service Registry
+The Service Registry is like a phone directory where all microservices register themselves and can be dynamically located by other services.
+How it Works:
+When a microservice starts, it registers its location (IP, port) in the registry.
+The registry stores and maintains this information.
+Other microservices query the registry to find and communicate with registered services.
+Examples of Service Registry Tools:
+Eureka (Netflix) – Used in Spring Cloud ecosystems.
+Consul (HashiCorp) – Supports service discovery and health checks.
+Zookeeper (Apache) – Helps coordinate distributed systems.
+2. Service Discovery
+Service Discovery enables microservices to find and connect with other services dynamically without hardcoding IP addresses.
+Types of Service Discovery:
+Client-Side Discovery
+The client asks the Service Registry for a service instance.
+Example: Netflix Eureka in Spring Cloud.
+Server-Side Discovery
+A Load Balancer (like Nginx or Kubernetes Service) sits in front of services.
+The balancer queries the registry and routes requests dynamically.
+
+Example in Real Life:
+Imagine an online shopping app where the Checkout Service needs to talk to the Payment Service. Instead of hardcoding the Payment Service’s location, it queries the Service Registry, gets the latest available instance, and sends the request.
+=========================================================================================
+ How Would You Handle Distributed Transactions in Microservices?
+Saga design pattern:-
+The Saga design pattern is used to manage distributed transactions in microservices architecture. Instead of relying on traditional monolithic transactions, Saga breaks a complex transaction into a series of smaller, isolated operations, each handled by a different service2.
+How Saga Works
+A Saga is a sequence of transactions, where each step triggers the next one. If a step fails, a compensating action ensures data consistency.
+
+Types of Saga Patterns:
+-Choreography-Based Saga 🕺
+Microservices communicate directly with each other.
+Each service performs its task and triggers the next service in the sequence.
+If a failure occurs, each service executes a rollback action.
+🔹 Best for simple workflows with fewer dependencies.
+
+-Orchestration-Based Saga 🎭
+A Saga Orchestrator (a separate service) manages the transaction flow.
+It tells each service what action to take and listens for responses.
+If a failure occurs, the orchestrator triggers compensating actions.
+🔹 Best for complex workflows with multiple dependencies.
+================================================================
+11. Idempotency in ms.
+Idempotency ensures that repeated execution of the same request produces the same result without unintended side effects. This is crucial in microservices, especially in scenarios where requests might be replayed, retried, or duplicated due to network failures or system errors.
+
+Why Is Idempotency Important?
+✅ Prevents duplicate operations (e.g., multiple payments for the same order). ✅ Ensures consistency across distributed systems. ✅ Improves fault tolerance by allowing safe retries.
+===================================================================
+
 2. Advantages of MS
 1. Scalability - this allows to scale up or down independently based on the demand.
 - 1. Horizontal Up Scaling- here we increase the no of servers.
