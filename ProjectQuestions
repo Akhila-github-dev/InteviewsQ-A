@@ -78,6 +78,51 @@ concurrency handling, and security validation is crucial."
 Code Reviews "I actively participate in code reviews to maintain code quality and align with best practices. I look for readability,
 performance optimization, adherence to design patterns, and security considerations—especially relevant in a financial platform like CashPro Connect."
 =================================================================================
+How do you invoke third party apis in your project?
+Using RestTemplate
+“RestTemplate is a synchronous HTTP client provided by Spring. It’s simple and widely used for calling REST APIs.”
+
+@Service
+public class ApiService {
+
+    @Autowired
+    private RestTemplate restTemplate;
+
+    public String getDataFromApi() {
+        String url = "https://api.example.com/data";
+        ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+        return response.getBody();
+    }
+}
+
+
+@Configuration
+public class AppConfig {
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
+}
+
+“FeignClient is a declarative REST client from Spring Cloud. It simplifies API calls by abstracting the HTTP layer.
+@FeignClient(name = "externalApi", url = "https://api.example.com")
+public interface ExternalApiClient {
+    @GetMapping("/data")
+    String getData();
+}
+
+@Service
+public class ApiService {
+
+    @Autowired
+    private ExternalApiClient externalApiClient;
+
+    public String fetchData() {
+        return externalApiClient.getData();
+    }
+}
+
+===================================================================================
 How do you handle technical debt?
 =================================================================================
 Have you worked with microservices architecture?
