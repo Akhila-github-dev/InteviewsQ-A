@@ -7,6 +7,14 @@ Senarios and Issues with Monolythic Architechture:
 Microservices is an architectural approach to building a software application that involves breaking down a large application into a collection of small independent and loosly coupled services.
 - Each service is designed to perform a specifc function and communicate with other through a well defined API's.
 ========================================
+if we want to make server as spring cloud config server 
+add spring cloud config server dependency 
+add properties in app.properties  and annotate with @EnableconfigServer
+never write business logic in config server, config server purpose is to store the credentials and supply credentials to down stream servers. 
+-> config client
+
+
+========================================
 Name the main components of Microservices?.
 Answer: Containers, cloud infrastructure, API gateway, Service delivery, IaC, and Service bus.
 ===================================================
