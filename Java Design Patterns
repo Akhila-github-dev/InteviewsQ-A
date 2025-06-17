@@ -1,7 +1,6 @@
 "Do you know any design patterns?"
 I replied, "No, I'm not very familiar with them."
 He then asked, "Have you ever implemented CRUD operations in any of your projects?"
- I responded, "Yes, I have."
  He explained, "That's an example of the Repository Pattern. It abstracts the data layer and allows you to work with data sources using a consistent interface."
 Next, he asked, "Have you used transactions in your project—where multiple operations must succeed together, and if one fails, everything rolls back?"
  I said, "Yes, I have handled such scenarios."
