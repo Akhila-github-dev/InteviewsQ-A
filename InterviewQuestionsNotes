@@ -262,6 +262,113 @@ retrieval and updates. With this setup, our service layer could fetch data from 
 simultaneously, ensuring efficient communication.
 we will use  @Primary in for primary db connection in configuration class
 
+->you can configure multiple DataSource beans and use @Primary and @Qualifier annotations to manage them
+1)defining properties application.properties or yml file
+spring:
+  datasource:
+    db1:
+      url: jdbc:mysql://localhost:3306/db1
+      username: user1
+      password: pass1
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
+    db2:
+      url: jdbc:mysql://localhost:3306/db2
+      username: user2
+      password: pass2
+      driver-class-name: com.mysql.cj.jdbc.Driver
+2)Create Configuration Classes for Each DataSource
+
+@Configuration
+@EnableTransactionManagement
+@EnableJpaRepositories(
+    basePackages = "com.example.repo.db1",
+    entityManagerFactoryRef = "db1EntityManagerFactory",
+    transactionManagerRef = "db1TransactionManager"
+)
+public class Db1Config {
+
+    @Primary
+    @Bean(name = "db1DataSource")
+    @ConfigurationProperties(prefix = "spring.datasource.db1")
+    public DataSource dataSource() {
+        return DataSourceBuilder.create().build();
+    }
+
+    @Primary
+    @Bean(name = "db1EntityManagerFactory")
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(
+            EntityManagerFactoryBuilder builder,
+            @Qualifier("db1DataSource") DataSource dataSource) {
+        return builder
+                .dataSource(dataSource)
+                .packages("com.example.model.db1")
+                .persistenceUnit("db1")
+                .build();
+    }
+
+    @Primary
+    @Bean(name = "db1TransactionManager")
+    public PlatformTransactionManager transactionManager(
+            @Qualifier("db1EntityManagerFactory") EntityManagerFactory entityManagerFactory) {
+        return new JpaTransactionManager(entityManagerFactory);
+    }
+}
+
+
+@Configuration
+@EnableTransactionManagement
+@EnableJpaRepositories(
+    basePackages = "com.example.repo.db2",
+    entityManagerFactoryRef = "db2EntityManagerFactory",
+    transactionManagerRef = "db2TransactionManager"
+)
+public class Db2Config {
+
+    @Bean(name = "db2DataSource")
+    @ConfigurationProperties(prefix = "spring.datasource.db2")
+    public DataSource dataSource() {
+        return DataSourceBuilder.create().build();
+    }
+
+    @Bean(name = "db2EntityManagerFactory")
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(
+            EntityManagerFactoryBuilder builder,
+            @Qualifier("db2DataSource") DataSource dataSource) {
+        return builder
+                .dataSource(dataSource)
+                .packages("com.example.model.db2")
+                .persistenceUnit("db2")
+                .build();
+    }
+
+    @Bean(name = "db2TransactionManager")
+    public PlatformTransactionManager transactionManager(
+            @Qualifier("db2EntityManagerFactory") EntityManagerFactory entityManagerFactory) {
+        return new JpaTransactionManager(entityManagerFactory);
+    }
+}
+3: Create Entity and Repository Classes
+Place entities for db1 in com.example.model.db1
+Place entities for db2 in com.example.model.db2
+Repositories go in com.example.repo.db1 and com.example.repo.db2
+ 4: Use Repositories in Services
+
+@Service
+public class MyService {
+
+    @Autowired
+    private Db1Repository db1Repo;
+
+    @Autowired
+    private Db2Repository db2Repo;
+
+    public void syncData() {
+        List<Entity1> list = db1Repo.findAll();
+        db2Repo.saveAll(transform(list));
+    }
+}
+
 ===========================================================================================================
  1. cognizant  
 
