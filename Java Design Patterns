@@ -1,20 +1,27 @@
 "Do you know any design patterns?"
-I replied, "No, I'm not very familiar with them."
-He then asked, "Have you ever implemented CRUD operations in any of your projects?"
+"Have you ever implemented CRUD operations in any of your projects?"
  He explained, "That's an example of the Repository Pattern. It abstracts the data layer and allows you to work with data sources using a consistent interface."
-Next, he asked, "Have you used transactions in your project—where multiple operations must succeed together, and if one fails, everything rolls back?"
+
+"Have you used transactions in your project—where multiple operations must succeed together, and if one fails, everything rolls back?"
  I said, "Yes, I have handled such scenarios."
  He responded, "That's the Unit of Work Pattern. It ensures that all changes to the data during a business transaction are committed or rolled back as one unit."
-Then he asked, "Do you use loops or go through collections of data in your code?"
+
+
+"Do you use loops or go through collections of data in your code?"
  I replied, "Yes, I often iterate through lists, arrays, or collections."
  He said, "That’s related to the Iterator Pattern, which provides a standard way to access elements of a collection sequentially without exposing the underlying representation."
-Additional Examples He Could Have Shared:
+
+
 To help me understand further, he might have mentioned these common patterns too:
+
 Singleton Pattern: Used when you want to make sure only one instance of a class is created throughout the application.
  Example: Managing a single database connection.
+
 Factory Pattern: Creates objects without specifying the exact class to create.
  Example: A notification system where you decide at runtime whether to send an Email, SMS, or Push Notification.
+
 Observer Pattern: Used when one object (subject) changes state and all its dependents (observers) are notified.
  Example: In an app where a user's profile is updated and multiple parts of the app need to reflect that change.
+
 Strategy Pattern: Allows you to choose an algorithm at runtime.
  Example: A payment gateway system that selects between PayPal, Stripe, or Credit
