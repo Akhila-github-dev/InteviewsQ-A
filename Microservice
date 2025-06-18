@@ -76,7 +76,7 @@ Why Is Idempotency Important?
 ✅ Prevents duplicate operations (e.g., multiple payments for the same order). ✅ Ensures consistency across distributed systems. ✅ Improves fault tolerance by allowing safe retries.
 ===================================================================
 The Circuit Breaker Pattern is a design pattern used in microservices to prevent cascading failures and improve system resilience. It works like an electrical circuit breaker: it monitors calls to external services and 'trips' if a service fails repeatedly.
-
+In a microservices architecture, services communicate with each other over the network. If one service is slow or failing, it can cause delays or even failures in other services that depend on it. The Circuit Breaker pattern helps prevent this by stopping calls to failing services, allowing them time to recover.
 There are three states:
 
 Closed: Requests flow normally. If failures exceed a threshold, it moves to Open.
