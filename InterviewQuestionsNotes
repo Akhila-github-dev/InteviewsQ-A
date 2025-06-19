@@ -438,4 +438,25 @@ project explanation
 @getmapping and @postmapping
 rest over soap
 filter distinct odd number in reverse order using steams
+==================================================================================
+we have a abstract class we have one abstract method how can we implement it
+can we override static method in abstract class
+y we can override static method then y to keep static method in abstract class
+shown program string equals comparsion 
+cocurrent modifcation program 
+y iterator remove method don't throw error
+restapi are stateless or not
+apigateway
+method overloading and overriding
+post and put method indopency
+how spring boot application works internally
+how the flow works 
+spring boot stating 
+if we have 5 restcontroller how spring boot will know it will map it to right controller
+i have removed frontend how i will know everything working fine
+postman we can see the data
+truncate  and delete
+inner join and outer join output 
+saga design pattern 
+how application connect to external apis 
 
