@@ -418,3 +418,24 @@ java 8 questions
 manager round 
 communitation and confidence
 if you got an issue bcz of u how you will handle.
+===========================================================================
+what happen if i give @sevice to @component
+where we use @component
+use of fuctional interface
+y set don't allow duplicates
+hashmap and hashset are synchrozied or not
+y we use hashmap over cocurrentHashMap if we have lot of features in cocurrentHashmap
+composite key
+@autowire and @qualifier
+nullpointerexcetion
+String s=null;
+if("abc".equals(s)) {
+return true;
+}
+singleton threadsafe or not
+defalut scope of spring 
+project explanation
+@getmapping and @postmapping
+rest over soap
+filter distinct odd number in reverse order using steams
+
