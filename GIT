@@ -88,3 +88,5 @@ Answer: You can revert a commit using:git revert <commit-hash>
 
 
 This creates a new commit that undoes the changes from the specified commit.
+
+git log filename - to know who commited last 
