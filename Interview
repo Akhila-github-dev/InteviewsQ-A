@@ -1,0 +1,25 @@
+IQGateway
+
+JPQL query
+
+		public void m1(int i,int j) {
+			System.out.println(m1);
+		}
+		
+		public void m2(double i,double j) {
+			System.out.println(m2);
+		}
+		
+		public static void main(String[] args) {
+			System.out.println(m1(1.0,3.0));
+			System.out.println(m1(1,3));
+		}
+output for above code
+
+-------------------------
+recursion,Exception propagation
+instanceof
+classcastException-ClassCastException in Java happens when you try to cast an object to a class that it is not an instance of.
+synchronous and asynchronous how to achieve
+unreachablecodeexception
+
