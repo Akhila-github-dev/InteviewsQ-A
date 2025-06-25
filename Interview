@@ -18,8 +18,8 @@ output for above code
 
 -------------------------
 recursion,Exception propagation
-instanceof
-classcastException-ClassCastException in Java happens when you try to cast an object to a class that it is not an instance of.
+instanceof -instanceof is a keyword used to check whether an object is an instance of a specific class or subclass. It's super handy for preventing ClassCastException errors!
+classcastException -ClassCastException in Java happens when you try to cast an object to a class that it is not an instance of.
 synchronous and asynchronous how to achieve
 unreachablecodeexception
 
