@@ -23,3 +23,7 @@ classcastException-ClassCastException in Java happens when you try to cast an ob
 synchronous and asynchronous how to achieve
 unreachablecodeexception
 
+class Car{
+
+sysout(newCar());
+output----hashcode
