@@ -459,4 +459,17 @@ truncate  and delete
 inner join and outer join output 
 saga design pattern 
 how application connect to external apis 
+--------------------------------------------------------------------------------
+
+Managerial round
+1.Roles and resposibilities
+2.How u will get data in your application
+A:"In our application, we typically get data from multiple sources depending on the use case. These might include user input through the interface, 
+external APIs, databases like MySQL or MongoDB, or streaming data from services like Kafka. The data is then processed, validated, and used within 
+the application for display, decision-making, or analytics. We also focus on ensuring data integrity and security throughout this process."
+3.what u will do if db failed in microservices.
+A: We can achieve this through various strategies like retry mechanisms with exponential backoff, circuit breakers to avoid cascading failures, and 
+fallback procedures for non-critical operations and aslo Redis for caching.
+4.In our application how you will monitor and improve performance .
+A:Actuator configuring, browser check, Redis cache , indexes for faster retrieval, time complexity and space complexity.
 
