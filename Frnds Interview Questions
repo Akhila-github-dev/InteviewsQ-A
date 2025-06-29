@@ -1,0 +1,552 @@
+Interview question for java developer BOFA  (TEAM MATES)
+ 
+1.Introduce yourself to understand your previous roles and responsibilities 
+2.questions on four Object oriented principles(abstraction,encapsulation,polymorphism,inheritance)
+3.compile time vs runtime polymorphism
+4.what is exception handling and how to create user defined exceptions
+5.questions on multithreading, how to implement multithreading using Thread class and runnable interface hands on
+6.what is functional interface, default & static methods in interface
+==========================================================================================
+7.program to find sum of odd and even in a list using stream api concepts
+ List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+int sumOfOdd = numbers.stream().filter(n->n%2==1).mapToInt(Integer:: intValue).sum();
+numbers.stream().filter(n->n%2==0).mapToInt(Integer:: intValue).sum();
+============================================================================
+8.what is dependency injection in spring boot
+Dependency Injection (DI) in Spring Boot is a design pattern that allows objects (dependencies) to be injected into other objects rather than creating them manually. It helps in managing dependencies efficiently and promotes loose coupling between components.
+
+How it works in Spring Boot:
+Spring Container: Manages the lifecycle of beans (objects) and their dependencies.
+Annotations: Uses annotations like @Autowired, @Component, @Service, and @Repository to automatically inject dependencies.
+Configuration: Can be done using Java-based configuration (@Configuration) or XML (though Java-based is preferred in Spring Boot).
+
+Types of DI:
+Constructor Injection - Dependencies are injected via a constructor.
+Setter Injection - Dependencies are injected via setter methods.
+Field Injection - Dependencies are directly injected into fields using @Autowired.
+===================================================================================
+9.how to connect spring boot application with database
+Ans- adding spring data jpa and mysql connector dependencies and add configuration details in application.properties
+creating entity class and repository interface using it service class.
+==================================================================
+10.what is dispatcher servlet
+1.The Dispatcher Servlet is the main part of the Spring MVC.
+It gets the all incoming request,Find the (Right Controller) to handle them and Manage the flow.
+After (controller) process the (request) and It returns the (View Name).
+Dispatcher servlet uses (view Resolver) to find the  correct (view)
+Then,Its shows the view and sends the response back to the (issuer).
+========================================================================
+11.sql query to find the second highest salary from the table
+2nd highest salary
+SELECT MAX(SALARY) FROM EMPLOYEE
+WHERE SALARY<
+(SELECT MAX(SALARY) FROM EMPLOYEE);
+=========================================================================
+7.What is OAuth.
+
+OAuth (Open Authorization)
+is an open standard protocol for authorization of an application for using user information,
+In general, it allows a third party application access to user related info like name, DOB, email or other
+required data from an application like Facebook, Google etc. without giving the third party app the user 
+password. 
+OAuth Mechanism
+OAuth Provider - This is the OAuth provider Eg. Google, FaceBook etc.
+OAuth Client - This is the website where we are sharing or authenticating the usage of our information. Eg. GeeksforGeeks etc.
+Owner - The user whose login authenticates sharing of information.
+OAuth can be implemented via google console for "Login/Sign Up with Google" on a web app.
+Pattern to be Followed
+Get OAuth 2.0 Client ID from Google API Console
+Next, Obtain an access token from the Google Authorization Server to access the API.
+Send the request with the access token to an API .
+Get Refresh token if longer access is required.
+=====================================================================================
+3.HTTP STATUS CODES
+When client sends an request to the (server),The Server will process that (request) and (Server) Will send (response to the client) With some status code
+
+1.1xx: Information
+2.2xx:Success(0K)-200-299
+3.3XX: Redirectional:
+You send an request to one server.It will redirect to another server
+
+4.4xx:Client Error(Invalid):	Sending wrong request to the server.
+5. 5xx (Server Error).
+====================================================================================
+4.Http Methods
+Every REST API METHODS should be mapped to HTTP Methods.
+
+1.GET: To get (data) from  the (server)
+2.POST: To create or insert record at the (server)
+3.PUT: To update the data at (Server).
+4.DELETE : To delete the data at (server).
+POST: take data from the client and Insert into the server.
+===============================================================================
+1.What is Stream API
+2.What is Optional
+3.What is @Qualifier Annotation
+4.What is Synchronized Keyword.
+5.Why String is Immutable and Why and what are use cases.
+6.How to Secure REST API In java, Especially in springboot,So we use security concepts
+=============================================================
+7.How to Connect ONE REST API WITH ANOTHER API.
+RestTemplate,WebClient
+import org.springframework.web.client.RestTemplate;
+import org.springframework.http.ResponseEntity;
+
+public class ApiService {
+    private final RestTemplate restTemplate = new RestTemplate();
+
+    public String callExternalApi() {
+        String url = "https://api.example.com/data"; // Replace with actual API
+        ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+        return response.getBody();
+    }
+}
+Use WebClient (Recommended Approach)
+WebClient is the modern way to call REST APIs.
+
+Step 1: Add WebClient dependency If not already included in your Spring Boot project, add this in pom.xml:
+
+xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-webflux</artifactId>
+</dependency>
+Step 2: Define WebClient Service
+
+java
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
+
+public class ApiService {
+    private final WebClient webClient = WebClient.create("https://api.example.com");
+
+    public Mono<String> callExternalApi() {
+        return webClient.get()
+                .uri("/data") // Endpoint from the external API
+                .retrieve()
+                .bodyToMono(String.class);
+    }
+}
+This returns a reactive response (Mono<String>), which is more efficient.
+========================================================================
+8.What is Transactional Annotation
+9.How to Handle Global Exception in SpringBoot.
+10.What is Actuator in SpringBoot.
+11.What is Concurrent HashMap
+==================================================================
+Migrating from Spring Boot 5 to Spring Boot 6 mainly involves updating to the new Jakarta EE namespace,
+which means changing javax.* to jakarta.*. I also need to check compatibility of third-party libraries, 
+update security configurations, and make sure the application runs on Java 17 or higher. I would test everything thoroughly and do the migration step-by-step to avoid breaking changes.
+=================================================================================
+To fix POM file errors and ensure compatibility, I update the Spring Boot version, make sure the 
+Java version is correct, and use the right dependencies. I also clean and rebuild the project using 
+mvn clean install to check for any issues.
+
+=========================================================================================================================================
+
+copart Interview
+
+1. Coding Question :
+ 
+input : "abc", "def", "ghi"
+output : ["adg", "beh", "cfi"]
+=================================================================== 
+2. Explain some of inbuilt functional Interfaces introduced in Java 8 ?
+Ans : function, supplier, predict, consumer and bifuction
+BiFuntion: Similar to Function<T, R>, but takes two inputs (T, U) and returns a result (R).
+example - reduce.
+=================================================================================================
+3. What will happen when I throw an exception from foreach method of java 8 ?
+import java.util.List;
+Ans :- If an exception occurs in forEach, the iteration stops immediately, and remaining elements will not be processed.
+
+public class ForEachExceptionDemo {
+    public static void main(String[] args) {
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5);
+
+        try {
+            numbers.forEach(num -> {
+                if (num == 3) {
+                    throw new RuntimeException("Exception at number " + num);
+                }
+                System.out.println(num);
+            });
+        } catch (Exception e) {
+            System.out.println("Caught Exception: " + e.getMessage());
+        }
+    }
+}
+output 
+1
+2
+Caught Exception: Exception at number 3
+
+ If you want to continue processing despite errors, use try-catch inside forEach
+numbers.forEach(num -> {
+    try {
+        if (num == 3) throw new RuntimeException("Exception at number " + num);
+        System.out.println(num);
+    } catch (Exception e) {
+        System.out.println("Handled Exception: " + e.getMessage());
+    }
+});
+output
+1
+2
+Handled Exception: Exception at number 3
+4
+5
+=======================================================================================
+4. What are the module you know in spring boot
+Spring Boot Starter Modules
+spring-boot-starter-web – For building web applications with Spring MVC.
+spring-boot-starter-data-jpa – For working with relational databases using JPA and Hibernate.
+spring-boot-starter-security – For security and authentication features.
+spring-boot-starter-test – For testing Spring Boot applications
+
+Spring Boot Core Modules:
+
+Spring Boot Auto Configuration – Automatically configures beans based on dependencies.
+Spring Boot Actuator – Provides production-ready monitoring and management endpoints.
+Spring Boot DevTools – Enhances development experience with live reload and debugging.
+Spring Boot Configuration Processor – Generates metadata for configurations.
+
+3️⃣ Spring Boot Integration Modules
+Spring Boot integrates seamlessly with different tools and technologies:
+
+Spring Boot with Spring Cloud – Supports microservices architecture.
+Spring Boot with Spring Batch – Simplifies batch processing.
+Spring Boot with Spring Kafka – Enables Kafka-based messaging.
+Spring Boot with Spring AMQP – Supports RabbitMQ for messaging.
+
+4️⃣ Spring Boot Database Modules
+Spring Boot provides modules for database interactions:
+
+Spring Boot with JDBC – Supports traditional database connectivity.
+Spring Boot with JPA – Provides ORM capabilities.
+Spring Boot with NoSQL – Supports MongoDB, Redis, Cassandra, etc.
+=======================================================================================
+5. How can you handle exceptions in spring boot
+ Ans- @RestControllerAdvice and @ExceptionalHandler 
+@RestControllerAdvice
+public class GlobalExceptionHandler {
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<String> handleGlobalException(Exception ex) {
+        return new ResponseEntity<>("Something went wrong: " + ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+}
+using responseStatusException for simple exception without defining in custom handlers
+@GetMapping("/user/{id}")
+public String getUser(@PathVariable int id) {
+    if (id <= 0) {
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid User ID");
+    }
+    return "User " + id;
+}
+============================================================================
+6. You are given a requirement where
+1. sales person needs to accept pdf file and process it and return it
+2. Marketing person needs to accept doc and process it and return it
+3. Enterprise person needs to accept excel and process it and return it
+ 
+   Design and Create an application which includes security as well using single method.
+============================================================================
+7. Create a custom exception in java
+by extending with exception class
+===========================================================================
+8. Lets say you have two DB operations you need to perform where you need to save data.where one second operation got failed how can you handle this scenario with out interrupting application ?
+using @Transtional annotation
+if the second save opertion fails, the first one will also be rolled back, preventing inconsistent data
+@Service
+class myservice{
+@Autowired
+private MyRepository res;
+
+@Transactional 
+public void saveData(DataEntity entity1, DataEntity entity2){
+try{
+res.save(entity1);
+res.save(entity2);
+}catch(Exception e){
+syso("second operation failed");
+throw e;
+}
+}
+If you don't want to roll back the first operation and want the application to keep running, you can catch the exception for the second operation and log it instead of rolling back the first.
+public void saveDate(DataEntity e1, DataEntity e2){
+try{
+rep.save(e1);
+}catch(Exception e){
+syso("first opertion failed");
+}
+try{
+rep.save(e2);
+}catch(Exception e){
+syso("second opertion failed");
+}
+}
+===========================================================================
+
+9. Follow up to qn 8 where in between two db operations in b/w one statement is  there where exception occurs, this exception is not related to db how can you handle this ?
+If the exception should not affect the database operations, you can catch it separately
+@Transactional
+public void saveDate(DataEntity e1, DataEntity e2){
+try{
+rep.save(e1);
+processSomething();
+}catch(NonDatabaseException e){
+syso("non db opertion failed");
+}
+}
+if processSomething() throws an exception, it is caught, and the transaction continues.
+The database operations will not be rolled back, so entity1 and entity2 are still saved.
+(or)
+If you want everything to roll back, including the database operations, you need to throw a runtime exception
+@Transactional
+public void saveDate(DataEntity e1, DataEntity e2){
+rep.save(e1);
+try{
+processSomething();
+}catch(Exception e){
+syso("critical failure");
+throw new CustomException("rolling back due to failure");
+}
+rep.save(e2);
+}
+Since CustomException is thrown, Spring’s transaction manager will roll back everything.
+(or)
+Using Propagation.REQUIRES_NEW for Independent Transactions
+If you want each operation to run independently, so failure in one part doesn’t impact the other:
+@Transactional(propagation= Progagation.Requires_NEW)
+public void saveEntity(DataEntity entity){
+rep.save(entity):
+}
+this ensures each db operation runs in its own transaction, meaning failure in one does not impact the others
+================================================================================
+
+10. What do you know about actuators in spring boot ?
+used for monitoring and managing the application health check metrics
+adding spring boot starter actuator dependency and in app.properties
+managment.endpoints.web.exposure.include=health,metrics,info
+and http://localhost:8080/actuator/health
+=========================================================================
+11. Lets say you have kafka dependency, where kafka is down. what would be the status of Actuator at this point(UP/DOWN) ?
+By default, Spring Boot does not automatically mark the application as DOWN if Kafka is unavailable.
+The Actuator /actuator/health endpoint will still return UP, unless an explicit health check is defined for Kafka.
+Configuring Kafka Health Indicator
+Spring Boot supports Kafka health indicators, but you must include Actuator’s health monitoring for Kafka:
+management.health.kafka.enabled=true
+Once enabled:
+If Kafka is running, /actuator/health → UP
+If Kafka is down, /actuator/health → DOWN
+==================================================================================
+12. Explain asynchronous programming in java and how can you achieve this using spring boot ?
+Ans - Asynchronous programming allows tasks to run independently without blocking the main execution thread. 
+This improves performance, especially for tasks involving I/O operations, network calls, or computations.
+Approaches for Asynchronous Programming in Java:
+1. Using Threads 2. ExecutorService & Future 3.completableFuture 4.Reactive Programming
+
+Achieving Asynchronous Programming in Spring Boot using @Async
+
+
+@Configuration
+@EnableAsync
+public class AsyncConfig {
+}
+
+->Use @Async on methods that should run asynchronously.
+
+@Service
+public class AsyncService {
+    @Async
+    public CompletableFuture<String> asyncMethod() {
+        return CompletableFuture.supplyAsync(() -> "Hello, Async!");
+    }
+}
+
+->Call the Async Method: The method executes in a separate thread without blocking the caller.
+
+@Autowired
+private AsyncService asyncService;
+
+public void executeAsyncTask() {
+    CompletableFuture<String> result = asyncService.asyncMethod();
+    result.thenAccept(System.out::println);
+}
+
+
+===============================================================================================
+13. How can we create threads in java other than runnable/Thread class ?
+1. callable
+Callable is similar to Runnable, but it can return a result and throw exceptions.Future is used to retrieve the result of an asynchronous computation.
+
+2. ExecutorService 
+3. CompletableFuture
+==============================================================================================
+14. When Actually the return type Future will come in asynchronous programming ?
+
+15. How many ways to create thread pools in Java
+ 
+ 
+ 
+16. What are the projects you have worked on ?
+17. How was your day as a java developer every day. explain your roles and responsibilities ?
+18. Explain ConcurrentHashMap in Java ?
+ 
+ 
+19. How you have implemented security in your project ?
+20. Have you seen the code that had written in project for JWT authentication ? Explain how it works ?
+21. What are the differences you have observed while migrating from SB-2 to SB-3 ?
+===============================================================================================
+22. Lets say we have 2 db's where you need to connect two db's in same environment with two tables. How can you achieve this.
+To achieve this, we configured multiple DataSource beans in Spring Boot, defining connection details in 
+application.yml. We then created separate EntityManagerFactory instances for both databases, ensuring 
+independent transaction management.
+For data access, we implemented two JpaRepository interfaces—one for each database—allowing seamless 
+retrieval and updates. With this setup, our service layer could fetch data from both databases
+simultaneously, ensuring efficient communication.
+we will use  @Primary in for primary db connection in configuration class
+
+->you can configure multiple DataSource beans and use @Primary and @Qualifier annotations to manage them
+1)defining properties application.properties or yml file
+spring:
+  datasource:
+    db1:
+      url: jdbc:mysql://localhost:3306/db1
+      username: user1
+      password: pass1
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
+    db2:
+      url: jdbc:mysql://localhost:3306/db2
+      username: user2
+      password: pass2
+      driver-class-name: com.mysql.cj.jdbc.Driver
+2)Create Configuration Classes for Each DataSource
+
+@Configuration
+@EnableTransactionManagement
+@EnableJpaRepositories(
+    basePackages = "com.example.repo.db1",
+    entityManagerFactoryRef = "db1EntityManagerFactory",
+    transactionManagerRef = "db1TransactionManager"
+)
+public class Db1Config {
+
+    @Primary
+    @Bean(name = "db1DataSource")
+    @ConfigurationProperties(prefix = "spring.datasource.db1")
+    public DataSource dataSource() {
+        return DataSourceBuilder.create().build();
+    }
+
+    @Primary
+    @Bean(name = "db1EntityManagerFactory")
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(
+            EntityManagerFactoryBuilder builder,
+            @Qualifier("db1DataSource") DataSource dataSource) {
+        return builder
+                .dataSource(dataSource)
+                .packages("com.example.model.db1")
+                .persistenceUnit("db1")
+                .build();
+    }
+
+    @Primary
+    @Bean(name = "db1TransactionManager")
+    public PlatformTransactionManager transactionManager(
+            @Qualifier("db1EntityManagerFactory") EntityManagerFactory entityManagerFactory) {
+        return new JpaTransactionManager(entityManagerFactory);
+    }
+}
+
+
+@Configuration
+@EnableTransactionManagement
+@EnableJpaRepositories(
+    basePackages = "com.example.repo.db2",
+    entityManagerFactoryRef = "db2EntityManagerFactory",
+    transactionManagerRef = "db2TransactionManager"
+)
+public class Db2Config {
+
+    @Bean(name = "db2DataSource")
+    @ConfigurationProperties(prefix = "spring.datasource.db2")
+    public DataSource dataSource() {
+        return DataSourceBuilder.create().build();
+    }
+
+    @Bean(name = "db2EntityManagerFactory")
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(
+            EntityManagerFactoryBuilder builder,
+            @Qualifier("db2DataSource") DataSource dataSource) {
+        return builder
+                .dataSource(dataSource)
+                .packages("com.example.model.db2")
+                .persistenceUnit("db2")
+                .build();
+    }
+
+    @Bean(name = "db2TransactionManager")
+    public PlatformTransactionManager transactionManager(
+            @Qualifier("db2EntityManagerFactory") EntityManagerFactory entityManagerFactory) {
+        return new JpaTransactionManager(entityManagerFactory);
+    }
+}
+3: Create Entity and Repository Classes
+Place entities for db1 in com.example.model.db1
+Place entities for db2 in com.example.model.db2
+Repositories go in com.example.repo.db1 and com.example.repo.db2
+ 4: Use Repositories in Services
+
+@Service
+public class MyService {
+
+    @Autowired
+    private Db1Repository db1Repo;
+
+    @Autowired
+    private Db2Repository db2Repo;
+
+    public void syncData() {
+        List<Entity1> list = db1Repo.findAll();
+        db2Repo.saveAll(transform(list));
+    }
+}
+
+===========================================================================================================
+ 1. cognizant  
+
+core java to git dep
+inheritance override code
+exception handling
+final and finalize
+arraylist and linkedlist
+fruits counting using stream
+funtionalInterface
+beanscop
+objectmapper(xml) file -> you are getting xml file instead of json what u will do
+jdbc
+duplicate remove ( in sql using distent keyword)
+duplicate (using groupby)
+microservice
+git conflit vasthe em chesthava
+deployment
+git 
+limit(m,n)
+sercuity 
+deployment 
+last interview questions
+1.on what type of project we will work on
+2.feedback
+//==============================================================================
+completablefuture:
+ used in asynchronous programming. which run multiple tasks simultaneously without blocking the main thread.
+========================================================================================
+ @Transactional annotation in Spring Boot is used to manage database transactions automatically. When applied to a method or class, it ensures that all database operations within the method are executed within a single transaction. If any exception occurs, the transaction is rolled back, ensuring data consistency. It simplifies transaction management in applications
+==================================================================================================================================================>
+
+Splunk is a platform for (searching),(monitoring) and analyzing the (logs,events,metrics) in real time.
+2.It is used in IT Operations ,Security and application monitoring
+
