@@ -1,0 +1,77 @@
+Coding question on HashMap and streams adigaru
+Production lo logs ela monitor chesthav
+Bugs ela identify chesthav
+Microservices communication ela avuthai
+Questions on junit
+Huge data vunnapudu em chesthav
+Max anni ive common questions inthaku minchi assalu adigaru kani coding lo different adugutharu 
+Vowel separation in string
+Character count
+First non repeat 
+First repeat
+Sort the array without inbuilt functions
+===========================================
+1.Diff between interface and abstract class
+2.In which class beans are configured 
+3.diff btw primary key and foreign key
+4.what is serialization
+5.what is functional interface
+6.what is the purpose of transactional annotation 
+7.what is map function 
+8.use of finally block
+=============================================
+Self intro , project details , SQL queries , spring annotations , collection, streams , spring security , multi threading ,exception handling , @controladvice, 
+Comparable and comparator, Hashmap, How to authenticate api in springboot, Software design patterns -- singletone,
+Serialisation and deserialization.
+===================================================
+1. What is functional interface
+2. Difference between interface and abstract class.
+3. Serialization
+4. Design patterns
+5. How to authenticate API in springboot
+6. What is Exception handling, difference between show and shows
+============================================================
+Self intro
+Explain the critial situation that you faced in project & how do you handle it
+Spring security 
+Comparable vs comparator
+Hash map
+Exceptions in your project 
+Where vs having
+Scope of beans
+Serialization and deserialization
+Generic types
+String buffer vs string builder
+Bean factory 
+Application context 
+Restcontroller vs controller
+=====================================================
+What are features in Java 8?
+What is Optional class?
+Predicate and Consumer in Java?
+CompletableFuture?
+Thread pool – how to create?
+Executor thread method?
+HashMap – how it works?
+JVM working architecture?
+Cloning types?
+When to use equals() and hashCode()?
+Microservice architecture?
+Kafka?
+Kafka partition and topic?
+@Bean and @Component?
+203 HTTP method use?
+Circuit breaker?
+Circuit breaker types?
+=================================================
+What is Dependency injection? 
+Types of dependency injection.
+how dependency injection removes tight coupling?
+what is tight coupling?
+What are different bean scopes?
+When singleton bean is garbage collected?
+how you are hangling exception in springboot?
+What are filter in springboot ?
+what are different design patterns?
+explain how to make singleton thread safe?
+find first non repeating character in a string using java8 feature?
