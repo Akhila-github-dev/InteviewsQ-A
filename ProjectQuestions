@@ -136,17 +136,16 @@ Your API returns 500 in production — how do you debug it?
 I’d verify that the API requests are correctly formed and not exceeding rate limits or misusing authentication. I’d check for database issues or external system failures, 
 as these are common causes. If the error persists, I’d test the request using Postman or cURL to replicate the issue and isolate the cause. Lastly, if needed, I’d reach out 
 to CashPro support for guidance or check their status page for service disruptions."
+--------------------------------------------------------------------------------------
+ You pushed code to production and something broke. What’s your first step?
 
-
-
-
-
-
-
-
-
-
-
+"My first step would be to check the logs for any immediate error messages, stack traces, or performance issues. Specifically, I would review the CashPro Connect API logs (if accessible)
+to see if there's a specific failure point related to the latest deployment. I would also check application monitoring tools (like New Relic or Datadog) to look for service disruptions or 
+performance degradation. Based on the findings, I would either roll back the code or implement a hotfix, ensuring that the solution minimizes disruption for users."
+-------------------------------------------------------------------------------------
+"If a client reports a bug that wasn't caught by QA, the first thing I would do is acknowledge the issue and assure the client we are investigating it. I would then replicate the bug in the same 
+environment, review logs, and dive into the code to identify the root cause. After fixing the bug, I would deploy the fix to staging for testing, then move to production once verified. I’d then communicate 
+the resolution to the client, explaining what caused the bug and how we fixed it. Finally, I would look into improving the QA process to ensure similar issues are caught in the future
 
 
 
