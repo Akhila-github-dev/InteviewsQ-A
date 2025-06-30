@@ -123,6 +123,36 @@ public class ApiService {
 }
 
 ===================================================================================
+Where did you use abstract classes and interfaces in your project?
+
+I created an abstract class called TransactionProcessor, which contained common logic such as validation, logging, and security token handling. 
+The method processTransaction() was defined as abstract because the actual implementation varied by transaction type.
+I used abstract classes in CashPro Connect to share common logic across multiple types of transaction processors, enforcing a template pattern.
+I used interfaces to define service contracts like API and file connectors, allowing the system to support different protocols without changing the core processing logic.
+-----------------------------------------------------------------------------------
+Your API returns 500 in production — how do you debug it?
+
+"In an interview, if I were debugging a 500 error in CashPro production, I’d start by reviewing server and application logs for specific error details.
+I’d verify that the API requests are correctly formed and not exceeding rate limits or misusing authentication. I’d check for database issues or external system failures, 
+as these are common causes. If the error persists, I’d test the request using Postman or cURL to replicate the issue and isolate the cause. Lastly, if needed, I’d reach out 
+to CashPro support for guidance or check their status page for service disruptions."
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 How do you handle technical debt?
 =================================================================================
 Have you worked with microservices architecture?
