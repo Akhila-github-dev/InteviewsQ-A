@@ -21,6 +21,14 @@ weekly report account monitoring activity
 change requests
 incidents
 batch processing
+======================================================================
+I recently worked on a banking application called cashproconnect, which facilitates account and transaction management. i was part of the team responsible
+for the report generation module, where we created dyanamic reports for transaction summaries and account activites. we used java with spring
+boot and integrated jasperreports for pdf generation
+
+one fo the biggest challenges was integrating with external apis from third party financial services. thers apis has inconsistent response formates
+and required oauth2 authentication. i resolved this by implementing a robust api client using resttemplate and added retry logic with resilience4j 
+to handle time outs. this improved reliability and reduced failure rates by 30%
 =======================================================================
 Can you describe a challenging project you worked on?
 the challenges i have faced in my project in security setup. like managing the user login token across the 
@@ -146,6 +154,9 @@ performance degradation. Based on the findings, I would either roll back the cod
 "If a client reports a bug that wasn't caught by QA, the first thing I would do is acknowledge the issue and assure the client we are investigating it. I would then replicate the bug in the same 
 environment, review logs, and dive into the code to identify the root cause. After fixing the bug, I would deploy the fix to staging for testing, then move to production once verified. I’d then communicate 
 the resolution to the client, explaining what caused the bug and how we fixed it. Finally, I would look into improving the QA process to ensure similar issues are caught in the future
+===============================================================================
+when i disagree with a teammate or manager on a technical approach, i first make sure to listen carefully to their reasoning. i try to understand
+the context behind theri suggestion. then, i explain my perspective clearly, often using examples or data support why i believe mu approach migh be more effective.
 
 
 
