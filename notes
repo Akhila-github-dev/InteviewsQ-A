@@ -1,0 +1,9 @@
+Idempotency 
+Ensure operations are idempotent, meaning repated execution has the same effect. this helps avoid duplication and inconsistency during retries.
+
+an idempotent api guarantees that repated calls with the same parameters will not change the result beyon the initail application.
+
+Get:always idempotent(fetches data).
+put: should be idempotent(updates a resource)
+delete: hould be idempotent (removes a resource)
+post : not idemptent by default, but can be made idempotent using techniques like idempotency keys.
