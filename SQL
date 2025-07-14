@@ -99,3 +99,130 @@ public class PacketController {
 🧠 Example:
 URL: GET /api/packets/search?keyword=s
 Returns: [ "Silver", "CB Silver", "Super Plan" ]
+=====================================================
+Table: Employee
+emp_id	 emp_name	 dept_id
+1      	Alice	    101
+2	       Bob     	102
+3	      Charlie  	NULL
+4	      David	   103
+
+Table: Department
+dept_id  	dept_name
+101        	HR
+102	        Finance
+104         	Marketing
+
+✅ 1. INNER JOIN
+Returns rows where there is a match in both tables.
+
+SELECT e.emp_name, d.dept_name
+FROM Employee e
+INNER JOIN Department d ON e.dept_id = d.dept_id;
+🔹 Result:
+emp_name	 dept_name
+Alice    	HR
+Bob       	Finance
+
+📌 Explanation:
+Only Alice (101) and Bob (102) matched.
+Charlie (NULL) and David (103 – no matching dept) are excluded.
+
+✅ 2. LEFT JOIN (or LEFT OUTER JOIN)
+Returns all rows from the left table (Employee), and matched rows from right table (Department). If no match, fills with NULL.
+
+SELECT e.emp_name, d.dept_name
+FROM Employee e
+LEFT JOIN Department d ON e.dept_id = d.dept_id;
+🔹 Result:
+emp_name  	dept_name
+Alice	     HR
+Bob	       Finance
+Charlie	   NULL
+David	     NULL
+
+📌 Explanation:
+All Employees are returned.
+Charlie and David don’t have matching departments → NULL for dept_name.
+
+✅ 3. RIGHT JOIN (or RIGHT OUTER JOIN)
+Returns all rows from the right table (Department), and matched rows from left table (Employee). If no match, fills with NULL.
+
+🔹 Query:
+sql
+Copy
+Edit
+SELECT e.emp_name, d.dept_name
+FROM Employee e
+RIGHT JOIN Department d ON e.dept_id = d.dept_id;
+🔹 Result:
+emp_name	dept_name
+Alice	HR
+Bob	Finance
+NULL	Marketing
+
+📌 Explanation:
+
+All Departments are returned.
+
+No employee is in Marketing (104) → emp_name is NULL.
+
+✅ 4. FULL OUTER JOIN (if supported)
+Returns all rows when there is a match in either table. If no match, fills with NULL.
+
+🔹 Query (not supported in MySQL directly):
+sql
+Copy
+Edit
+SELECT e.emp_name, d.dept_name
+FROM Employee e
+FULL OUTER JOIN Department d ON e.dept_id = d.dept_id;
+🔹 Result:
+emp_name	dept_name
+Alice	HR
+Bob	Finance
+Charlie	NULL
+David	NULL
+NULL	Marketing
+
+📌 Explanation:
+
+Includes all Employees and all Departments.
+
+Missing matches filled with NULL.
+
+✅ 5. CROSS JOIN
+Returns all possible combinations (Cartesian Product).
+
+🔹 Query:
+sql
+Copy
+Edit
+SELECT e.emp_name, d.dept_name
+FROM Employee e
+CROSS JOIN Department d;
+🔹 Result:
+emp_name	dept_name
+Alice	HR
+Alice	Finance
+Alice	Marketing
+Bob	HR
+Bob	Finance
+Bob	Marketing
+Charlie	HR
+Charlie	Finance
+Charlie	Marketing
+David	HR
+David	Finance
+David	Marketing
+
+📌 Explanation:
+Every employee paired with every department.
+
+✅ Visual Summary Table
+Join Type	Rows Returned
+INNER JOIN (default)	Matching rows from both tables
+LEFT JOIN	All rows from left + matches on right
+RIGHT JOIN	All rows from right + matches on left
+FULL OUTER JOIN	All rows from both tables
+CROSS JOIN	All combinations (Cartesian product)
