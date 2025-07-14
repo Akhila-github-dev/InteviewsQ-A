@@ -1,0 +1,101 @@
+ Goal: Get
+emp_name (Employee name) (from employee table)
+manager_name (Using self join) (from employee table)
+dept_name (From department table)
+
+SELECT 
+    e.emp_name AS employee_name,
+    m.emp_name AS manager_name,
+    d.dept_name AS department_name
+FROM 
+    employee e
+LEFT JOIN 
+    employee m ON e.manager_id = m.emp_id
+LEFT JOIN 
+    department d ON e.dept_id = d.dept_id;
+
+We use LEFT JOIN to ensure that:
+Even if an employee doesn't have a manager (e.g., CEO), it still shows up.
+Even if a department is not assigned, the employee still appears.
+================================================================
+SELECT 
+    e.emp_name,
+    d.dept_name
+FROM 
+    employee e
+JOIN 
+    department d ON e.dept_id = d.dept_id;
+==================================================
+You're describing a search/autocomplete feature where:
+You have a table (let’s say packet) containing plan names.
+These plan names can start with different characters like A, B, C, S, etc.
+When a user starts typing (e.g., "S"), it should return all plan names containing or starting with "S", such as "Silver", "CB Silver", etc.
+
+The user should be able to type partially or select from suggestions.
+
+✅ Table: packet
+Column	Description
+packet_id	Unique ID of the plan
+plan_name	Name of the plan (e.g., "Silver", "CB Silver", "Basic A", etc.)
+
+✅ SQL Query for Search (Case-Insensitive)
+
+SELECT 
+    plan_name 
+FROM 
+    packet 
+WHERE 
+    LOWER(plan_name) LIKE LOWER('%s%');
+🔸 If user types "S", this will return any plan that contains S or s in any position.
+
+🔍 If you want plans that start with the character:
+
+SELECT 
+    plan_name 
+FROM 
+    packet 
+WHERE 
+    LOWER(plan_name) LIKE LOWER('s%');
+✅ Returns: Silver, Standard, Super Plan
+❌ Doesn't return: CB Silver, Pro Silver
+
+🔍 If you want plans that contain the search text anywhere:
+
+SELECT 
+    plan_name 
+FROM 
+    packet 
+WHERE 
+    LOWER(plan_name) LIKE LOWER('%silver%');
+✅ This is useful for partial matching and autocomplete suggestions.
+
+✅ Integration in Java (Spring Boot)
+If you're using Spring Boot + JPA, you can define a method like:
+
+@Repository
+public interface PacketRepository extends JpaRepository<Packet, Long> {
+
+    // Search plans containing any keyword (case-insensitive)
+    List<Packet> findByPlanNameContainingIgnoreCase(String keyword);
+
+    // Or, for plans starting with the keyword
+    List<Packet> findByPlanNameStartingWithIgnoreCase(String keyword);
+}
+✅ Frontend (Autocomplete Suggestion)
+You can create an endpoint:
+
+@RestController
+@RequestMapping("/api/packets")
+public class PacketController {
+
+    @Autowired
+    private PacketRepository packetRepository;
+
+    @GetMapping("/search")
+    public List<Packet> searchPlans(@RequestParam String keyword) {
+        return packetRepository.findByPlanNameContainingIgnoreCase(keyword);
+    }
+}
+🧠 Example:
+URL: GET /api/packets/search?keyword=s
+Returns: [ "Silver", "CB Silver", "Super Plan" ]
