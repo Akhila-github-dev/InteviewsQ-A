@@ -15,6 +15,92 @@ How Caching Works
 Cache Hit – If requested data is found in the cache, it is returned instantly.
 Cache Miss – If data is not in the cache, it is fetched from the original source and stored in the cache for future use.
 Eviction Policy – When the cache reaches its storage limit, older or less frequently used data is removed based on policies like LRU (Least Recently Used) or LFU (Least Frequently Used). 
+How to Enable Caching in Spring Boot
+Step 1: Add Required Dependency
+<!-- For Maven -->
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-cache</artifactId>
+</dependency>
+🔹 Step 2: Enable Caching in Main Class
+Use @EnableCaching annotation on your main Spring Boot application class:
+@SpringBootApplication
+@EnableCaching
+public class MyApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(MyApplication.class, args);
+    }
+}
+🔹 Step 3: Use @Cacheable in Service Methods
+Use the @Cacheable annotation to mark the method whose result you want to cache.
+@Service
+public class ProductService {
+
+    @Cacheable("products")
+    public Product getProductById(String productId) {
+        // Simulate slow DB call
+        simulateSlowService();
+        return productRepository.findById(productId).orElse(null);
+    }
+
+    private void simulateSlowService() {
+        try {
+            Thread.sleep(3000L); // Simulate 3 seconds delay
+        } catch (InterruptedException e) {
+            throw new IllegalStateException(e);
+        }
+    }
+}
+"products" is the name of the cache.
+The first time the method is called, it will fetch from DB and store in cache.Next time, Spring will return cached data.
+
+🔹 Step 4: Configure Cache Manager (Optional)
+Spring Boot uses ConcurrentMapCacheManager by default, which stores cache in memory.
+
+@Configuration
+public class CacheConfig {
+
+    @Bean
+    public CacheManager cacheManager() {
+        return new ConcurrentMapCacheManager("products", "users");
+    }
+}
+======
+✅ 3. Advanced Caching Annotations
+Annotation	Description
+@Cacheable	Caches the result of a method
+@CachePut	Updates the cache without skipping the method execution
+@CacheEvict	Removes entry from the cache
+@Caching	Allows combining multiple caching annotations
+
+@CacheEvict(value = "products", key = "#productId")
+public void deleteProduct(String productId) {
+    productRepository.deleteById(productId);
+}
+✅ 4. Customize Cache Key
+By default, the method parameters are used as the cache key. You can customize:
+
+@Cacheable(value = "products", key = "#productId")
+public Product getProduct(String productId) { ... }
+You can also use SpEL (Spring Expression Language) to build complex keys:
+
+@Cacheable(value = "products", key = "#product.id + '-' + #product.category")
+public Product getProduct(Product product) { ... }
+✅ 5. Using Redis or Ehcache (for production)
+➤ To use Redis:
+Add dependency
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-redis</artifactId>
+</dependency>
+Configure application.properties:
+spring.cache.type=redis
+spring.redis.host=localhost
+spring.redis.port=6379
+Spring will automatically use Redis as the cache store.
+ Testing Caching Behavior
+You can test by logging when a method is called. On repeated requests, it should not execute the method again if the result is cached.
+
 
 
 *asynchronous ans synchronous and resttemplate feign client
