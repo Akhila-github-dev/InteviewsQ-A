@@ -226,3 +226,80 @@ LEFT JOIN	All rows from left + matches on right
 RIGHT JOIN	All rows from right + matches on left
 FULL OUTER JOIN	All rows from both tables
 CROSS JOIN	All combinations (Cartesian product)
+
+===============================================================================
+DDL- 
+->CREATE TABLE Student (
+    StudentId INTEGER,
+    FName VARCHAR2(10), 
+    Gender CHAR(1), 
+    DOJ DATE);
+
+ ->DROP TABLE Student;
+
+constraints :
+NOT NULL
+PRIMARY KEY
+CHECK
+UNIQUE
+FOREIGN KEY
+We can also specify DEFAULT value for a column. Oracle database does not consider DEFAULT as a constraint.
+
+->Not Null 
+CREATE TABLE Student (
+    StudentId INTEGER CONSTRAINT Stud_SId_nn NOT NULL,
+    FName VARCHAR2(10) NOT NULL,
+    LName VARCHAR2(10));
+-> default
+A column can be given the default value by using DEFAULT option. The data type of column and default expression must be the same. DEFAULT option can be provided for nullable as well as NOT NULL attributes. 
+CREATE TABLE Student (
+    StudentId INTEGER, 
+    FName VARCHAR2(10), 
+    DOJ DATE DEFAULT SYSDATE);
+
+->PrimaryKey Constraint
+PRIMARY KEY constraint on a column ensures that the column cannot contain NULL and duplicate values. We can have only one PRIMARY KEY in a table.
+CREATE TABLE Student ( 
+    StudentId INTEGER CONSTRAINT stud_sid_pk PRIMARY KEY,
+    FName VARCHAR2(10), 
+    ContactNo NUMBER(10));
+
+->FOREIGN KEY
+CREATE TABLE Marks(
+    CourseId INTEGER, 
+    StudentId INTEGER CONSTRAINT marks_sid_fk REFERENCES Student(StudentId), 
+    MarksScored DECIMAL(5,2));
+
+->CREATE TABLE Marks ( 
+    CourseId INTEGER CONSTRAINT marks_cid_pk PRIMARY KEY, 
+    StudentId INTEGER CONSTRAINT marks_sid_fk REFERENCES Student(StudentId), 
+    MarksScored DECIMAL(5,2));
+
+composite primary key
+->CREATE TABLE Marks( 
+    CourseId INTEGER, 
+    StudentId INTEGER CONSTRAINT marks_sid_fk REFERENCES Student(StudentId), 
+    MarksScored DECIMAL(5,2), 
+    CONSTRAINT marks_cid_pk PRIMARY KEY(CourseId, StudentId));
+
+
+-> Check Constraint
+CREATE TABLE Student ( 
+    StudentId INTEGER, 
+    FName VARCHAR2(10), 
+    Gender CHAR(1) CONSTRAINT Stud_gender_ck1 CHECK(Gender IN('M', 'F'))); 
+
+->Unique 
+UNIQUE constraint on a column ensures that two rows in a table cannnot have same value in that column. Unlike Primary Key, UNIQUE constraint allows NULL values. A table can have many UNIQUE constraints.
+CREATE TABLE Student ( 
+    StudentId INTEGER, 
+    FName VARCHAR2(10), 
+    ContactNo NUMBER(10) CONSTRAINT Stud_cno_uk UNIQUE);
+
+->CREATE TABLE Student (
+2     StudentId INTEGER PRIMARY KEY,
+3     FName VARCHAR2(10) CONSTRAINT Stud_FName_NN NOT NULL,
+4     LName VARCHAR2(10), CHECK (FName <> LName),
+5     DOJ DATE DEFAULT SYSDATE,
+6     Gender CHAR(1) CONSTRAINT Student_Gender_Ck CHECK (Gender IN('M', 'F')),
+7     PersonId INTEGER REFERENCES Person(PersonId));
