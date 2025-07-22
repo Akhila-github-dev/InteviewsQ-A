@@ -303,3 +303,42 @@ CREATE TABLE Student (
 5     DOJ DATE DEFAULT SYSDATE,
 6     Gender CHAR(1) CONSTRAINT Student_Gender_Ck CHECK (Gender IN('M', 'F')),
 7     PersonId INTEGER REFERENCES Person(PersonId));
+
+=================================================================================
+exercise 
+
+Column Name	     Data Type	           Constraint         	   Description
+MId	               INTEGER         	PRIMARY KEY	              Unique Match ID for a tournament
+TId                  	INTEGER	      primary key, FOREIGN KEY      → Tournament table	Refers to an existing Tournament ID
+Player1	             INTEGER             	FOREIGN KEY          → Player table, ≠ Player2	Refers to existing Player ID (Player 1)
+Player2	             INTEGER	            FOREIGN KEY            → Player table	Refers to existing Player ID (Player 2)
+MatchDt	              DATE	              NOT NULL	           Scheduled date of the match
+Winner              	INTEGER	          FOREIGN KEY          → Player table	Refers to the winning Player's ID
+Score              	VARCHAR2(30)	        NOT NULL         	Match score in text format (e.g., "6-4, 3-6, 7-5")
+
+CREATE TABLE Match (
+    MId INTEGER ,
+    TId INTEGER,
+    Player1 INTEGER,
+    Player2 INTEGER,
+    MatchDt DATE NOT NULL,
+    Winner INTEGER,
+    Score VARCHAR2(30) NOT NULL,
+
+    
+    CONSTRAINT pk_match PRIMARY KEY (MId, TId),
+    CONSTRAINT fk_match_tournament FOREIGN KEY (TId) REFERENCES Tournament(TId),
+    CONSTRAINT fk_match_player1 FOREIGN KEY (Player1) REFERENCES Player(PId),
+    CONSTRAINT fk_match_player2 FOREIGN KEY (Player2) REFERENCES Player(PId),
+    CONSTRAINT fk_match_winner FOREIGN KEY (Winner) REFERENCES Player(PId),
+    CONSTRAINT chk_match_players CHECK (Player1 <> Player2)
+);
+========================================================================================
+
+ALTER TABLE Student DROP (DOB);
+ALTER TABLE Student DROP (GNDR, MobNo);
+ALTER TABLE Student ADD Address VARCHAR2 (20);
+ALTER TABLE Student ADD (Course VARCHAR2 (20), Marks NUMBER (10));
+ALTER TABLE Student MODIFY Name VARCHAR2(50);
+ALTER TABLE Student MODIFY DOJ DEFAULT SYSDATE;
+ALTER TABLE Student RENAME COLUMN Id TO SID;
