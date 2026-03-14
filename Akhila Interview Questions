@@ -101,4 +101,12 @@ fallback procedures for non-critical operations and aslo Redis for caching.
 4.In our application how you will monitor and improve performance .
 A:Actuator configuring, browser check, Redis cache , indexes for faster retrieval, time complexity and space complexity.
 ========================================================================================
+TCS
+1) give an employe class which has emloyee salary, name, dept i have to get highest salary in each dept
+2) restcontrolleradvice implementation
+3) microservices design patterns
+4) how do you do validation for authentication 
+5) how do you implement security 
+5) solid principles 
+6) get highest salary in each dept (group by and having i should use)
 
