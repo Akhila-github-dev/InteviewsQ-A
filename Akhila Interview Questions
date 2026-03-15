@@ -1,9 +1,319 @@
 copart
-Local variables and instance variables difference and are they synchronised are not 
-Java 8 features and explain one by one 
-Consumer supplier difference 
-Arraylist linked list diff
-Linked list explain 
+
+================================================
+1)Local variables and instance variables difference and are they synchronised are not 
+Ans)
+| Feature                             | Local Variables                                                    | Instance Variables                                                                 |
+| ----------------------------------- | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------- |
+| **Where declared**                  | Inside a method, constructor, or block                             | Inside a class but outside methods                                                 |
+| **Scope**                           | Only within the method/block where declared                        | Accessible to all instance methods of the object                                   |
+| **Lifetime**                        | Created when method starts, destroyed when method ends             | Exists as long as the object exists                                                |
+| **Memory location**                 | Stored in **stack memory**                                         | Stored in **heap memory** as part of the object                                    |
+| **Default value**                   | ❌ No default value – must be initialized before use                | ✅ Gets default values (0, null, false, etc.)                                       |
+| **Access modifiers**                | ❌ Not allowed (no public/private)                                  | ✅ Allowed (public, private, protected, default)                                    |
+| **Synchronization / Thread safety** | Usually **thread-safe** because each thread has its own stack copy | **Not thread-safe by default** because multiple threads may access the same object |
+
+Synchronization in Java
+Local variables:
+They do not need synchronization because each thread works with its own copy.
+
+Instance variables:
+They are shared between threads, so they may require synchronization (using synchronized, locks, etc.) if multiple threads modify them.
+
+Example
+class Example {
+    int count = 0; // instance variable
+
+    void increment() {
+        int temp = 0; // local variable
+        temp++;
+        count++;
+    }
+}
+=============================================================
+2) Java 8 features and explain one by one 
+ANS) Summary of Java 8 Features
+Lambda Expressions,Functional Interfaces,Stream API,Default Methods in Interfaces,Static Methods in Interfaces,Method References
+Optional Class,New Date & Time API,Nashorn JavaScript Engine,forEach() method
+Lambda Expressions
+
+A lambda expression is an anonymous function used to implement functional interfaces more easily.
+
+Syntax
+(parameters) -> expression
+
+Example
+List<Integer> list = Arrays.asList(1,2,3,4);
+list.forEach(n -> System.out.println(n));
+
+Benefits
+Reduces boilerplate code
+Makes code more readable
+Enables functional programming
+
+2. Functional Interfaces
+A functional interface is an interface with only one abstract method.
+
+@FunctionalInterface
+interface MyInterface {
+    void display();
+}
+
+Common built-in functional interfaces:
+this is after java 8
+Predicate,Function,Consumer,Supplier
+before java 8 we have 
+runnable,callable, clonable 
+
+3. Stream API
+The Stream API processes collections using a functional approach.
+It supports operations like:
+filter,map,reduce,collect
+
+Example
+List<Integer> numbers = Arrays.asList(1,2,3,4,5);
+numbers.stream()
+       .filter(n -> n % 2 == 0)
+       .forEach(System.out::println);
+
+Advantages
+Simplifies collection processing
+Supports parallel processing
+
+4. Default Methods in Interfaces
+
+Java 8 allows methods with implementation inside interfaces using default.
+
+interface Vehicle {
+    default void start() {
+        System.out.println("Vehicle started");
+    }
+}
+
+Purpose
+Add new methods to interfaces without breaking existing implementations.
+
+5. Static Methods in Interfaces
+Interfaces can also have static methods.
+Example
+interface MathUtils {
+    static int add(int a, int b) {
+        return a + b;
+    }
+}
+
+Called using:
+MathUtils.add(5,3);
+
+6. Method References
+A method reference is a shorthand form of a lambda expression.
+Example
+Lambda:
+list.forEach(x -> System.out.println(x));
+Method reference:
+list.forEach(System.out::println);
+
+Types:
+Reference to static method
+Reference to instance method
+Reference to constructor
+
+7. Optional Class
+Optional helps avoid NullPointerException.
+
+Example
+Optional<String> name = Optional.ofNullable(null);
+System.out.println(name.orElse("Default Name"));
+
+Benefits
+Handles null values safely
+Improves readability
+
+8. New Date and Time API
+Java 8 introduced the modern date-time API in java.time package.
+
+Classes:
+LocalDate
+LocalTime
+LocalDateTime
+Period
+Duration
+
+Example
+
+LocalDate today = LocalDate.now();
+System.out.println(today);
+
+Advantages
+Thread-safe
+More powerful than old Date and Calendar
+
+9. Nashorn JavaScript Engine
+Java 8 introduced Nashorn, which allows running JavaScript inside Java applications.
+
+Example:
+ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
+engine.eval("print('Hello from JavaScript')");
+10. forEach() Method in Collections
+Java 8 added forEach() method to iterate collections easily.
+Example
+list.forEach(System.out::println);
+
+======================================================
+
+3)Consumer supplier difference 
+ans) Consumer Interface
+Purpose:
+A Consumer takes an input and performs an operation on it, but does not return anything.
+Method:
+void accept(T t)
+Example:
+import java.util.function.Consumer;
+public class Main {
+    public static void main(String[] args) {
+        Consumer<String> consumer = name -> System.out.println("Hello " + name);
+        consumer.accept("John");
+    }
+}
+
+Output
+Hello John
+
+✔ Takes input
+❌ No return value
+
+Commonly used in:
+forEach() in streams
+Logging or printing operations
+
+Example:
+list.forEach(System.out::println);
+
+2️⃣ Supplier Interface
+Purpose:
+A Supplier does not take any input, but returns a value.
+Method:
+T get()
+Example:
+import java.util.function.Supplier;
+
+public class Main {
+    public static void main(String[] args) {
+        Supplier<Double> supplier = () -> Math.random();
+        System.out.println(supplier.get());
+    }
+}
+
+✔ No input
+✔ Returns a value
+
+Commonly used in:
+Lazy value generation
+Object creation
+Default values
+
+Example:
+Supplier<String> message = () -> "Welcome";
+System.out.println(message.get());
+
+========================================
+4) Arraylist linked list diff, Linked list explain
+ANS) ArrayList uses dynamic array, LinkedList uses doubly linked nodes. ArrayList is faster for access, LinkedList is faster for insertion/deletion.
+| Feature                     | ArrayList         | LinkedList             |
+| --------------------------- | ----------------- | ---------------------- |
+| Internal Structure          | Dynamic array     | Doubly linked list     |
+| Memory Storage              | Continuous memory | Non-continuous memory  |
+| Access Time                 | Fast (O(1))       | Slow (O(n))            |
+| Insertion/Deletion (middle) | Slow              | Fast                   |
+| Memory Usage                | Less              | More (extra pointers)  |
+| Best Use                    | Data retrieval    | Frequent insert/delete |
+
+Example
+import java.util.ArrayList;
+import java.util.LinkedList;
+
+ArrayList<String> list1 = new ArrayList<>();
+LinkedList<String> list2 = new LinkedList<>();
+
+ArrayList → like an array that can grow
+LinkedList → like a chain of nodes connected by links
+
+2️⃣ LinkedList Explanation
+
+A LinkedList is a linear data structure where elements are stored as nodes.
+Each node contains:
+Data
+Reference (pointer) to the next node
+Reference to the previous node (in doubly linked list)
+
+Structure:
+
+[Prev | Data | Next] <-> [Prev | Data | Next] <-> [Prev | Data | Next]
+
+Example:
+10 -> 20 -> 30 -> 40
+
+Here:
+
+10 points to 20
+20 points to 30
+30 points to 40
+
+3️⃣ Types of LinkedList (Concept)
+
+1️⃣ Singly Linked List
+
+10 -> 20 -> 30 -> 40 -> null
+
+Each node points only to the next node.
+
+2️⃣ Doubly Linked List (Used in Java LinkedList)
+
+null <- 10 <-> 20 <-> 30 <-> 40 -> null
+
+Each node has:
+previous pointer
+next pointer
+
+3️⃣ Circular Linked List
+
+10 -> 20 -> 30 -> 40
+ ^               |
+ |_______________|
+
+Last node points back to the first node.
+
+4️⃣ LinkedList Example in Java
+import java.util.LinkedList;
+
+public class Example {
+    public static void main(String[] args) {
+
+        LinkedList<Integer> list = new LinkedList<>();
+
+        list.add(10);
+        list.add(20);
+        list.add(30);
+
+        System.out.println(list);
+    }
+}
+
+Output:
+
+[10, 20, 30]
+5️⃣ When to Use LinkedList
+
+Use LinkedList when:
+
+Many insertions/deletions
+Data size changes frequently
+You don't need fast random access
+Use ArrayList when:
+You need fast access by index
+Mostly reading data
+
+=======================================
 Stream api code to print frst unique character in string 
 Hql query 
 Rest template vs feign  client diff
