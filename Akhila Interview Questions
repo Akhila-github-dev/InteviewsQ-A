@@ -315,8 +315,158 @@ Mostly reading data
 
 =======================================
 Stream api code to print frst unique character in string 
+String str = "swiss";
+
+        Character result = str.chars()
+                .mapToObj(c -> (char) c)
+                .collect(Collectors.groupingBy(
+                        Function.identity(),
+                        LinkedHashMap::new,
+                        Collectors.counting()))
+                .entrySet()
+                .stream()
+                .filter(e -> e.getValue() == 1)
+                .map(Map.Entry::getKey)
+                .findFirst()
+                .orElse(null);
+
+        System.out.println(result);
+
+===================================================
 Hql query 
+HQL is an object-oriented query language used in Hibernate to perform database operations using entity classes instead of tables.
+HQL (Hibernate Query Language) is a query language used in Hibernate to interact with the database using Java objects instead of table names.
+It is similar to SQL, but it works with entity classes and their properties.
+
+1️⃣ What is HQL?
+
+HQL allows you to:
+
+Retrieve data,Insert data,Update data,Delete data
+
+Example:
+ Basic HQL Syntax
+Session session = sessionFactory.openSession();
+Query query = session.createQuery("FROM Employee");
+List<Employee> list = query.list();
+Common HQL Queries
+1. Select All Records
+Query q = session.createQuery("FROM Employee");
+List<Employee> list = q.list();
+
+Equivalent SQL:
+SELECT * FROM employee;
+2. Select Specific Fields
+Query q = session.createQuery("SELECT e.name, e.salary FROM Employee e");
+List<Object[]> list = q.list();
+3. Where Condition
+Query q = session.createQuery("FROM Employee WHERE salary > 50000");
+List<Employee> list = q.list();
+4. Named Parameter
+Query q = session.createQuery("FROM Employee WHERE name = :name");
+q.setParameter("name", "John");
+List<Employee> list = q.list();
+5. Update Query
+Transaction tx = session.beginTransaction();
+Query q = session.createQuery(
+    "UPDATE Employee SET salary = 60000 WHERE id = 1");
+int result = q.executeUpdate();
+tx.commit();
+6. Delete Query
+Transaction tx = session.beginTransaction();
+Query q = session.createQuery(
+    "DELETE FROM Employee WHERE id = 1");
+
+q.executeUpdate();
+
+tx.commit();
+4️⃣ Important Points
+Uses entity class name, not table name
+Uses object properties, not column names
+
+Example Entity
+@Entity
+public class Employee {
+
+    @Id
+    private int id;
+    private String name;
+    private double salary;
+
+}
+
+HQL Query:
+FROM Employee WHERE salary > 40000
+====================================================
+
 Rest template vs feign  client diff
+RestTemplate is a synchronous HTTP client where we manually write REST calls, while Feign Client is a declarative REST client
+where we define interfaces and Spring automatically handles the HTTP communication.
+
+1️⃣ RestTemplate
+RestTemplate is a synchronous HTTP client used to call REST services.
+You must manually write the request details like URL, method, headers, etc.
+Example
+import org.springframework.web.client.RestTemplate;
+
+RestTemplate restTemplate = new RestTemplate();
+
+String url = "http://localhost:8081/users/1";
+
+User user = restTemplate.getForObject(url, User.class);
+Characteristics:
+Imperative style,More boilerplate code,Manually manage endpoints,Older approach (now replaced by WebClient in many cases)
+
+2️⃣ Feign Client
+Feign Client is a declarative REST client.
+You just define an interface, and Spring automatically creates the implementation.
+
+Example
+@FeignClient(name = "user-service")
+public interface UserClient {
+
+    @GetMapping("/users/{id}")
+    User getUser(@PathVariable int id);
+}
+
+Usage:
+User user = userClient.getUser(1);
+Characteristics
+Declarative,Less code,Better for microservices,Works easily with service discovery (Eureka)
+
+| Feature               | RestTemplate       | Feign Client               |
+| --------------------- | ------------------ | -------------------------- |
+| Type                  | Imperative         | Declarative                |
+| Code Size             | More code          | Less code                  |
+| Implementation        | Manual HTTP calls  | Interface-based            |
+| Microservices Support | Limited            | Excellent                  |
+| Load Balancing        | Needs extra config | Built-in with Spring Cloud |
+| Readability           | Lower              | Higher                     |
+
+4️⃣ Example Comparison
+RestTemplate
+String url = "http://order-service/orders/1";
+Order order = restTemplate.getForObject(url, Order.class);
+Feign Client
+@FeignClient("order-service")
+interface OrderClient {
+    @GetMapping("/orders/{id}")
+    Order getOrder(@PathVariable int id);
+}
+
+Usage:
+
+orderClient.getOrder(1);
+5️⃣ When to Use
+
+Use RestTemplate when:
+Simple API calls
+Small applications
+Use Feign Client when:
+Microservices architecture
+Service-to-service communication
+Cleaner code required
+==============================================================
 Expection handling 
 Ways to create a thread 
 Spring Security depth
