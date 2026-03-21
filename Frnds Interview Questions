@@ -85,7 +85,157 @@ POST: take data from the client and Insert into the server.
 3.What is @Qualifier Annotation
 4.What is Synchronized Keyword.
 5.Why String is Immutable and Why and what are use cases.
+============================================================================
 6.How to Secure REST API In java, Especially in springboot,So we use security concepts
+Ans) Use Spring Security (Foundation)
+
+The core security framework for Spring apps is Spring Security.
+
+It helps you:
+
+Authenticate users
+Authorize access (roles/permissions)
+Protect endpoints
+Basic setup:
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+            .csrf().disable()
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/public/**").permitAll()
+                .anyRequest().authenticated()
+            )
+            .httpBasic();
+
+        return http.build();
+    }
+}
+🔑 2. Authentication Methods (Who are you?)
+a) Basic Authentication (simple, not for production)
+Username + password sent in headers
+Only safe over HTTPS
+b) JWT (Recommended for REST APIs)
+
+Use JSON Web Token
+
+Why JWT?
+Stateless (no session storage)
+Scalable
+Widely used
+Flow:
+User logs in → server returns token
+Client sends token in header:
+Authorization: Bearer <token>
+Server validates token
+🧾 3. Authorization (What can you access?)
+
+Use:
+
+Roles (ROLE_USER, ROLE_ADMIN)
+Method-level security
+Example:
+@PreAuthorize("hasRole('ADMIN')")
+@GetMapping("/admin")
+public String adminOnly() {
+    return "Restricted";
+}
+
+Enable it:
+
+@EnableMethodSecurity
+🔒 4. Password Security
+
+Never store plain passwords.
+
+Use:
+
+BCrypt
+@Bean
+public PasswordEncoder passwordEncoder() {
+    return new BCryptPasswordEncoder();
+}
+🌐 5. Always Use HTTPS
+Encrypts data in transit
+Prevents man-in-the-middle attacks
+
+Without HTTPS:
+
+Tokens and passwords can be stolen easily
+🛡️ 6. Protect Against Common Attacks
+a) CSRF (Cross-Site Request Forgery)
+Disable for stateless APIs:
+http.csrf().disable();
+b) CORS (Cross-Origin Requests)
+http.cors();
+
+Define allowed origins carefully.
+
+c) XSS (Cross-Site Scripting)
+Validate and sanitize inputs
+Use proper JSON handling (Spring does this mostly)
+d) SQL Injection
+Use JPA / Prepared statements (never raw SQL with concatenation)
+🔁 7. Rate Limiting (Prevent abuse)
+
+Use tools like:
+
+Bucket4j
+API Gateway
+🧠 8. Input Validation
+
+Use:
+
+@Valid
+@NotNull
+@Size(min = 3)
+
+Example:
+
+public class UserDTO {
+    @NotNull
+    @Size(min = 3)
+    private String username;
+}
+🔐 9. Token Expiration & Refresh
+Access token → short-lived (15–60 mins)
+Refresh token → longer-lived
+🧩 10. Exception Handling (Hide sensitive info)
+
+Never expose:
+
+Stack traces
+Internal details
+🧱 11. API Gateway / OAuth2 (Advanced)
+
+For enterprise systems:
+
+Use OAuth 2.0
+Integrate with providers like:
+Google
+Keycloak
+🧪 12. Logging & Monitoring
+
+Track:
+
+Failed logins
+Suspicious requests
+Token misuse
+✅ Recommended Stack (Real-world)
+
+For production Spring Boot APIs:
+
+Spring Security
+JWT Authentication
+BCrypt password hashing
+HTTPS
+Role-based authorization
+⚡ Simple Architecture Flow
+Client → Login → JWT Token
+Client → API Request + Token → Spring Security Filter → Controller
 =============================================================
 7.How to Connect ONE REST API WITH ANOTHER API.
 RestTemplate,WebClient
