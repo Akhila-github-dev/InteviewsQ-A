@@ -489,12 +489,33 @@ Then, for every request, the backend validates the JWT token to check if it is v
 JWT is not used to validate login—it is generated after login and used to authorize subsequent requests
 ============================================================
 How expections handled in controller and service 
+“In Spring Boot, exceptions should not be handled directly in the controller or service in most cases. Instead, we use a global exception handler using @ControllerAdvice
+to handle them in a centralized way.”
+
+“If an error occurs in the service layer, we throw an exception.
+That exception propagates to the controller, and instead of handling it there, a global exception handler catches it and returns a proper error response.
+=============================================================
 Rabbit mq and kafka vacha ani adigaru 
 Rest template
 manager round
 coding questions - missing number in an array
 reverse a string but special character should not reversed
+=======================================================
 return type of entryset
+1. keySet()
+Returns all keys from the map.
+Return type: Set<K>
+
+2. values()
+Returns all values from the map.
+Return type: Collection<V>
+
+3. entrySet() 
+Returns key + value together
+
+Return type: Set<Map.Entry<K, V>>
+Best for iterating both key and value
+====================================================
 in abstract class y we need constuctor
 hashmap vs hashtable
 
@@ -522,24 +543,94 @@ if you got an issue bcz of u how you will handle.
 deloitte 1st round
 
 what happen if i give @sevice to @component
+“@Service is a specialization of @Component. If I use @Component instead of @Service, Spring will still create the bean and everything works fine.
+But @Service is preferred because it clearly represents business logic and improves code readability and maintainability.”
+====================================================
 where we use @component
+If I annotate a class with @Component, Spring will create its object and manage it in the application context.
+=================================
 use of fuctional interface
+=====================
 y set don't allow duplicates
+Set uses hashCode() and equals() to prevent duplicates.
+Set uses hashCode() and equals() to prevent duplicates.”
+A Set doesn’t allow duplicates because it checks each new element against existing elements using hashCode and equals. 
+If an element is considered equal to an existing one, it won’t be added.”
+============================================
 hashmap and hashset are synchrozied or not
+
+No, by default neither HashMap nor HashSet are synchronized.
+They are not thread-safe, meaning if multiple threads modify them concurrently, it can lead to data inconsistency or ConcurrentModificationException.
+==========================================================================
 y we use hashmap over cocurrentHashMap if we have lot of features in cocurrentHashmap
+We use HashMap over ConcurrentHashMap in single-threaded scenarios because it is simpler and faster. 
+ConcurrentHashMap adds thread-safety overhead, which is only useful when multiple threads access the map concurrently.
+
+====================================================
 composite key
+
+“A composite key is a key that consists of two or more fields of a table (or entity) used together to uniquely identify a record.
+A composite key is a primary key made up of multiple columns or fields to uniquely identify a record.”
+==========================================================================
 @autowire and @qualifier
+
+@Autowired is used for automatic dependency injection in Spring. It tells Spring to inject a bean into a class automatically.”
+
+🔹 How It Works
+Spring searches the application context for a bean of the matching type.
+Injects it by type by default.
+📌 Example
+@Component
+public class ServiceA { }
+
+@Component
+public class Consumer {
+    @Autowired
+    private ServiceA serviceA;  // Spring injects ServiceA automatically
+}
+✅ 2. @Qualifier
+
+“@Qualifier is used along with @Autowired when there are multiple beans of the same type, and we want to specify which bean to inject.”
+
+📌 Example
+@Component("service1")
+public class ServiceA { }
+
+@Component("service2")
+public class ServiceAImpl extends ServiceA { }
+
+@Component
+public class Consumer {
+    @Autowired
+    @Qualifier("service2")  // specify exactly which bean to inject
+    private ServiceA service;
+}
+🧠 How to Explain in Interview
+
+“@Autowired injects a dependency automatically by type.
+When multiple beans of the same type exist, we use @Qualifier to tell Spring which exact bean to inject.”
+
+
+“@Autowired = inject by type automatically, @Qualifier = specify which bean when multiple exist.”
+
+===========================================================================================
 nullpointerexcetion
 String s=null;
 if("abc".equals(s)) {
 return true;
 }
+if(s.equals("an")) {
+return true;
+}
+=========================================
 singleton threadsafe or not
 defalut scope of spring 
 project explanation
 @getmapping and @postmapping
 rest over soap
 filter distinct odd number in reverse order using steams
+	l.stream().filter(f->f%2!=0).sorted(Comparator.reverseOrder()).collect(Collectors.toSet());
+	
 ==================================================================================
 deloitte 2nd round
 
