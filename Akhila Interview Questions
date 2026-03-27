@@ -63,7 +63,7 @@ Common built-in functional interfaces:
 this is after java 8
 Predicate,Function,Consumer,Supplier
 before java 8 we have 
-runnable,callable, clonable 
+runnable,callable 
 
 3. Stream API
 The Stream API processes collections using a functional approach.
