@@ -472,6 +472,22 @@ Ways to create a thread
 Spring Security depth
 2nd round
 User registration implementation 
+Ans)User registration in Spring Boot follows a simple flow.
+First, the client sends registration data like username, email, and password to a REST API endpoint.
+The request goes to the controller, which forwards it to the service layer.
+In the service layer, I validate the data and check if the user already exists.
+Then I encrypt the password using BCrypt for security.
+After that, I save the user details in the database using the repository layer.
+Finally, I return a success response to the client.
+
+“When a user tries to log in, they send their username/email and password to the backend.
+The backend first verifies the credentials using Spring Security.
+If the credentials are valid, the server generates a JWT token and sends it back to the client.
+For subsequent requests, the client includes this JWT token in the Authorization header.
+Then, for every request, the backend validates the JWT token to check if it is valid and not expired before allowing access to protected resources
+
+JWT is not used to validate login—it is generated after login and used to authorize subsequent requests
+============================================================
 How expections handled in controller and service 
 Rabbit mq and kafka vacha ani adigaru 
 Rest template
