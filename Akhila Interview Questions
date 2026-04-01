@@ -117,7 +117,125 @@ Types:
 Reference to static method
 Reference to instance method
 Reference to constructor
+1. Reference to a Static Method
 
+Syntax:
+
+ClassName::staticMethodName
+
+Example:
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        List<Integer> list = Arrays.asList(3, 1, 2);
+
+        // Lambda
+        list.sort((a, b) -> Integer.compare(a, b));
+
+        // Method reference
+        list.sort(Integer::compare);
+
+        System.out.println(list);
+    }
+}
+
+Explanation:
+Refers to a static method of a class.
+Integer::compare replaces (a, b) -> Integer.compare(a, b).
+
+2. Reference to an Instance Method of a Particular Object
+
+Syntax:
+instance::instanceMethodName
+
+Example:
+
+import java.util.function.Consumer;
+
+public class Main {
+    public static void main(String[] args) {
+        Main obj = new Main();
+
+        // Lambda
+        Consumer<String> c = s -> obj.print(s);
+
+        // Method reference
+        Consumer<String> c2 = obj::print;
+
+        c2.accept("Hello");
+    }
+
+    void print(String msg) {
+        System.out.println(msg);
+    }
+}
+
+Explanation:
+Refers to an instance method of a specific object.
+obj::print replaces s -> obj.print(s).
+
+3. Reference to an Instance Method of an Arbitrary Object of a Particular Type
+
+Syntax:
+ClassName::instanceMethodName
+
+Example:
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        List<String> list = Arrays.asList("a", "c", "b");
+
+        // Lambda
+        list.sort((a, b) -> a.compareTo(b));
+
+        // Method reference
+        list.sort(String::compareTo);
+
+        System.out.println(list);
+    }
+}
+
+Explanation:
+Refers to an instance method, but the object is not specified.
+The object is provided later (by the JVM).
+String::compareTo replaces (a, b) -> a.compareTo(b).
+
+4. Reference to a Constructor
+Syntax:
+ClassName::new
+
+Example:
+
+import java.util.function.Supplier;
+
+public class Main {
+    public static void main(String[] args) {
+        // Lambda
+        Supplier<String> s1 = () -> new String();
+
+        // Method reference
+        Supplier<String> s2 = String::new;
+
+        System.out.println(s2.get());
+    }
+}
+
+Explanation:
+Refers to a constructor.
+Useful for object creation in functional programming.
+
+| Type                        | Syntax                | Example             |
+| --------------------------- | --------------------- | ------------------- |
+| Static method               | `Class::staticMethod` | `Integer::compare`  |
+| Instance (specific object)  | `obj::method`         | `obj::print`        |
+| Instance (arbitrary object) | `Class::method`       | `String::compareTo` |
+| Constructor                 | `Class::new`          | `String::new`       |
+
+================================================================================================================
 7. Optional Class
 Optional helps avoid NullPointerException.
 
