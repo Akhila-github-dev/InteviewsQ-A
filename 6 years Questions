@@ -1,13 +1,312 @@
 Here's a breakdown of the interview questions from the video, categorized by round:
 Round 1: [00:41]
  * Coding Questions (using Streams):
-   * Get a list of employee names who earn above the average salary [00:48]
-   * Create a map with employee ID as key and name as value [01:09]
-   * Get the highest salary by department [01:24]
+   * Get a list of employee names who earn above the average salary 
+Ans) with streams:  double avgSalary = employees.stream()
+                                    .mapToDouble(Employee::getSalary)
+                                    .average()
+                                    .orElse(0);
+
+        // Filter employees above average salary
+        List<String> result = employees.stream()
+                                       .filter(e -> e.getSalary() > avgSalary)
+                                       .map(Employee::getName)
+                                       .collect(Collectors.toList());
+without steams:
+ double total = 0;
+        for (Employee e : employees) {
+            total += e.salary;
+        }
+
+        double avgSalary = total / employees.size();
+
+        // Step 2: Collect employees above average
+        List<String> result = new ArrayList<>();
+        for (Employee e : employees) {
+            if (e.salary > avgSalary) {
+                result.add(e.name);
+            }
+        }
+
+        System.out.println(result);
+    }
+================================================================================================
+
+   * Create a map with employee ID as key and name as value 
+Map<Integer, String> empMap = employees.stream()
+                .collect(Collectors.toMap(
+                        Employee::getId,
+                        Employee::getName
+                ));
+withoutsteams
+ Map<Integer, String> empMap = new HashMap<>();
+
+        for (Employee e : employees) {
+            empMap.put(e.id, e.name);
+        }
+
+   * Get the highest salary by department 
+Map<String, Double> result =
+    employees.stream()
+             .collect(Collectors.groupingBy(
+                 Employee::getDepartment,
+                 Collectors.collectingAndThen(
+                     Collectors.maxBy(Comparator.comparingDouble(Employee::getSalary)),
+                     opt -> opt.map(Employee::getSalary).orElse(0.0)
+                 )
+             ));
+
+
+import java.util.*;
+
+class Employee {
+    String name;
+    String department;
+    double salary;
+
+    Employee(String name, String department, double salary) {
+        this.name = name;
+        this.department = department;
+        this.salary = salary;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        List<Employee> employees = Arrays.asList(
+            new Employee("Alice", "IT", 50000),
+            new Employee("Bob", "IT", 70000),
+            new Employee("Charlie", "HR", 40000),
+            new Employee("David", "HR", 60000)
+        );
+
+        Map<String, Employee> result = new HashMap<>();
+
+        for (Employee e : employees) {
+            if (!result.containsKey(e.department) ||
+                e.salary > result.get(e.department).salary) {
+                result.put(e.department, e);
+            }
+        }
+
+        for (Map.Entry<String, Employee> entry : result.entrySet()) {
+            System.out.println(entry.getKey() + " -> " +
+                entry.getValue().name + " : " +
+                entry.getValue().salary);
+        }
+    }
+
+================================================================================
+
    * Count the occurrences of each character in a string (pure Java, no streams) [01:41]
  * Theoretical Questions:
-   * Explanation of the usage and return types of various stream operations (e.g., collect, filter) [01:56]
-   * Difference between synchronized and concurrent hashmap [02:24]
+   * Explanation of the usage and return types of various stream operations (e.g., collect, filter)
+1. filter()
+✅ Purpose:
+
+Filters elements based on a condition (predicate)
+
+✅ Usage:
+stream.filter(x -> x > 10)
+✅ Return Type:
+Stream<T>
+💡 Example:
+List<Integer> nums = Arrays.asList(5, 15, 20);
+
+List<Integer> result = nums.stream()
+                           .filter(n -> n > 10)
+                           .toList();   // [15, 20]
+🔹 2. map()
+✅ Purpose:
+
+Transforms each element into another form
+
+✅ Usage:
+stream.map(x -> x * 2)
+✅ Return Type:
+Stream<R>
+💡 Example:
+List<String> names = Arrays.asList("a", "b");
+
+List<String> result = names.stream()
+                           .map(String::toUpperCase)
+                           .toList();   // ["A", "B"]
+🔹 3. flatMap()
+✅ Purpose:
+
+Flattens nested structures (Stream of Streams → single Stream)
+
+✅ Usage:
+stream.flatMap(x -> x.stream())
+✅ Return Type:
+Stream<R>
+💡 Example:
+List<List<Integer>> list = Arrays.asList(
+    Arrays.asList(1, 2),
+    Arrays.asList(3, 4)
+);
+
+List<Integer> result = list.stream()
+                           .flatMap(Collection::stream)
+                           .toList();   // [1, 2, 3, 4]
+🔹 4. collect()
+✅ Purpose:
+
+Converts stream into a collection or other structure
+
+✅ Usage:
+stream.collect(Collectors.toList())
+✅ Return Type:
+<R, A> R   // depends on collector
+💡 Common Collectors:
+toList() → List<T>
+toSet() → Set<T>
+toMap() → Map<K, V>
+groupingBy() → Map<K, List<T>>
+💡 Example:
+List<String> result = names.stream()
+                           .collect(Collectors.toList());
+🔹 5. forEach()
+✅ Purpose:
+
+Performs an action on each element
+
+✅ Usage:
+stream.forEach(System.out::println)
+✅ Return Type:
+void
+🔹 6. reduce()
+✅ Purpose:
+
+Reduces stream to a single value (aggregation)
+
+✅ Usage:
+stream.reduce((a, b) -> a + b)
+✅ Return Type:
+Optional<T>   // or T if identity provided
+💡 Example:
+Optional<Integer> sum = nums.stream()
+                            .reduce((a, b) -> a + b);
+🔹 7. findFirst() / findAny()
+✅ Purpose:
+
+Get an element from the stream
+
+✅ Return Type:
+Optional<T>
+🔹 8. anyMatch(), allMatch(), noneMatch()
+✅ Purpose:
+
+Check conditions on elements
+
+✅ Return Type:
+boolean
+💡 Example:
+boolean exists = nums.stream().anyMatch(n -> n > 10);
+🔹 9. sorted()
+✅ Purpose:
+
+Sort elements
+
+✅ Return Type:
+Stream<T>
+🔹 10. distinct()
+✅ Purpose:
+
+Remove duplicates
+
+✅ Return Type:
+Stream<T>
+🔹 11. limit() / skip()
+✅ Purpose:
+
+Control number of elements
+
+✅ Return Type:
+Stream<T>
+🔹 12. count()
+✅ Purpose:
+
+Count elements
+
+✅ Return Type:
+long
+🔹 Intermediate vs Terminal Operations
+🟢 Intermediate (lazy, return Stream)
+filter
+map
+flatMap
+sorted
+distinct
+limit, skip
+
+👉 They don’t execute until a terminal operation is called
+
+🔴 Terminal (trigger execution)
+collect
+forEach
+reduce
+count
+findFirst
+anyMatch
+
+==========================================================
+
+   * Difference between synchronized and concurrent hashmap 
+Ans) Collections.synchronizedMap() → makes the whole map thread-safe using a single lock
+ConcurrentHashMap → designed for concurrency using fine-grained locking / lock-free techniques
+✅ 1. Collections.synchronizedMap()
+📌 Usage:
+Map<Integer, String> map =
+    Collections.synchronizedMap(new HashMap<>());
+⚙️ How it works:
+Entire map is locked for every operation
+Only one thread at a time can access it
+🔁 Return Type:
+Map<K, V>
+⚠️ Iteration requires manual synchronization:
+synchronized (map) {
+    for (Integer key : map.keySet()) {
+        System.out.println(key);
+    }
+}
+✅ 2. ConcurrentHashMap
+📌 Usage:
+ConcurrentHashMap<Integer, String> map =
+    new ConcurrentHashMap<>();
+⚙️ How it works:
+Uses segment-level locking (Java 7) or bucket-level CAS (Java 8+)
+Multiple threads can read/write simultaneously
+🔁 Return Type:
+ConcurrentHashMap<K, V>
+✅ No need for manual synchronization during iteration:
+for (Integer key : map.keySet()) {
+    System.out.println(key);
+}
+📊 Comparison Table
+| Feature          | synchronizedMap                         | ConcurrentHashMap           |
+| ---------------- | --------------------------------------- | --------------------------- |
+| Locking          | Single lock (whole map)                 | Fine-grained / bucket-level |
+| Performance      | Slower under high concurrency           | Faster                      |
+| Thread Safety    | Yes                                     | Yes                         |
+| Iteration        | Must manually sync                      | No need                     |
+| Null keys/values | Allows 1 null key, multiple null values | ❌ Not allowed               |
+| Scalability      | Poor                                    | High                        |
+
+👉 Example:
+map.putIfAbsent(key, value);
+In ConcurrentHashMap → atomic operation ✅
+In synchronizedMap → not atomic ❌ (needs external sync)
+💡 When to Use What?
+✔️ Use synchronizedMap when:
+Low concurrency
+Simplicity matters
+Legacy code
+✔️ Use ConcurrentHashMap when:
+High concurrency environment
+Performance is critical
+Frequent reads/writes
+==============================================================
    * Fail-fast vs. fail-safe iterators [02:31]
    * Fork-join pool in thread pools [02:31]
    * Thread pool used by parallel streams [02:38]
