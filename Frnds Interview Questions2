@@ -206,6 +206,45 @@ public class AnnotationProcessor {
 
 how can we check wethere it is not custom exception class are not with one annotation
 using @ExceptionHandler and instance of 
+If you want to check whether a class is a custom exception using an annotation in Java, you’ll need to combine two things:
+A custom annotation
+Reflection to inspect the class
+1. Create a custom annotation
+import java.lang.annotation.*;
+
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.TYPE)
+public @interface CustomException {
+}
+2. Use the annotation on your exception classes
+@CustomException
+public class MyException extends Exception {
+}
+
+@CustomException
+public class AnotherException extends RuntimeException {
+}
+3. Write a method to check it
+
+You can verify both:
+
+whether it’s an exception (Throwable subclass)
+whether it has your annotation
+public class ExceptionChecker {
+
+    public static boolean isCustomException(Class<?> clazz) {
+        return Throwable.class.isAssignableFrom(clazz) &&
+               clazz.isAnnotationPresent(CustomException.class);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(isCustomException(MyException.class));       // true
+        System.out.println(isCustomException(String.class));           // false
+    }
+}
+Key idea
+Throwable.class.isAssignableFrom(clazz) → checks if it's an exception
+clazz.isAnnotationPresent(...) → checks your custom marker
 ========================================================
  
 * Types of bean scopes
