@@ -2,8 +2,10 @@ https://copilot.microsoft.com/shares/sqqKcWwTmMS8VXKbcusET
 *What is lazy loading and How Spring Handles it
 A: Lazy loading is a technique where an object or bean is initialized only when it is needed, rather than at 
 application startup. This helps improve performance by reducing unnecessary resource consumption.
+
 How Spring Handles Lazy Loading
-Spring provides the @Lazy annotation to control bean initialization. By default, Spring initializes all singleton beans eagerly at startup, but using @Lazy, we can delay this until the bean is actually required.
+Spring provides the @Lazy annotation to control bean initialization. By default, Spring initializes all singleton 
+beans eagerly at startup, but using @Lazy, we can delay this until the bean is actually required.
 
 
 *What is Caching?
@@ -14,7 +16,9 @@ retrieved or computed data, improving performance and reducing load times.
 How Caching Works
 Cache Hit – If requested data is found in the cache, it is returned instantly.
 Cache Miss – If data is not in the cache, it is fetched from the original source and stored in the cache for future use.
-Eviction Policy – When the cache reaches its storage limit, older or less frequently used data is removed based on policies like LRU (Least Recently Used) or LFU (Least Frequently Used). 
+Eviction Policy – When the cache reaches its storage limit, older or less frequently used data is removed based on policies 
+like LRU (Least Recently Used) or LFU (Least Frequently Used). 
+
 How to Enable Caching in Spring Boot
 Step 1: Add Required Dependency
 <!-- For Maven -->
@@ -292,7 +296,8 @@ When a Spring Boot application starts, several key steps happen in the backgroun
 execution. Then, Spring Boot initializes the SpringApplication class, which sets up the environment and loads
 configurations. Next, the ApplicationContext is created, and Spring scans for beans, injecting dependencies 
 accordingly. Any lifecycle callbacks, such as methods annotated with @PostConstruct, get executed. If it's a
-web application, the embedded Tomcat or other server starts, allowing the application to listen for requests. Finally, event listeners and command-line runners execute before the application is fully ready to serv
+web application, the embedded Tomcat or other server starts, allowing the application to listen for requests. 
+Finally, event listeners and command-line runners execute before the application is fully ready to serv
  
 8.How you implemented the functionality of cache, About @CachePut Related to my project.
  
@@ -321,7 +326,8 @@ and how you will store the results of the stored procedure
 22.What is priority queue
 23.What is Array List and LinkedList.
 24.why we use interceptors when we already have jwt?
-Great question! Even though JWT (JSON Web Token) provides authentication and authorization, interceptors are still useful for additional functionalities beyond token validation. Here’s why we use interceptors along with JWT:
+Great question! Even though JWT (JSON Web Token) provides authentication and authorization, interceptors are still useful for 
+additional functionalities beyond token validation. Here’s why we use interceptors along with JWT:
 
 1. Pre-Processing Requests (Logging & Modification)
 Interceptors allow you to modify requests before they reach the controller.
