@@ -27,3 +27,28 @@ class Car{
 
 sysout(newCar());
 output----hashcode
+
+Concurrent hashmap vs hashmap
+How can you ensure thread safety in concurrent hashmap
+
+Static synchronous and asynchronous difference 
+Types of synchronisation 
+Ioc container 
+Types of dependency injection 
+What is best
+
+Custom exception 
+Custom dependency 
+2nd highest salary 
+Max salary
+Git commands
+Solid principles 
+Throwable class are interface 
+Exceptions
+Saga design pattern 
+Saga ur using single db or multiple db
+Resume chusi 40 % em chesavu annadu
+Rest template and web client 
+Jre aa version lo remove indhi 
+Java 17 features 
+Project explanation
