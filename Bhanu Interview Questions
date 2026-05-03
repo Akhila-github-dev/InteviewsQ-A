@@ -17,9 +17,40 @@ JPQL query
 output for above code
 
 -------------------------
-recursion,Exception propagation
+recursion,
+Exception propagation
+Exception propagation in Java means that when a method throws an exception and does not handle it (using try-catch), the exception is automatically passed to the calling method. 
+This continues up the call stack until it is caught or reaches the JVM.
+Propagation happens only for unchecked exceptions (like ArithmeticException) by default.
+==================================================
 instanceof -instanceof is a keyword used to check whether an object is an instance of a specific class or subclass. It's super handy for preventing ClassCastException errors!
 classcastException -ClassCastException in Java happens when you try to cast an object to a class that it is not an instance of.
+
+ClassCastException
+When it happens: When you try to cast an object to an incompatible type
+Type: Unchecked (Runtime exception)
+Occurs at: Runtime
+
+Example:
+
+Object obj = "Hello";
+Integer num = (Integer) obj; // ClassCastException
+2. ClassNotFoundException
+When it happens: When JVM cannot find a class during loading (usually with Class.forName())
+Type: Checked exception
+Occurs at: Compile-time requirement (must handle), but thrown at runtime
+
+Example:
+
+Class.forName("com.example.UnknownClass"); // ClassNotFoundException
+
+| Feature  | ClassCastException   | ClassNotFoundException           |
+| -------- | -------------------- | -------------------------------- |
+| Cause    | Invalid type casting | Class not found in classpath     |
+| Type     | Unchecked            | Checked                          |
+| When     | Runtime              | During class loading             |
+| Handling | Optional             | Must handle (try-catch / throws) |
+
 synchronous and asynchronous how to achieve
 unreachablecodeexception
 
