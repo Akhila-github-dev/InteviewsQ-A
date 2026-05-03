@@ -46,20 +46,30 @@ WHERE SALARY<
 7.What is OAuth.
 
 OAuth (Open Authorization)
-is an open standard protocol for authorization of an application for using user information,
-In general, it allows a third party application access to user related info like name, DOB, email or other
-required data from an application like Facebook, Google etc. without giving the third party app the user 
-password. 
-OAuth Mechanism
-OAuth Provider - This is the OAuth provider Eg. Google, FaceBook etc.
-OAuth Client - This is the website where we are sharing or authenticating the usage of our information. Eg. GeeksforGeeks etc.
-Owner - The user whose login authenticates sharing of information.
-OAuth can be implemented via google console for "Login/Sign Up with Google" on a web app.
-Pattern to be Followed
-Get OAuth 2.0 Client ID from Google API Console
-Next, Obtain an access token from the Google Authorization Server to access the API.
-Send the request with the access token to an API .
-Get Refresh token if longer access is required.
+OAuth is for authorization, not authentication
+Often used with OpenID Connect (OIDC) for login/authentication
+OAuth is an authorization protocol that allows applications to access user data using access tokens instead of sharing passwords
+
+OAuth is a protocol that allows one application to access another application’s data on behalf of a user, without sharing the user’s password.
+
+🔹 Real-Time Example (very important)
+
+👉 “Login with Google”
+
+You click Login with Google
+Your app redirects to Google
+You log in on Google
+Google gives your app a token (not your password)
+Your app uses that token to access basic info (like email)
+🔹 Key Idea
+
+👉 Instead of sharing credentials, you share access tokens
+
+🔹 Roles in OAuth
+User (Resource Owner) → You
+Client → Your application
+Authorization Server → Google/Facebook (auth provider)
+Resource Server → Where data is stored
 =====================================================================================
 3.HTTP STATUS CODES
 When client sends an request to the (server),The Server will process that (request) and (Server) Will send (response to the client) With some status code
@@ -89,6 +99,8 @@ POST: take data from the client and Insert into the server.
 ============================================================================
 6.How to Secure REST API In java, Especially in springboot,So we use security concepts
 Ans) Use Spring Security (Foundation)
+we secure REST APIs using Spring Security by implementing authentication and authorization. Commonly, we use JWT for stateless authentication, encrypt passwords using BCrypt, 
+and protect endpoints with role-based access control. We also enforce HTTPS and proper CORS configuration
 
 The core security framework for Spring apps is Spring Security.
 
