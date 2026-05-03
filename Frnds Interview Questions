@@ -13,7 +13,8 @@ int sumOfOdd = numbers.stream().filter(n->n%2==1).mapToInt(Integer:: intValue).s
 numbers.stream().filter(n->n%2==0).mapToInt(Integer:: intValue).sum();
 ============================================================================
 8.what is dependency injection in spring boot
-Dependency Injection (DI) in Spring Boot is a design pattern that allows objects (dependencies) to be injected into other objects rather than creating them manually. It helps in managing dependencies efficiently and promotes loose coupling between components.
+Dependency Injection (DI) in Spring Boot is a design pattern that allows objects (dependencies) to be injected into other objects rather than creating them manually. 
+It helps in managing dependencies efficiently and promotes loose coupling between components.
 
 How it works in Spring Boot:
 Spring Container: Manages the lifecycle of beans (objects) and their dependencies.
@@ -286,7 +287,8 @@ This returns a reactive response (Mono<String>), which is more efficient.
 ==================================================================
 Migrating from Spring Boot 5 to Spring Boot 6 mainly involves updating to the new Jakarta EE namespace,
 which means changing javax.* to jakarta.*. I also need to check compatibility of third-party libraries, 
-update security configurations, and make sure the application runs on Java 17 or higher. I would test everything thoroughly and do the migration step-by-step to avoid breaking changes.
+update security configurations, and make sure the application runs on Java 17 or higher. 
+I would test everything thoroughly and do the migration step-by-step to avoid breaking changes.
 =================================================================================
 To fix POM file errors and ensure compatibility, I update the Spring Boot version, make sure the 
 Java version is correct, and use the right dependencies. I also clean and rebuild the project using 
@@ -405,7 +407,8 @@ public String getUser(@PathVariable int id) {
 7. Create a custom exception in java
 by extending with exception class
 ===========================================================================
-8. Lets say you have two DB operations you need to perform where you need to save data.where one second operation got failed how can you handle this scenario with out interrupting application ?
+8. Lets say you have two DB operations you need to perform where you need to save data.where one second operation got failed how can you handle
+this scenario with out interrupting application ?
 using @Transtional annotation
 if the second save opertion fails, the first one will also be rolled back, preventing inconsistent data
 @Service
@@ -423,7 +426,8 @@ syso("second operation failed");
 throw e;
 }
 }
-If you don't want to roll back the first operation and want the application to keep running, you can catch the exception for the second operation and log it instead of rolling back the first.
+If you don't want to roll back the first operation and want the application to keep running, you can catch the exception for the second operation 
+and log it instead of rolling back the first.
 public void saveDate(DataEntity e1, DataEntity e2){
 try{
 rep.save(e1);
@@ -694,7 +698,9 @@ last interview questions
 completablefuture:
  used in asynchronous programming. which run multiple tasks simultaneously without blocking the main thread.
 ========================================================================================
- @Transactional annotation in Spring Boot is used to manage database transactions automatically. When applied to a method or class, it ensures that all database operations within the method are executed within a single transaction. If any exception occurs, the transaction is rolled back, ensuring data consistency. It simplifies transaction management in applications
+ @Transactional annotation in Spring Boot is used to manage database transactions automatically. When applied to a method or class, it ensures that
+all database operations within the method are executed within a single transaction. If any exception occurs, the transaction is rolled back, ensuring data consistency.
+It simplifies transaction management in applications
 ==================================================================================================================================================>
 
 Splunk is a platform for (searching),(monitoring) and analyzing the (logs,events,metrics) in real time.
