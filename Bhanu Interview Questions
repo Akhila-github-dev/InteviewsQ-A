@@ -50,8 +50,45 @@ Class.forName("com.example.UnknownClass"); // ClassNotFoundException
 | Type     | Unchecked            | Checked                          |
 | When     | Runtime              | During class loading             |
 | Handling | Optional             | Must handle (try-catch / throws) |
-
+==================================================
 synchronous and asynchronous how to achieve
+Synchronous
+
+Tasks execute one after another
+Each task waits for the previous one to finish
+👉 Blocking behavior
+
+Asynchronous
+
+Tasks execute independently
+No need to wait for previous task
+👉 Non-blocking behavior
+
+How to achieve in Java
+1. Synchronous (default behavior)
+Normal method calls
+Single-thread execution
+void process() {
+    step1();
+    step2(); // waits
+}
+2. Asynchronous ways
+a) Using Thread
+new Thread(() -> {
+    System.out.println("Async task");
+}).start();
+b) Using ExecutorService (recommended)
+ExecutorService executor = Executors.newFixedThreadPool(2);
+
+executor.submit(() -> {
+    System.out.println("Async task");
+});
+
+executor.shutdown();
+
+“Synchronous execution is blocking and runs tasks sequentially, while asynchronous execution is non-blocking and can be achieved in Java using Threads, 
+ExecutorService, or CompletableFuture.”
+===========================================
 unreachablecodeexception
 
 class Car{
@@ -61,9 +98,46 @@ output----hashcode
 
 Concurrent hashmap vs hashmap
 How can you ensure thread safety in concurrent hashmap
-
+===============================
 Static synchronous and asynchronous difference 
-Types of synchronisation 
+Types of synchronisation
+1) Method-Level Synchronization
+Entire method is locked
+Only one thread can execute the method at a time
+synchronized void print() {
+    // critical section
+}
+
+👉 Lock is on the object (this)
+
+2. Block-Level Synchronization
+Only a specific block is locked (better performance)
+void print() {
+    synchronized(this) {
+        // critical section
+    }
+}
+
+👉 More efficient than method-level
+
+3. Static Synchronization
+Used for static methods
+Lock is on the Class object
+synchronized static void display() {
+    // critical section
+}
+
+👉 Lock = ClassName.class
+
+4. Class-Level Synchronization (Explicit)
+Manually lock on class object
+void show() {
+    synchronized(ClassName.class) {
+        // critical section
+    }
+}
+“Synchronization in Java can be method-level, block-level, static, and class-level, depending on whether the lock is applied on an object or the class.”
+=============================
 Ioc container 
 Types of dependency injection 
 What is best
@@ -79,7 +153,56 @@ Exceptions
 Saga design pattern 
 Saga ur using single db or multiple db
 Resume chusi 40 % em chesavu annadu
-Rest template and web client 
-Jre aa version lo remove indhi 
+Rest template and web client
+================
+Jre aa version lo remove indhi
+Java 11
+Java 11 introduced new String methods, a modern HTTP client, file API improvements, ability to run Java files directly, and removed standalone JRE and older Java EE modules
+==============
 Java 17 features 
+1. Sealed Classes (Standardized)
+Restrict which classes can extend/implement a class
+public sealed class Shape permits Circle, Rectangle {}
+
+2. Pattern Matching for instanceof
+No need for explicit casting
+if (obj instanceof String s) {
+    System.out.println(s.length());
+}
+
+3. Switch Enhancements (Preview → Improved)
+More concise and powerful switch
+String result = switch (day) {
+    case MONDAY, FRIDAY -> "Work";
+    default -> "Other";
+};
+4. Records (Standardized)
+Concise way to create immutable data classes
+public record Person(String name, int age) {}
+
+👉 Automatically gives constructor, getters, toString(), etc.
+
+5. Text Blocks (Standardized)
+Multi-line strings
+String json = """
+    {
+        "name": "Akhila"
+    }
+    """;
+6. New Garbage Collectors
+ZGC and Shenandoah improved (low latency)
+7. Strong Encapsulation of JDK Internals
+Internal APIs are strongly hidden (better security)
+8. Deprecation & Removal
+Removed old/unused APIs (like Applet API deprecated)
+🔥 Quick Summary
+Sealed classes → controlled inheritance
+Records → less boilerplate
+Pattern matching → cleaner code
+Text blocks → readable strings
+Better GC + performance
+🧠 One-line interview answer:
+
+“Java 17 introduced sealed classes, records, pattern matching for instanceof, text blocks, and improved performance with enhanced garbage collectors.”
+===================================
 Project explanation
