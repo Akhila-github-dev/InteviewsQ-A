@@ -383,3 +383,9 @@ Instead of adding JWT validation in every controller, interceptors handle it glo
 
 25.Can auto-refresh expired JWTs before passing the request forward.
 A: Yes using refresh token mechansim using interceptors
+==============================
+ReentrantLock, on the other hand, is part of the java.util.concurrent package and provides explicit locking. It offers more advanced features like:
+
+tryLock() → attempts to acquire lock without waiting
+lockInterruptibly() → allows interruption while waiting
+Fairness policy → ensures first-come-first-serve locking
