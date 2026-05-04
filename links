@@ -131,3 +131,171 @@ Monitoring
 Scaling
 DB optimization
 Caching
+
+
+Basics → Must answer instantly
+What is OOP? Explain all 4 principles with examples
+What is JVM, JRE, JDK?
+How memory works in Java? (Heap vs Stack)
+What is Garbage Collection?
+Collections (VERY IMPORTANT)
+HashMap vs Hashtable vs ConcurrentHashMap
+How HashMap works internally?
+What is hashing & collision?
+equals() vs hashCode()
+Multithreading
+What is thread lifecycle?
+Runnable vs Callable
+synchronized vs Lock
+volatile keyword
+What is deadlock? How to prevent?
+Java 8+
+Stream API (real examples)
+Optional class
+Functional interfaces
+Lambda expressions
+🌐 2. Spring Boot (VERY HIGH PRIORITY)
+Core
+What is Spring Boot?
+Why not plain Spring?
+What is IoC and DI?
+Annotations
+@RestController vs @Controller
+@Autowired vs constructor injection
+@Bean vs @Component
+Internals
+How Spring Boot starts?
+What is DispatcherServlet?
+What happens when API request comes?
+
+👉 This question is VERY common:
+
+“Explain end-to-end flow of a request in Spring Boot”
+
+🧩 3. Microservices (CRITICAL)
+Fundamentals
+What is Microservices Architecture?
+Advantages & disadvantages
+Real-world
+How services communicate?
+What is API Gateway?
+What is Service Discovery?
+Advanced (They love this)
+Circuit breaker
+Retry mechanism
+Distributed tracing
+Centralized logging
+
+👉 Scenario:
+
+“Service A is slow, what will you do?”
+“One service is down, how system behaves?”
+🔐 4. Security (OAuth + JWT) — MUST PREPARE
+What is OAuth 2.0?
+What is JWT?
+How JWT works internally?
+Stateless authentication?
+
+👉 VERY COMMON:
+
+“How did you secure your APIs?”
+
+Expected:
+
+Spring Security
+Filters
+Token validation
+Role-based access
+🔗 5. REST APIs
+What is REST?
+What are HTTP methods?
+PUT vs POST vs PATCH
+Idempotency
+
+👉 Practical:
+
+How do you version APIs?
+How do you handle errors?
+🗄️ 6. Database (IMPORTANT)
+SQL vs NoSQL
+Joins (inner, left, right)
+Indexing
+Transactions & ACID
+
+👉 Scenario:
+
+“Query is slow. What will you do?”
+“Handling large data?”
+⚙️ 7. Tools
+Git
+What is rebase vs merge?
+Conflict resolution?
+Maven
+Lifecycle phases
+CI/CD
+What is pipeline?
+Tools used?
+🐧 8. Linux
+Basic commands
+Log analysis
+Disk/memory check
+📊 9. System Design (FOR 4+ YEARS)
+
+You WILL get at least 1:
+
+Design URL shortener
+Design payment system
+Design login system
+
+👉 Focus on:
+
+API design
+DB design
+Scaling
+Caching
+💣 10. REAL-TIME SCENARIO QUESTIONS (MOST IMPORTANT)
+
+These decide selection.
+
+API latency is high — what steps?
+Production issue — how debug?
+Memory leak — how identify?
+High traffic — how scale?
+DB connection issue — what do you do?
+🎯 11. YOUR PROJECT (MAKE OR BREAK)
+
+They will go DEEP here:
+
+Explain your architecture
+How many services?
+How they communicate?
+Your exact role?
+Biggest challenge?
+What did YOU implement?
+
+👉 If you fail here → rejection.
+
+🧠 How to Actually Crack This
+
+Instead of memorizing:
+
+Step 1: Master these 5 areas deeply
+Core Java (collections + threads)
+Spring Boot flow
+Microservices concepts
+Security (JWT/OAuth)
+Your project
+Step 2: Practice speaking (VERY IMPORTANT)
+
+You should be able to explain:
+
+Any concept in 1–2 minutes
+Any scenario in structured way
+Step 3: Use THIS Answer Structure
+
+Whenever stuck:
+
+1. Definition
+2. How it works
+3. Example
+4. Real-time usage
