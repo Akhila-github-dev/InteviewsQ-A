@@ -2,3 +2,132 @@ https://medium.com/@veenaraofr/java8-stream-api-commonly-asked-questions-about-e
 
 
 https://neesri.medium.com/java-8-stream-intermediate-and-terminal-operations-with-q-a-d2a0ae666b96
+
+
+
+1. Core Java (Must Be Strong)
+Questions you will definitely get:
+What is the difference between HashMap vs ConcurrentHashMap?
+How does thread safety work in Java?
+Explain synchronization and types (method, block, static).
+What are immutable objects?
+Difference between checked vs unchecked exceptions
+How do you create custom exceptions?
+What is Java 8 Stream API? Give examples.
+What are functional interfaces & lambda expressions?
+
+👉 Expect follow-ups:
+
+How does ConcurrentHashMap avoid locking?
+Difference between fail-fast and fail-safe iterators?
+🌐 2. Spring Boot + Microservices (VERY IMPORTANT)
+Common Questions:
+What is Spring Boot and why use it?
+How does dependency injection work?
+What is the difference between:
+@Component, @Service, @Repository
+What is Spring Boot Auto Configuration?
+Microservices:
+What is Microservices Architecture?
+Monolith vs Microservices?
+How do services communicate?
+REST / Feign Client / Kafka
+What is Service Discovery?
+What is API Gateway?
+
+👉 Scenario-based:
+
+How do you handle failures between services?
+How do you implement retry logic?
+How do you ensure data consistency?
+🔐 3. API Security (VERY LIKELY)
+
+Your JD explicitly mentions OAuth → Expect deep questions.
+
+Questions:
+What is OAuth 2.0?
+Difference between:
+Authentication vs Authorization
+What is JWT Token?
+How does token validation work?
+
+👉 Real-world question:
+
+“How do you secure REST APIs in Spring Boot?”
+
+Expected Answer:
+Spring Security
+JWT / OAuth2
+Role-based access
+HTTPS
+API Gateway security
+🔗 4. REST APIs
+Questions:
+What is REST?
+What are HTTP methods?
+Difference between:
+PUT vs POST
+PATCH vs PUT
+What is idempotency?
+
+👉 Practical:
+
+How do you design a scalable API?
+How do you handle error responses?
+🗄️ 5. Database (PL/SQL + Data Processing)
+Questions:
+Difference between:
+JOIN vs UNION
+What is indexing?
+What are transactions?
+ACID properties?
+
+👉 Scenario:
+
+How do you optimize slow queries?
+How do you handle large data processing?
+⚙️ 6. Tools (Git, Maven, JFrog, UDeploy)
+Questions:
+What is Maven lifecycle?
+What is artifact repository (JFrog)?
+Explain Git branching strategy
+What is CI/CD pipeline?
+🐧 7. Linux / Shell Scripting
+Questions:
+Basic Linux commands:
+grep, awk, sed, find
+How do you check logs?
+Write a simple shell script
+
+👉 Example:
+
+Script to monitor CPU or disk usage
+📊 8. System Design (IMPORTANT for 5+ years)
+Questions:
+Design a URL shortener
+Design a payment system
+Design a login/auth system
+
+👉 Expect:
+
+API design
+DB schema
+Scaling
+Caching
+Load balancing
+💡 9. Scenario-Based Questions (Most Important)
+
+These decide selection.
+
+Examples:
+“Your microservice is slow. What will you do?”
+“API is failing in production. How do you debug?”
+“How do you handle high traffic?”
+
+👉 Answer approach:
+
+Logs
+Monitoring
+Scaling
+DB optimization
+Caching
