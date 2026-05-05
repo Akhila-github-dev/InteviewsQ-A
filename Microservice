@@ -4,7 +4,8 @@ Senarios and Issues with Monolythic Architechture:
 		2) If the application has more number modules and it requires more number of developers. It is chalenging to those many developers.
 		3) If I want to address some issues fixes for one of the modules, I need to stop the server and apply the fix. But this impact other module's functionality
 		============================================================
-Microservices is an architectural approach to building a software application that involves breaking down a large application into a collection of small independent and loosly coupled services.
+Microservices is an architectural approach to building a software application that involves breaking down a large application into a collection of small independent and loosly 
+coupled services.
 - Each service is designed to perform a specifc function and communicate with other through a well defined API's.
 ========================================
 if we want to make server as spring cloud config server 
@@ -43,7 +44,8 @@ A Load Balancer (like Nginx or Kubernetes Service) sits in front of services.
 The balancer queries the registry and routes requests dynamically.
 
 Example in Real Life:
-Imagine an online shopping app where the Checkout Service needs to talk to the Payment Service. Instead of hardcoding the Payment Service’s location, it queries the Service Registry, gets the latest available instance, and sends the request.
+Imagine an online shopping app where the Checkout Service needs to talk to the Payment Service. Instead of hardcoding the Payment Service’s location, it queries the ServiceRegistry,
+gets the latest available instance, and sends the request.
 ==========================================================================================
 3. What Strategies Do You Use for Service Discovery?
 In a dynamic microservices environment, services need to find each other without hardcoded URLs. Service discovery solves this challenge elegantly.
@@ -52,7 +54,8 @@ In a dynamic microservices environment, services need to find each other without
 =========================================================================================
  How Would You Handle Distributed Transactions in Microservices?
 Saga design pattern:-
-The Saga design pattern is used to manage distributed transactions in microservices architecture. Instead of relying on traditional monolithic transactions, Saga breaks a complex transaction into a series of smaller, isolated operations, each handled by a different service2.
+The Saga design pattern is used to manage distributed transactions in microservices architecture. Instead of relying on traditional monolithic transactions, 
+Saga breaks a complex transaction into a series of smaller, isolated operations, each handled by a different service2.
 How Saga Works
 A Saga is a sequence of transactions, where each step triggers the next one. If a step fails, a compensating action ensures data consistency.
 
@@ -70,19 +73,23 @@ If a failure occurs, the orchestrator triggers compensating actions.
 🔹 Best for complex workflows with multiple dependencies.
 ================================================================
 11. Idempotency in ms.
-Idempotency ensures that repeated execution of the same request produces the same result without unintended side effects. This is crucial in microservices, especially in scenarios where requests might be replayed, retried, or duplicated due to network failures or system errors.
+Idempotency ensures that repeated execution of the same request produces the same result without unintended side effects. This is crucial in microservices, 
+especially in scenarios where requests might be replayed, retried, or duplicated due to network failures or system errors.
 
 Why Is Idempotency Important?
 ✅ Prevents duplicate operations (e.g., multiple payments for the same order). ✅ Ensures consistency across distributed systems. ✅ Improves fault tolerance by allowing safe retries.
 ===================================================================
-The Circuit Breaker Pattern is a design pattern used in microservices to prevent cascading failures and improve system resilience. It works like an electrical circuit breaker: it monitors calls to external services and 'trips' if a service fails repeatedly.
-In a microservices architecture, services communicate with each other over the network. If one service is slow or failing, it can cause delays or even failures in other services that depend on it. The Circuit Breaker pattern helps prevent this by stopping calls to failing services, allowing them time to recover.
+The Circuit Breaker Pattern is a design pattern used in microservices to prevent cascading failures and improve system resilience. It works like an 
+electrical circuit breaker: it monitors calls to external services and 'trips' if a service fails repeatedly.
+In a microservices architecture, services communicate with each other over the network. If one service is slow or failing, it can cause delays or
+even failures in other services that depend on it. The Circuit Breaker pattern helps prevent this by stopping calls to failing services, allowing them time to recover.
 There are three states:
 
 Closed: Requests flow normally. If failures exceed a threshold, it moves to Open.
 Open: Requests are blocked immediately to prevent further strain on the failing service.
 Half-Open: After a timeout, a few test requests are allowed. If they succeed, the circuit closes again.
-In Spring Boot, we typically implement this using Resilience4j. For example, we annotate a method with @CircuitBreaker and provide a fallback method to handle failures gracefully. This helps maintain user experience even when a downstream service is down.
+In Spring Boot, we typically implement this using Resilience4j. For example, we annotate a method with @CircuitBreaker and provide a fallback method to 
+handle failures gracefully. This helps maintain user experience even when a downstream service is down.
 
 This pattern is especially useful in distributed systems where services depend on each other, and it helps isolate failures and recover faster
 =======================================================================================================
@@ -107,13 +114,16 @@ resilience4j.circuitbreaker:
 
 =========================================================================
  How Do You Handle Data Consistency Across Microservice
-"Data consistency across microservices is complex because each service typically has its own database. To handle this, we use strategies like eventual consistency, distributed transactions, and event-driven communication.
+"Data consistency across microservices is complex because each service typically has its own database. To handle this, we use strategies like eventual consistency,
+distributed transactions, and event-driven communication.
 
 1. Eventual Consistency:
-This is the most common approach. Services communicate via events (e.g., using Kafka or RabbitMQ). When one service updates data, it publishes an event, and other services react to it. This ensures consistency over time, not instantly.
+This is the most common approach. Services communicate via events (e.g., using Kafka or RabbitMQ). When one service updates data, it publishes an event, and other 
+services react to it. This ensures consistency over time, not instantly.
 
 2. Saga Pattern:
-For long-running transactions across services, we use the Saga pattern. It breaks a transaction into smaller steps, each managed by a different service. If one step fails, compensating transactions are triggered to undo previous steps.
+For long-running transactions across services, we use the Saga pattern. It breaks a transaction into smaller steps, each managed by a different service. If one step fails, 
+compensating transactions are triggered to undo previous steps.
 
 3. CQRS (Command Query Responsibility Segregation):
 This separates read and write operations. It allows services to maintain their own data models and sync via events, improving scalability and consistency.
@@ -129,14 +139,18 @@ Ultimately, the choice depends on the business requirements, latency tolerance, 
 =====================================================================================
 API Gateway acts as a single entry point for clients and routes requests to appropriate microservices, often handling authentication, rate limiting, and caching.
 =====================================================================================
-Load Balancer is an old concept which is used to distribute load or traffic across multiple instances. It can be implemented as a Hardware solution or as a Software Solution but distributing load is its main function and it can be used not just on Microservices architecture but also on Monolith and Service oriented architecture. 
+Load Balancer is an old concept which is used to distribute load or traffic across multiple instances. It can be implemented as a Hardware solution or as a Software Solution 
+but distributing load is its main function and it can be used not just on Microservices architecture but also on Monolith and Service oriented architecture. 
 
-On the other hand, API Gateway is a Microservice pattern which not only does load balancing but also can be used for lookup and can also simplify client code. Instead of remember 10s and 100s of Microservices, client can only remember API gateway host and port details. 
+On the other hand, API Gateway is a Microservice pattern which not only does load balancing but also can be used for lookup and can also simplify client code.
+Instead of remember 10s and 100s of Microservices, client can only remember API gateway host and port details. 
 
 You can also implement authentication, authorization, security, and other cross-cutting concern at API Gateway level instead of implementing them on each Microservice. 
 ========================================================== 
-to implement synchronous communication in Microservices architecture like you can use REST API calls, gRPC or GraphQL API to retrieve data from server in synchronous manner and also to upload data to server. ==
-Well, like synchronous communication there are multiple ways to achieve asynchronous communication in Microservices architecture like you can use Apache Kafka, RabbitMQ, and ActiveMQ. Message brokers allows senders to send and forget and receiver then can process when they are free giving both sender and receiver freedom to work on their speed. 
+to implement synchronous communication in Microservices architecture like you can use REST API calls, gRPC or GraphQL API to retrieve data from server in synchronous manner 
+and also to upload data to server. ==
+Well, like synchronous communication there are multiple ways to achieve asynchronous communication in Microservices architecture like you can use Apache Kafka, RabbitMQ,
+and ActiveMQ. Message brokers allows senders to send and forget and receiver then can process when they are free giving both sender and receiver freedom to work on their speed. 
 ========================================
 20. What is CQRS Pattern in Microservices? What problem does it solve? (answer)
  CQRS is an essential design pattern for Microservice architecture.
@@ -169,7 +183,8 @@ What are the key considerations for converting a monolithic application to a mic
 - Isolation and Autonomy 
 - Data Ownership and Security
 
-2. Service Layer Prioritization- Start with the service layer and identify the dependencies between services. This information can be used to decide which service should be migrated first.
+2. Service Layer Prioritization- Start with the service layer and identify the dependencies between services. This information can be used to decide which service
+should be migrated first.
 
 3. Entity Grouping -
 
@@ -186,7 +201,8 @@ http://CustomerMS:8080/customer/add
 2. Centalized Configuration -
 3. Load Balancing
 
-Consul is a distributed service discovery and configuration management tool developed by HashiCorp. It provides a centralized location for storing and manging configuation data, service registry that enbales service disovery and load blancing.
+Consul is a distributed service discovery and configuration management tool developed by HashiCorp. It provides a centralized location for storing and manging 
+configuation data, service registry that enbales service disovery and load blancing.
 
 Step 1- Add the below dependencies-
 1. Consul Discovery
@@ -200,7 +216,8 @@ Step 1- Add the below dependencies-
 8. What is Application Context and What is Bootstrap Context?
 An object that represents the configuration and runtime state of a spring based application. It is the first object creted whenever the spring boot application starts.
 
-Bootstrap Context - It is a special context that is used to bootstap the application context itself. It is creatd before the application context and is used to configure the environment that will help the Application Context to start the application.
+Bootstrap Context - It is a special context that is used to bootstap the application context itself. It is creatd before the application context and is used 
+to configure the environment that will help the Application Context to start the application.
 It is typically used to load the properties from the external configuration sources such as Consul server.
 
 Step 2-
@@ -234,7 +251,8 @@ consul agent -server -bootstrap-expect=1 -data-dir=consul-data2 -ui -bind=
 
 9. What is Resilience4j?
 
-Resilience4j is a lightweight falut tolerace library for java designed to provide resilience patterns, such as circut breaker, that can be used to improve the reliablity and stablity of the Microservices based application.
+Resilience4j is a lightweight falut tolerace library for java designed to provide resilience patterns, such as circut breaker, that can be used to improve the
+reliablity and stablity of the Microservices based application.
 
 
 Minature Ciruit Breaker-  MCB
@@ -253,7 +271,8 @@ reslience4j.circuitbreaker:
 
 
 - open state - 20s 
-after 20s the ciruit will goes into half-open state - now in this half-open state will check that atleast next 3 request should get passed, if yes then the ciruit will goes into closed state, else the ciruit will goes back into open state and then again we need to wait for next 20s.
+after 20s the ciruit will goes into half-open state - now in this half-open state will check that atleast next 3 request should get passed, if yes then the
+ciruit will goes into closed state, else the ciruit will goes back into open state and then again we need to wait for next 20s.
 
 - failureRateThreshold - specifies the percentage of failed calls that will cause the CB to go into the open state.
 - minimumNumberOfCalls - min no of calls that must be made before the failure rate is calculated.
@@ -291,7 +310,8 @@ Total time for Plan 5055
 Total time for Friend 266
 Total Overall time for Request 5332
 
-2. Asynchronous - it involves a client sending a message or request to the server without waiting for a response. Insted, the server processes the request at a later time. This approach is often used when the client can proceed without an immediate response from the server.
+2. Asynchronous - it involves a client sending a message or request to the server without waiting for a response. Insted, the server processes the request at a later time. 
+This approach is often used when the client can proceed without an immediate response from the server.
 Total time for Plan 0
 Total time for Friend 0
 Total Overall time for Request 7
@@ -318,7 +338,8 @@ line 7
 
 get() - get() will block the thread until the reslut is ready, which is why it's often recommended to use the onComplete() method insted, and handel the request asynchronously.
 
-onComplete() - The onComplete() method does not block the thread. Instead, it registers a callback that will be executed asynchronously when the Future completes. This means that the main thread can continue running while the asynchronous computation is running in the background and the callback will be executed when the reslut is available.
+onComplete() - The onComplete() method does not block the thread. Instead, it registers a callback that will be executed asynchronously when the Future completes.
+This means that the main thread can continue running while the asynchronous computation is running in the background and the callback will be executed when the reslut is available.
 
 
 11. What is an API gateway?
@@ -461,11 +482,12 @@ management.endpoint.web.exposure.include=*  - will enable all the actuator endpo
 management.endpoint.promethus.enabled= true - will enable the /prometheus endpoint. - this will export the data in the format that prometheus can consume.
 
 
-management.endpoint.metrics.export.enabled=true  - will enable automatic conversion of metrices collected by /metrics endpoint to prometheus format and make it availble via /prometheus endpoint.
+management.endpoint.metrics.export.enabled=true  - will enable automatic conversion of metrices collected by /metrics endpoint to prometheus format and make it availble 
+via /prometheus endpoint.
 
 4. Configure the prometheus.yml file with the refrence of the microservices. 
 
 
-
-
-
+The parent dependency (Spring Boot starter parent) provides default configurations and manages core dependency versions.
+Spring Cloud is added separately in dependencyManagement to manage versions of microservices-related libraries like Eureka and Gateway.
+This separation allows independent versioning and flexibility, since not all applications require Spring Cloud
