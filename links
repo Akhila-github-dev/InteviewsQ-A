@@ -8,9 +8,50 @@ https://neesri.medium.com/java-8-stream-intermediate-and-terminal-operations-wit
 1. Core Java (Must Be Strong)
 Questions you will definitely get:
 What is the difference between HashMap vs ConcurrentHashMap?
+============================
 How does thread safety work in Java?
+Thread safety ensures correct results when multiple threads access shared data. It is achieved using synchronization,
+locks like ReentrantLock, volatile for visibility, and atomic classes.
+===================================
 Explain synchronization and types (method, block, static).
+“Synchronization is used to ensure that only one thread accesses a critical section at a time to avoid race conditions. 
+It is implemented using the synchronized keyword, which uses object-level or class-level locks. 
+It can be applied at method level, block level, or static level, with block-level being more efficient.”
+===================================
+A race condition happens when multiple threads modify shared data concurrently, leading to inconsistent results because the outcome depends on the execution order.
+It can be prevented using synchronization or locks.”
+eg - 
+Think of a bank account:
+
+Balance = 1000
+Two threads withdraw 100 at same time
+
+Without synchronization:
+
+Both read 1000
+Both update to 900
+
+👉 Final balance = 900 (WRONG)
+👉 Correct should be 800
+
+=====================================
 What are immutable objects?
+Immutable objects are objects whose state cannot be changed after they are created. Once an object is initialized, its data remains constant throughout its lifetime.
+For example, String, wrapper classes like Integer, and classes from the Java Time API like LocalDateTime are immutable.
+
+Any modification to an immutable object results in the creation of a new object instead of changing the existing one. This makes immutable objects inherently thread-safe.”
+
+🔍 Simple Example
+String s = "Java";
+s.concat(" World");
+
+System.out.println(s);
+👉 Output: Java
+
+✔️ Because:
+concat() creates a new object
+Original object is unchanged
+=============================================
 Difference between checked vs unchecked exceptions
 How do you create custom exceptions?
 What is Java 8 Stream API? Give examples.
@@ -19,7 +60,19 @@ What are functional interfaces & lambda expressions?
 👉 Expect follow-ups:
 
 How does ConcurrentHashMap avoid locking?
+It does not avoid locking completely
+It uses fine-grained / minimal locking, not full map locking
+it using minimal locking instead of locking the entire map.”
+“ConcurrentHashMap achieves thread safety using a combination of lock-free reads and fine-grained locking for writes.
+Read operations do not require locking, while write operations lock only a small portion of the map instead of the entire map. 
+==========================================
+
 Difference between fail-fast and fail-safe iterators?
+Fail-fast iterators throw a ConcurrentModificationException if the collection is structurally modified during iteration. 
+This is because they directly work on the original collection and detect changes using an internal modification count.
+
+Fail-safe iterators, on the other hand, do not throw exceptions because they iterate over a copy or snapshot of the collection, so concurrent modifications do not affect them.”
+=============================================
 🌐 2. Spring Boot + Microservices (VERY IMPORTANT)
 Common Questions:
 What is Spring Boot and why use it?
