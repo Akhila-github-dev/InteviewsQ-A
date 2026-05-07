@@ -389,3 +389,59 @@ ReentrantLock, on the other hand, is part of the java.util.concurrent package an
 tryLock() → attempts to acquire lock without waiting
 lockInterruptibly() → allows interruption while waiting
 Fairness policy → ensures first-come-first-serve locking
+
+| Feature       | synchronized | ReentrantLock        |
+| ------------- | ------------ | -------------------- |
+| Type          | Keyword      | Class                |
+| Lock handling | Automatic    | Manual (lock/unlock) |
+| Flexibility   | Low          | High                 |
+| tryLock()     | ❌            | ✅                    |
+| Fairness      | ❌            | ✅                    |
+==========================================================
+When a client sends an HTTP request, it first reaches the DispatcherServlet, which acts as the front controller in Spring Boot.
+
+The DispatcherServlet consults the HandlerMapping to identify the appropriate controller method based on the URL and HTTP method.
+
+Once the correct handler is found, the request is passed to the HandlerAdapter, which invokes the corresponding controller method (like one annotated with @GetMapping or @PostMapping).
+
+Inside the controller, the request is processed and typically delegated to the service layer, where the business logic resides.
+
+The service layer interacts with the repository layer to perform database operations.
+
+After processing, the response is returned back from the repository → service → controller.
+
+The controller returns the response object, which is then converted into JSON (or XML) using HttpMessageConverters.
+
+Finally, the DispatcherServlet sends the response back to the client.
+
+==========================================================================
+In microservices, failures are common due to network issues or service downtime, so we handle them using multiple resilience patterns.
+
+In my project, I used Resilience4j to implement a Circuit Breaker pattern. The circuit breaker monitors service calls and moves through states like closed, open, and half-open.
+
+If a service fails repeatedly beyond a threshold, the circuit opens and stops further calls to prevent cascading failures. During this time, we return a fallback response, like a default value or cached data.
+
+In addition to circuit breaker, we also configure:
+
+Retry mechanism for transient failures
+Timeouts to avoid long waits
+Fallback methods to degrade gracefully
+
+This ensures the system remains stable even if one service is down.
+=============================================================
+
+To secure REST APIs in Spring Boot, I use Spring Security along with JWT-based authentication.
+
+First, the user sends credentials (username/password) to an authentication endpoint. If the credentials are valid, the server generates a JWT token, which contains user details and roles in the payload.
+
+This token is then sent by the client in every request using the Authorization header (Bearer token).
+
+On the server side, I implement a JWT filter that intercepts each request, extracts the token, validates its signature and expiry, and sets the authentication in the Spring Security context.
+
+Based on the roles present in the token, I apply role-based authorization using configurations like hasRole() or hasAuthority().
+
+Since JWT is stateless, we don’t store session data on the server, which improves scalability.
+
+Additionally, we secure endpoints using HTTPS and configure proper exception handling for unauthorized access.
+
+=================================================
