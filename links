@@ -299,3 +299,9 @@ Whenever stuck:
 2. How it works
 3. Example
 4. Real-time usage
+
+
+What happens if hashCode is same but equals is false?”
+Same hashCode and different equals means collision. HashMap stores both objects in the same bucket and uses equals() to identify them separately.”
+“Why 8 as threshold?”
+“Threshold 8 is used in Java 8 HashMap to convert linked list into Red-Black Tree for better performance during heavy collisions.”
