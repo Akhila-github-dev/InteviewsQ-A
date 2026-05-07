@@ -303,5 +303,67 @@ Whenever stuck:
 
 What happens if hashCode is same but equals is false?”
 Same hashCode and different equals means collision. HashMap stores both objects in the same bucket and uses equals() to identify them separately.”
+If two objects have the same hashCode but equals() returns false, they will be stored in the same bucket but as different entries.
+
+HashMap uses hashCode() to find the bucket and equals() to differentiate keys within the bucket.
+
+So, both objects will coexist without any issue.
 “Why 8 as threshold?”
 “Threshold 8 is used in Java 8 HashMap to convert linked list into Red-Black Tree for better performance during heavy collisions.”
+
+============================================
+To make a shared counter thread-safe, we can use multiple approaches:
+
+synchronized keyword → ensures only one thread updates at a time
+ReentrantLock → more flexible with tryLock and fairness
+Atomic classes (AtomicInteger) → best for counters using CAS (non-blocking)
+Volatile (only for visibility, not atomicity)
+
+For a counter, I prefer AtomicInteger because it provides better performance.
+=========================================
+In Spring Boot, global exception handling is done using @ControllerAdvice.
+
+We define methods annotated with @ExceptionHandler to handle specific exceptions.
+
+When an exception occurs in any controller, it is intercepted by the global handler and a proper response is returned.
+
+This helps in centralizing error handling and maintaining consistent API responses.
+========================================
+If Service B is intermittently slow:
+
+Set timeout to avoid long waits
+Use retry for temporary failures
+Apply circuit breaker to prevent cascading failures
+Provide fallback response if needed
+
+This ensures system resilience and better user experience.
+====================
+Index improves query performance
+
+Clustered Index:
+
+Physically orders data in table
+Only one per table
+
+Non-clustered Index:
+
+Separate structure with pointers to data
+Multiple allowed
+
+👉 Use clustered for frequently sorted data, non-clustered for search columns
+========================================
+Since JWT is stateless, we cannot directly invalidate it.
+
+Solutions:
+
+Maintain a blacklist (token revocation list)
+Use short expiry time
+Use refresh tokens
+
+On logout, we add token to blacklist or rely on expiration.
+===================================================
+If an exception is not handled in Spring Boot, it is handled by the default exception resolver, and a generic error response (like HTTP 500) is returned.
+
+To customize this, we use @ControllerAdvice with @ExceptionHandler.
+============================
+“I’m not fully sure, but based on my understanding
