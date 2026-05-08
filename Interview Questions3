@@ -60,7 +60,18 @@ Microservice architecture?
 Kafka?
 Kafka partition and topic?
 @Bean and @Component?
+@Component is used for automatic bean creation via component scanning.
+@Bean is used to manually define a bean inside a configuration class.
+
+| Feature    | @Component       | @Bean                       |
+| ---------- | ---------------- | --------------------------- |
+| Applied on | Class            | Method                      |
+| Creation   | Automatic        | Manual                      |
+| Control    | Less             | More                        |
+| Use case   | Your own classes | Third-party / custom config |
+
 203 HTTP method use?
+203 means the request was successful, but the response is modified or comes from an intermediate source like a proxy, not the original server
 Circuit breaker?
 Circuit breaker types?
 =================================================
@@ -72,6 +83,8 @@ What are different bean scopes?
 When singleton bean is garbage collected?
 how you are hangling exception in springboot?
 What are filter in springboot ?
+A filter in Spring Boot is used to intercept HTTP requests and responses before they reach the controller or after they leave the controller. 
+It is mainly used for cross-cutting concerns like logging, authentication, and request modification
 what are different design patterns?
 explain how to make singleton thread safe?
 find first non repeating character in a string using java8 feature?
