@@ -76,10 +76,23 @@ Fail-safe iterators, on the other hand, do not throw exceptions because they ite
 🌐 2. Spring Boot + Microservices (VERY IMPORTANT)
 Common Questions:
 What is Spring Boot and why use it?
+===============================
+What is Spring Boot Auto Configuration?
+Auto-configuration works by detecting dependencies on the classpath and automatically configuring required beans using conditional logic.
+“Spring Boot auto-configuration automatically configures beans based on the dependencies present in the classpath. It is enabled using @SpringBootApplication,
+which includes @EnableAutoConfiguration.
+
+Internally, Spring Boot checks the classpath and uses conditional annotations like @ConditionalOnClass and @ConditionalOnMissingBean to decide which beans to create.
+
+For example, if we include the Spring Web dependency, Spring Boot automatically configures components like DispatcherServlet without manual setup.”
+Examples include embedded Tomcat, DataSource, JPA, Jackson for JSON, Spring Security, and Actuator endpoints
+Apart from DispatcherServlet, Spring Boot auto-configures many components like embedded Tomcat server, DataSource for database connections, JPA and Hibernate setup, 
+JSON conversion using Jackson, Spring Security, Actuator endpoints, and caching. All these are configured automatically based on the dependencies present in the classpath.
+================================================================
 How does dependency injection work?
 What is the difference between:
 @Component, @Service, @Repository
-What is Spring Boot Auto Configuration?
+
 Microservices:
 What is Microservices Architecture?
 Monolith vs Microservices?
