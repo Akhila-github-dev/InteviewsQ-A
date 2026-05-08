@@ -717,4 +717,24 @@ It simplifies transaction management in applications
 
 Splunk is a platform for (searching),(monitoring) and analyzing the (logs,events,metrics) in real time.
 2.It is used in IT Operations ,Security and application monitoring
+======================================================
+SELECT column_name, COUNT(*)
+FROM table_name
+GROUP BY column_name
+HAVING COUNT(*) > 1;
+
+If they ask: Get FULL duplicate rows (Important 🔥)
+SELECT *
+FROM employees
+WHERE name IN (
+    SELECT name
+    FROM employees
+    GROUP BY name
+    HAVING COUNT(*) > 1
+);
+🔹 If multiple columns define duplicate
+SELECT name, dept_id, COUNT(*)
+FROM employees
+GROUP BY name, dept_id
+HAVING COUNT(*) > 1;
 
