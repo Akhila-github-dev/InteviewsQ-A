@@ -152,6 +152,9 @@ Throwable class are interface
 Exceptions
 Saga design pattern 
 Saga ur using single db or multiple db
+“We use the Saga pattern in a multi-database microservices architecture, where each service has its own database. Since we cannot use a distributed transaction across services,
+Saga helps manage consistency by breaking the transaction into a sequence of local transactions with compensating actions in case of failure.”
+===========================================
 Resume chusi 40 % em chesavu annadu
 Rest template and web client
 ================
