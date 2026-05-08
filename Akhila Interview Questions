@@ -794,4 +794,61 @@ TCS
 5) how do you implement security 
 5) solid principles 
 6) get highest salary in each dept (group by and having i should use)
+SELECT dept_id, MAX(salary) AS highest_salary
+FROM employees
+GROUP BY dept_id;
 
+or
+
+SELECT e.*
+FROM employees e
+WHERE salary = (
+    SELECT MAX(salary)
+    FROM employees
+    WHERE dept_id = e.dept_id
+);
+
+===============================================
+1. API Gateway Pattern
+
+Example: Spring Cloud Gateway
+
+“Instead of clients calling multiple services directly, we use an API Gateway as a single entry point. It handles routing, authentication, and logging.”
+
+👉 Real-time:
+
+Client → Gateway → Microservices
+2. Service Discovery Pattern
+
+Example: Netflix Eureka
+
+“Since services are dynamic, we use service discovery to register and locate services instead of hardcoding URLs.”
+
+3. Circuit Breaker Pattern
+
+Example: Resilience4j
+
+“If one service is down, the circuit breaker stops calling it and returns a fallback response to avoid cascading failures.”
+
+4. Config Server Pattern
+
+Example: Spring Cloud Config
+
+“Used to centralize configuration for all services instead of keeping configs in each service.”
+
+5. Database per Service Pattern
+
+“Each microservice has its own database to maintain independence and avoid tight coupling.”
+
+6. Saga Pattern (important 🔥)
+
+“Used to manage transactions across multiple services using a sequence of local transactions instead of one global transaction.”
+
+👉 Example:
+
+Order Service → Payment Service → Inventory Service
+7. Event-Driven Pattern
+
+Example: Apache Kafka
+
+“Services communicate asynchronously using events instead of direct calls, improving scalability.”
