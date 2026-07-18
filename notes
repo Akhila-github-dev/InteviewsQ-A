@@ -84,3 +84,191 @@ sortBy=id: Sort records by id column
 GET /employees?page=1&size=5&sortBy=name
 This fetches the second page with 5 employees sorted by name.
 
+
+NoClassDefFoundError occurs when:
+
+The class was available at compile time, but Java cannot find it at runtime.
+
+It is an Error, not an Exception.
+
+Hierarchy:
+
+Throwable
+ ├── Exception
+ └── Error
+      └── LinkageError
+           └── NoClassDefFoundError
+Scenario 1: Class deleted after compilation
+Step 1
+
+Create class:
+
+public class Employee {
+}
+Step 2
+
+Use it:
+
+public class Test {
+    public static void main(String[] args) {
+        Employee e = new Employee();
+    }
+}
+
+Compile successfully:
+
+javac Employee.java Test.java
+Step 3
+
+Delete:
+
+Employee.class
+Step 4
+
+Run:
+
+java Test
+
+Output:
+
+Exception in thread "main"
+java.lang.NoClassDefFoundError: Employee
+
+Why?
+
+Compile Time  -> Employee.class exists ✓
+Runtime       -> Employee.class missing ✗
+Scenario 2: Missing Dependency JAR
+
+Suppose your code uses:
+
+import com.mysql.cj.jdbc.Driver;
+
+Compilation succeeds because:
+
+mysql-connector-j.jar
+
+was present.
+
+But during runtime, if the JAR is missing:
+
+java.lang.NoClassDefFoundError:
+com/mysql/cj/jdbc/Driver
+Scenario 3: Spring Boot Example
+
+Suppose you add:
+
+<dependency>
+    <groupId>io.jsonwebtoken</groupId>
+    <artifactId>jjwt-api</artifactId>
+</dependency>
+
+but forget:
+
+jjwt-impl
+jjwt-jackson
+
+Application may compile, but when generating/parsing JWTs at runtime:
+
+java.lang.NoClassDefFoundError
+
+because required implementation classes are missing.
+
+Difference between ClassNotFoundException and NoClassDefFoundError
+ClassNotFoundException	NoClassDefFoundError
+Checked Exception	Error
+Happens when JVM tries to load a class dynamically	Happens when class existed during compilation but missing during runtime
+Usually with Class.forName()	Usually due to missing .class file or JAR
+
+Example:
+
+Class.forName("com.mysql.cj.jdbc.Driver");
+
+If not found:
+
+ClassNotFoundException
+Interview Answer
+
+When do we get NoClassDefFoundError?
+
+We get NoClassDefFoundError when a class was present during compilation but is unavailable at runtime. Common reasons include missing JAR files, deleted .class files, incorrect classpath configuration, or deployment issues. It is an Error and occurs during class loading by the JVM.
+
+Easy Memory Trick
+Class available during compile time ✅
+Class missing during runtime ❌
+
+=> NoClassDefFoundError
+
+
+The onboarding process starts in the React application, where the user fills out the OCA form and submits it. The frontend sends a POST request to our Customer Onboarding Spring Boot service. The controller validates the request, and we perform additional business validations, such as checking for mandatory fields and duplicate customer records. The service layer processes the request and persists the data to the database using Spring Data JPA. Depending on the business flow, we also invoke other internal microservices via REST APIs to retrieve or update related information. If any downstream service is unavailable, we handle the exception appropriately, log the error, and return a meaningful response. Once the onboarding is approved, the prospect customer is converted into a payer customer
+
+
+1. How does an ArrayList grow internally?
+
+A strong 4+ years answer would be:
+
+"ArrayList stores elements in an internal array. When the array becomes full, it creates a new, larger array (typically about 1.5 times the current capacity in modern JDKs), copies the existing elements into it, and then adds the new element."
+
+This resizing is why adding an element is usually fast, but occasionally more expensive when a resize happens.
+
+2. Why is insertion at the beginning O(n)?
+
+This is a very common interview question.
+
+Suppose:
+
+[A, B, C, D]
+
+If you insert X at index 0, it becomes:
+
+[X, A, B, C, D]
+
+Every existing element has to shift one position to the right, so the work grows with the number of elements: O(n).
+
+Adding at the end is usually O(1) because you simply place the new element in the next available slot. Only when the internal array is full does resizing make that single insertion more expensive.
+
+3. When would you choose LinkedList?
+
+A good answer:
+
+"I'd choose LinkedList when my application performs frequent insertions and deletions in the middle of the list and random access isn't important. If I frequently need to access elements by index, ArrayList is usually the better choice."
+
+One important nuance: although LinkedList avoids shifting elements, finding the insertion point by index is still O(n) because it has to traverse the list first.
+
+
+===============================
+
+"When the application starts, the main() method calls SpringApplication.run(). This creates the Spring Application Context. @SpringBootApplication combines @Configuration, @EnableAutoConfiguration, and @ComponentScan. Component scanning discovers beans like @Controller, @Service, @Repository, and @Component, then creates and registers them in the IoC container. Auto-configuration configures beans based on the dependencies available on the classpath, such as DispatcherServlet, DataSource, and JPA. Finally, the embedded Tomcat server starts, and the application begins listening for incoming HTTP requests."
+
+
+======================================
+
+When the Spring application starts, it scans the classes and creates beans for classes annotated with @Component, @Service, @Repository, and @Controller. During dependency injection, Spring sees the @Autowired annotation on EmployeeService. It looks into the ApplicationContext for a bean of type EmployeeService. If exactly one matching bean exists, Spring injects it. If multiple beans of the same type exist, Spring throws NoUniqueBeanDefinitionException unless we use @Qualifier or mark one bean with @Primary."
+
+
+Java
+equals() vs hashCode()
+HashMap internal working
+ArrayList vs LinkedList
+HashSet
+ConcurrentHashMap
+Spring
+Bean lifecycle
+Bean scopes (singleton, prototype, etc.)
+@Primary vs @Qualifier
+Constructor injection vs field injection
+Spring Boot startup flow
+
+Spend about 60–90 minutes on these topics.
+
+Tonight's 9 PM Mock Interview
+
+We'll simulate a more advanced round with questions on:
+
+SQL (JOIN, indexes, transactions)
+REST API design
+Exception handling
+Microservices
+One coding problem
+HR questions like "Why are you leaving your current company?"
+
