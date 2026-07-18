@@ -1,4 +1,6 @@
- Goal: Get
+A FULL OUTER JOIN returns all matching rows plus the non-matching rows from both tables. If there's no matching row on one side, the columns from that table are returned as NULL
+
+Goal: Get
 emp_name (Employee name) (from employee table)
 manager_name (Using self join) (from employee table)
 dept_name (From department table)
