@@ -272,3 +272,37 @@ Microservices
 One coding problem
 HR questions like "Why are you leaving your current company?"
 
+
+Do you think retrying 100 times is a good idea?
+
+You should answer:
+
+"No. If the service has a persistent failure, repeated retries only increase load and delay the response. That's why retries should be limited, 
+and they should work together with circuit breakers and fallback mechanisms."
+
+1. Will retries happen forever?
+
+The answer is:
+
+"No. In production, retries are configured with a maximum number of attempts. For example, retry up to 3 times with a delay between attempts. If all retries fail, the request fails and the fallback method is executed."
+
+2. Why are excessive retries dangerous?
+
+You said:
+
+"It wastes time."
+
+That's true, but for a senior-level answer I'd expect more.
+
+For example:
+
+It increases load on an already unhealthy service.
+It can consume application threads.
+It increases response time for users.
+It may create a retry storm if many clients retry simultaneously.
+3. Production configuration
+
+A good answer would be:
+
+"In production, we'd configure a small number of retries, such as 2 or 3, with a backoff delay. If the service continues to fail, the circuit breaker opens and fallback logic is used instead of retrying indefinitely."
+
