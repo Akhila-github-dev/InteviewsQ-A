@@ -306,3 +306,10 @@ A good answer would be:
 
 "In production, we'd configure a small number of retries, such as 2 or 3, with a backoff delay. If the service continues to fail, the circuit breaker opens and fallback logic is used instead of retrying indefinitely."
 
+Does @Transactional roll back for every exception?
+
+The answer is:
+
+By default, Spring rolls back for unchecked exceptions (RuntimeException and Error).
+It does not automatically roll back for checked exceptions unless you configure it, for example:
+@Transactional(rollbackFor = Exception.class)
