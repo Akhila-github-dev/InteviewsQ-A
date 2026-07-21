@@ -480,6 +480,87 @@ Employee emp1 = new Employee();
 Employee emp2 = emp1;
 
 emp1 = null;
+
+===================================================================
+What is transaction propagation? What is the default propagation in Spring? Explain REQUIRED and REQUIRES_NEW.
+
+Interview Answer
+
+Transaction propagation defines how a transactional method behaves when it is called by another transactional method.
+
+The default propagation in Spring is Propagation.REQUIRED.
+
+REQUIRED (Default): Joins the existing transaction if one exists; otherwise, creates a new transaction.
+REQUIRES_NEW: Suspends the existing transaction and starts a completely new transaction.
+
+We use REQUIRES_NEW when an operation (such as audit logging) must be committed independently, even if the outer transaction fails.
+
+Easy Remember:
+
+REQUIRED = Join or Create
+REQUIRES_NEW = Always New
+Question 2
+
+How do you prevent duplicate customer records in a Spring Boot application?
+
+Interview Answer
+
+I would handle it at both the application layer and the database layer.
+
+Validate duplicate business data in the service layer.
+Add a UNIQUE constraint in the database on business keys such as email or customer ID.
+If two requests arrive simultaneously, one insert succeeds and the other fails with a unique constraint violation.
+Catch the exception and return a meaningful error message to the client.
+Question 3
+
+Write a query to find the second highest salary.
+
+Interview Answer
+SELECT MAX(salary)
+FROM employee
+WHERE salary <
+(
+    SELECT MAX(salary)
+    FROM employee
+);
+
+Alternative:
+
+SELECT salary
+FROM employee
+ORDER BY salary DESC
+LIMIT 1 OFFSET 1;
+Question 4
+
+How do you optimize a query when the table contains 50 million records?
+
+Interview Answer
+
+If a query becomes slow, my approach is:
+
+Check the execution plan using EXPLAIN.
+Verify indexes on WHERE, JOIN, and ORDER BY columns.
+Avoid unnecessary SELECT *.
+Use pagination for large datasets.
+Optimize joins and filters.
+Review database logs and execution time.
+Question 5
+
+How do you solve race conditions in a Spring Boot application?
+
+Interview Answer
+
+A race condition occurs when multiple threads access and modify shared data simultaneously, leading to inconsistent results.
+
+Possible solutions include:
+
+synchronized
+ReentrantLock
+Optimistic locking (@Version)
+Pessimistic locking
+Atoms
+
+@EnableAsync is used for asynchronous execution and does not solve race conditions.
 emp2 = null;
 
 Now the object has no reachable references, so it becomes eligible for GC.
