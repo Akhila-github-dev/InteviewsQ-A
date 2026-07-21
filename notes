@@ -200,116 +200,69 @@ Class missing during runtime ❌
 => NoClassDefFoundError
 
 
-The onboarding process starts in the React application, where the user fills out the OCA form and submits it. The frontend sends a POST request to our Customer Onboarding Spring Boot service. The controller validates the request, and we perform additional business validations, such as checking for mandatory fields and duplicate customer records. The service layer processes the request and persists the data to the database using Spring Data JPA. Depending on the business flow, we also invoke other internal microservices via REST APIs to retrieve or update related information. If any downstream service is unavailable, we handle the exception appropriately, log the error, and return a meaningful response. Once the onboarding is approved, the prospect customer is converted into a payer customer
+The onboarding process starts in the React application, where the user fills out the OCA form and submits it. 
+The frontend sends a POST request to our Customer Onboarding Spring Boot service. The controller validates the request, 
+and we perform additional business validations, such as checking for mandatory fields and duplicate customer records. 
+The service layer processes the request and persists the data to the database using Spring Data JPA. Depending on the business flow,
+we also invoke other internal microservices via REST APIs to retrieve or update related information. If any downstream service is unavailable,
+we handle the exception appropriately, log the error, and return a meaningful response. Once the onboarding is approved, the prospect customer is converted into a payer customer
 
 
 1. How does an ArrayList grow internally?
 
-A strong 4+ years answer would be:
-
-"ArrayList stores elements in an internal array. When the array becomes full, it creates a new, larger array (typically about 1.5 times the current capacity in modern JDKs), copies the existing elements into it, and then adds the new element."
+"ArrayList stores elements in an internal array. When the array becomes full, it creates a new, larger array (typically about 1.5 times the current capacity in modern JDKs), 
+copies the existing elements into it, and then adds the new element."
 
 This resizing is why adding an element is usually fast, but occasionally more expensive when a resize happens.
 
 2. Why is insertion at the beginning O(n)?
 
-This is a very common interview question.
-
 Suppose:
-
 [A, B, C, D]
-
 If you insert X at index 0, it becomes:
 
 [X, A, B, C, D]
-
 Every existing element has to shift one position to the right, so the work grows with the number of elements: O(n).
 
 Adding at the end is usually O(1) because you simply place the new element in the next available slot. Only when the internal array is full does resizing make that single insertion more expensive.
 
-3. When would you choose LinkedList?
-
-A good answer:
-
-"I'd choose LinkedList when my application performs frequent insertions and deletions in the middle of the list and random access isn't important. If I frequently need to access elements by index, ArrayList is usually the better choice."
-
-One important nuance: although LinkedList avoids shifting elements, finding the insertion point by index is still O(n) because it has to traverse the list first.
-
-
 ===============================
 
-"When the application starts, the main() method calls SpringApplication.run(). This creates the Spring Application Context. @SpringBootApplication combines @Configuration, @EnableAutoConfiguration, and @ComponentScan. Component scanning discovers beans like @Controller, @Service, @Repository, and @Component, then creates and registers them in the IoC container. Auto-configuration configures beans based on the dependencies available on the classpath, such as DispatcherServlet, DataSource, and JPA. Finally, the embedded Tomcat server starts, and the application begins listening for incoming HTTP requests."
+"When the application starts, the main() method calls SpringApplication.run(). This creates the Spring Application Context.
+@SpringBootApplication combines @Configuration, @EnableAutoConfiguration, and @ComponentScan. 
+Component scanning discovers beans like @Controller, @Service, @Repository, and @Component, then creates and registers them in the IoC container.
+Auto-configuration configures beans based on the dependencies available on the classpath, such as DispatcherServlet, DataSource, and JPA.
+Finally, the embedded Tomcat server starts, and the application begins listening for incoming HTTP requests."
 
 
 ======================================
 
-When the Spring application starts, it scans the classes and creates beans for classes annotated with @Component, @Service, @Repository, and @Controller. During dependency injection, Spring sees the @Autowired annotation on EmployeeService. It looks into the ApplicationContext for a bean of type EmployeeService. If exactly one matching bean exists, Spring injects it. If multiple beans of the same type exist, Spring throws NoUniqueBeanDefinitionException unless we use @Qualifier or mark one bean with @Primary."
-
-
-Java
-equals() vs hashCode()
-HashMap internal working
-ArrayList vs LinkedList
-HashSet
-ConcurrentHashMap
-Spring
-Bean lifecycle
-Bean scopes (singleton, prototype, etc.)
-@Primary vs @Qualifier
-Constructor injection vs field injection
-Spring Boot startup flow
-
-Spend about 60–90 minutes on these topics.
-
-Tonight's 9 PM Mock Interview
-
-We'll simulate a more advanced round with questions on:
-
-SQL (JOIN, indexes, transactions)
-REST API design
-Exception handling
-Microservices
-One coding problem
-HR questions like "Why are you leaving your current company?"
-
+When the Spring application starts, it scans the classes and creates beans for classes annotated with @Component, @Service, @Repository, and @Controller.
+During dependency injection, Spring sees the @Autowired annotation on EmployeeService. It looks into the ApplicationContext for a bean of type EmployeeService.
+If exactly one matching bean exists, Spring injects it. If multiple beans of the same type exist, Spring throws NoUniqueBeanDefinitionException unless we use @Qualifier 
+or mark one bean with @Primary."
+================================================
 
 Do you think retrying 100 times is a good idea?
-
-You should answer:
 
 "No. If the service has a persistent failure, repeated retries only increase load and delay the response. That's why retries should be limited, 
 and they should work together with circuit breakers and fallback mechanisms."
 
 1. Will retries happen forever?
-
-The answer is:
-
-"No. In production, retries are configured with a maximum number of attempts. For example, retry up to 3 times with a delay between attempts. If all retries fail, the request fails and the fallback method is executed."
+No. In production, retries are configured with a maximum number of attempts. For example, retry up to 3 times with a delay between attempts. 
+If all retries fail, the request fails and the fallback method is executed."
 
 2. Why are excessive retries dangerous?
-
-You said:
-
-"It wastes time."
-
-That's true, but for a senior-level answer I'd expect more.
-
-For example:
 
 It increases load on an already unhealthy service.
 It can consume application threads.
 It increases response time for users.
 It may create a retry storm if many clients retry simultaneously.
 3. Production configuration
-
-A good answer would be:
-
-"In production, we'd configure a small number of retries, such as 2 or 3, with a backoff delay. If the service continues to fail, the circuit breaker opens and fallback logic is used instead of retrying indefinitely."
-
+In production, we'd configure a small number of retries, such as 2 or 3, with a backoff delay. If the service continues to fail,
+the circuit breaker opens and fallback logic is used instead of retrying indefinitely."
+======================================================
 Does @Transactional roll back for every exception?
-
-The answer is:
-
 By default, Spring rolls back for unchecked exceptions (RuntimeException and Error).
 It does not automatically roll back for checked exceptions unless you configure it, for example:
 @Transactional(rollbackFor = Exception.class)
