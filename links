@@ -439,3 +439,47 @@ If an exception is not handled in Spring Boot, it is handled by the default exce
 To customize this, we use @ControllerAdvice with @ExceptionHandler.
 ============================
 “I’m not fully sure, but based on my understanding
+
+=========================================================================
+System.gc() is only a request to the JVM to perform garbage collection. The JVM may choose to ignore it. We cannot force garbage collection."
+
+2. finalize()
+
+finalize() does not remove objects.
+It was a callback method that the JVM could invoke before reclaiming an object.
+It has been deprecated for years because it was unreliable and caused performance issues.
+
+3. When is an object eligible for GC?
+
+"Employee emp; is an unreferenced object."
+
+Actually:
+
+Employee emp;
+
+There is no object at all.
+
+No object has been created.
+
+Garbage collection only applies to objects that already exist in the heap.
+
+A better example is:
+
+Employee emp = new Employee();
+emp = null;
+
+Now:
+
+The Employee object was created in the heap.
+The reference is removed.
+If no other references point to that object, it becomes eligible for garbage collection.
+
+Another example:
+
+Employee emp1 = new Employee();
+Employee emp2 = emp1;
+
+emp1 = null;
+emp2 = null;
+
+Now the object has no reachable references, so it becomes eligible for GC.
