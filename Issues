@@ -49,4 +49,54 @@ In an interview, you could say: "CashPro Connect is a robust treasury management
 solutions for businesses. As a backend Java developer, I would work on integrating its RESTful APIs for payments and
 account management, ensuring secure transactions and real-time processing. My focus would be on optimizing API calls,
 handling authentication, and ensuring seamless data flow between enterprise systems and CashPro."
+=========================================================================================
+Payment Service takes 30 seconds to respond. What will you do?
+
+Answer
+
+First, configure a timeout so the Order Service doesn't wait indefinitely.
+
+Use a Circuit Breaker with Resilience4j to prevent repeated failures.
+
+Configure Retry with a limited number of attempts.
+
+If the Payment Service is unavailable, return a fallback response such as:
+
+"Payment service is temporarily unavailable. Please try again later."
+
+======================================================================================
+| Scenario              | Status                        |
+| --------------------- | ----------------------------- |
+| Success               | **200 OK**                    |
+| Created               | **201 Created**               |
+| No Content (Delete)   | **204 No Content**            |
+| Invalid Request       | **400 Bad Request**           |
+| Unauthorized          | **401 Unauthorized**          |
+| Forbidden             | **403 Forbidden**             |
+| Resource Not Found    | **404 Not Found**             |
+| Duplicate Resource    | **409 Conflict**              |
+| Internal Server Error | **500 Internal Server Error** |
+==========================================================================================
+| Collection    | Order           | Sorted | Duplicate | Implementation           |
+| ------------- | --------------- | ------ | --------- | ------------------------ |
+| HashSet       | No              | No     | No        | Hash Table               |
+| LinkedHashSet | Insertion Order | No     | No        | Hash Table + Linked List |
+| TreeSet       | Sorted          | Yes    | No        | Red-Black Tree           |
+
+Time Complexity
+HashSet → O(1)
+LinkedHashSet → O(1)
+TreeSet → O(log n)
+
+=================================================================================
+Comparable is used for the natural ordering of objects and is implemented inside the class using the compareTo() method.
+
+Comparator is used for custom sorting and is implemented in a separate class or as a lambda using the compare() method.
+
+We use Comparable when there is only one default sorting order (for example, sorting employees by ID). We use Comparator when we need multiple sorting options, such as by salary, name, or age.
+
+Easy Remember
+
+Comparable → Inside the class → compareTo()
+Comparator → Outside the class → compare()
 
