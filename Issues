@@ -99,4 +99,206 @@ Easy Remember
 
 Comparable → Inside the class → compareTo()
 Comparator → Outside the class → compare()
+=============================================================================================
+Difference between ArrayList, Vector and CopyOnWriteArrayList.
+Ideal Answer
 
+ArrayList
+
+Not thread-safe
+Fast for read operations
+Capacity grows by approximately 50% when full.
+
+Vector
+
+Thread-safe because methods are synchronized
+Legacy collection
+Capacity doubles (100%) by default when full.
+
+CopyOnWriteArrayList
+
+Thread-safe
+On every write operation (add, remove, update), it creates a new copy of the underlying array.
+Best when reads are much more frequent than writes.
+Its iterator does not throw ConcurrentModificationException.
+Question 2
+Checked vs Unchecked Exception
+Ideal Answer
+
+Checked Exceptions
+
+Checked at compile time.
+Must be handled or declared using throws.
+Examples:
+IOException
+SQLException
+FileNotFoundException
+
+Unchecked Exceptions
+
+Occur at runtime.
+Extend RuntimeException.
+Examples:
+NullPointerException
+ArithmeticException
+ArrayIndexOutOfBoundsException
+
+We avoid catching generic Exception because it hides the real cause and makes debugging harder.
+
+Correction: ClassNotFoundException is a checked exception, but in interviews, IOException and SQLException are more common examples.
+
+Question 3
+What is Spring AOP?
+Ideal Answer
+
+AOP (Aspect-Oriented Programming) separates business logic from cross-cutting concerns.
+
+Common cross-cutting concerns include:
+
+Logging
+Security
+Transaction Management
+Performance Monitoring
+Auditing
+
+Common advice annotations:
+
+@Before
+@After
+@AfterReturning
+@AfterThrowing
+@Around
+
+We use AOP to avoid repeating the same code across multiple classes.
+
+Question 4
+Bean Scopes
+Ideal Answer
+Scope	Description
+Singleton	One bean instance per Spring container (default).
+Prototype	A new bean instance every time it is requested.
+Request	One bean per HTTP request.
+Session	One bean per HTTP session.
+Application	One bean per ServletContext.
+
+Correction: You mentioned header. The standard Spring bean scope is session, not "header."
+
+Question 5
+Request Validation
+Ideal Answer
+
+Use validation annotations:
+
+@NotBlank
+@Email
+@Min(18)
+@Max(100)
+
+Controller:
+
+@PostMapping
+public ResponseEntity<Customer> save(
+        @Valid @RequestBody CustomerRequest request)
+
+Handle validation using @RestControllerAdvice.
+
+Return:
+
+HTTP Status: 400 Bad Request
+
+Example response:
+
+{
+  "status": 400,
+  "message": "Validation failed",
+  "errors": [
+    "Name must not be blank",
+    "Email must be valid",
+    "Age must be greater than 0"
+  ]
+}
+
+Correction: You answered 405. The correct status is 400 Bad Request. 405 Method Not Allowed is used when the HTTP method itself
+is not supported.
+
+Question 6
+Why is count++ not thread-safe?
+Ideal Answer
+
+count++ is actually three operations:
+
+Read current value
+Increment
+Write new value
+
+If two threads execute these steps simultaneously, updates can be lost.
+
+Solutions:
+
+synchronized
+ReentrantLock
+AtomicInteger
+Difference
+
+synchronized
+
+Simple
+JVM-managed
+Automatically releases the lock
+
+ReentrantLock
+
+More flexible
+Can use tryLock(), fairness, and interruptible locking
+Must unlock manually
+
+AtomicInteger
+
+Lock-free
+Uses compare-and-swap (CAS)
+Very efficient for simple counters
+
+Which would I choose?
+
+For a simple counter → AtomicInteger
+For complex critical sections → ReentrantLock or synchronized
+Question 7
+Customers who never placed an order
+
+Your query was close. A complete version is:
+
+SELECT c.*
+FROM Customer c
+LEFT JOIN Orders o
+ON c.customer_id = o.customer_id
+WHERE o.customer_id IS NULL;
+WHERE vs HAVING
+WHERE filters rows before grouping.
+HAVING filters groups after GROUP BY.
+Index
+
+An index is a data structure that improves the speed of data retrieval by reducing the number of rows the database must scan.
+
+Can indexes hurt performance?
+
+Yes.
+
+Because every INSERT, UPDATE, and DELETE must also update the index. Too many indexes slow down write operations and consume
+additional storage.
+
+Question 8
+Learning a New Technology
+
+Your answer was genuine, but here's a more structured version.
+
+Question
+
+How would you learn a technology you've never used before?
+
+Ideal Answer
+
+I would first understand the project requirements and identify the parts of the technology I need immediately. 
+Then I would study the official documentation, build a small proof of concept, and seek guidance from experienced team members
+when necessary. I would continue learning in parallel while delivering my assigned tasks, ensuring I become productive without
+delaying the project. In my career, I've had to learn new frameworks and business domains quickly, and I've been able to adapt
+successfully by following this approach.
