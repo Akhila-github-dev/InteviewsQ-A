@@ -480,6 +480,9 @@ Employee emp1 = new Employee();
 Employee emp2 = emp1;
 
 emp1 = null;
+emp2 = null;
+
+Now the object has no reachable references, so it becomes eligible for GC.
 
 ===================================================================
 What is transaction propagation? What is the default propagation in Spring? Explain REQUIRED and REQUIRES_NEW.
@@ -561,6 +564,133 @@ Pessimistic locking
 Atoms
 
 @EnableAsync is used for asynchronous execution and does not solve race conditions.
-emp2 = null;
 
-Now the object has no reachable references, so it becomes eligible for GC.
+====================================================================================
+Explain == and equals().
+Ideal Answer
+
+== compares primitive values directly. For objects, it compares references (whether both references point to the same object).
+
+equals() compares the contents of objects. By default, it behaves like ==, but classes such as String override it to compare values.
+
+If we don't override equals() and hashCode() in a custom class like Employee, collections such as HashSet and keys in HashMap won't correctly identify logically equal objects. This can lead to duplicate entries or failed lookups.
+
+Easy Remember
+
+== → Reference
+equals() → Content
+Question 2
+What is NoUniqueBeanDefinitionException?
+Ideal Answer
+
+This exception occurs when Spring finds multiple beans of the same type and doesn't know which one to inject.
+
+Example:
+
+EmailNotificationService
+SmsNotificationService
+
+Both implement NotificationService.
+
+If we simply write:
+
+@Autowired
+private NotificationService notificationService;
+
+Spring throws NoUniqueBeanDefinitionException.
+
+We can resolve it using:
+
+@Qualifier("emailNotificationService")
+@Primary
+Difference
+@Qualifier → Choose a specific bean at the injection point.
+@Primary → Make one bean the default choice.
+Question 3
+Customer Service succeeds, Credit Service fails. How do you maintain consistency?
+Ideal Answer
+
+In a microservices architecture, each service has its own database, so a normal database transaction cannot span multiple services.
+
+One common solution is the Saga Pattern.
+
+Saga breaks a business process into multiple local transactions.
+
+If one step fails, compensating transactions undo the previous successful steps.
+
+Example:
+
+Customer Service saves customer.
+Credit Service fails.
+Compensation removes or marks the customer record appropriately.
+Question 4
+@ControllerAdvice vs @RestControllerAdvice
+Ideal Answer
+
+Both are used for global exception handling.
+
+@ControllerAdvice is mainly used in MVC applications. It returns views unless methods are annotated with @ResponseBody.
+
+@RestControllerAdvice combines @ControllerAdvice and @ResponseBody, making it ideal for REST APIs because it returns JSON responses automatically.
+
+HTTP Status
+
+Unexpected NullPointerException → 500 Internal Server Error
+
+Question 5
+LAZY vs EAGER
+Ideal Answer
+
+FetchType.LAZY loads related entities only when they are accessed.
+
+FetchType.EAGER loads the related entities immediately with the parent entity.
+
+In production, I prefer LAZY because it avoids unnecessary database queries and improves performance.
+
+I use EAGER only when the related data is always required.
+
+Question 6
+Redis Cache
+Ideal Answer
+
+Redis is an in-memory cache used to store frequently accessed data.
+
+Advantages:
+
+Faster than database access
+Reduces database load
+Improves response time
+
+Cache annotations:
+
+@Cacheable → Read from cache if present.
+@CachePut → Update both database and cache.
+@CacheEvict → Remove stale data from the cache.
+
+When customer data changes, I would update or evict the corresponding cache entry to avoid returning stale data.
+
+Small correction: You mentioned "Cache Delete." In Spring, the annotation is @CacheEvict.
+
+Question 7
+JWT Authentication Flow
+Ideal Answer
+User logs in with username and password.
+Spring Security authenticates the credentials.
+On successful authentication, the server generates a JWT.
+The JWT contains a header, payload, and signature.
+The client stores the token and sends it in the Authorization: Bearer <token> header.
+For every request, a JWT filter validates the signature and expiration.
+If the token is valid, the request proceeds. Otherwise, the server returns 401 Unauthorized.
+Question 8
+API response time is inconsistent.
+Ideal Answer
+
+I would investigate step by step:
+
+Check application logs.
+Measure response time for each layer.
+Check database execution time and query plans.
+Verify external API response times.
+Check CPU, memory, and thread usage.
+Review network latency.
+Use monitoring tools (such as application metrics or APM tools available in the organization) to identify where the delay occurs.
