@@ -2,6 +2,10 @@ At this stage of my career, I'm looking for a role where I can take on broader b
 distributed systems, and continue growing technically. I'm not switching because of dissatisfaction; I'm switching because 
 I'm looking for long-term technical growth and opportunities to contribute to more complex engineering challenges
 
+Compensation is important, but it's not the primary reason for my decision. For me, the bigger factor is the quality of technical work,
+the opportunity to learn, and long-term career growth. If I continue building strong backend experience in the right environment,
+I believe compensation will naturally follow.
+
 copart
 
 ================================================
@@ -852,7 +856,176 @@ Example: Spring Cloud Config
 
 Order Service → Payment Service → Inventory Service
 7. Event-Driven Pattern
+=============================================================
+After deployment, clicking Submit creates two customer records.
+
+"First, I would verify whether the duplicate records are caused by the frontend sending multiple requests
+(for example, the user double-clicking Submit), a retry mechanism, duplicate API calls, or backend logic executing twice.
+I would inspect application logs, request IDs, and timestamps to identify where the duplication occurs. If it's a database issue,
+I would check whether the appropriate unique constraints exist. If it's due to concurrent requests, I would consider idempotency, 
+proper locking, or unique business keys. As an immediate mitigation, if the deployment introduced the bug, I would roll back the 
+release while working on a permanent fix."
 
 Example: Apache Kafka
 
 “Services communicate asynchronously using events instead of direct calls, improving scalability.”
+
+=======================================================================================
+Question 1: Explain JVM Memory Model
+Interview Answer
+
+JVM (Java Virtual Machine) is responsible for running Java applications. It manages memory and executes Java bytecode.
+
+The JVM memory is divided into:
+
+1. Heap Memory
+
+Stores objects and instance variables.
+Shared among all threads.
+Garbage Collector removes unused objects.
+
+2. Stack Memory
+
+Stores local variables and method calls.
+Each thread has its own stack.
+Thread-safe because stacks are not shared.
+
+3. Metaspace
+
+Stores class metadata, method information, and runtime constant pool.
+Introduced in Java 8 (replaced PermGen).
+
+4. Program Counter (PC Register)
+
+Stores the address of the current JVM instruction being executed.
+Each thread has its own PC Register.
+
+5. Native Method Stack
+
+Used when Java calls native methods written in languages like C or C++.
+Why are local variables thread-safe?
+
+Every thread has its own stack, so local variables are not shared.
+
+Heap objects are shared between threads, so multiple threads can modify the same object, leading to race conditions unless synchronization is used.
+
+Question 2: @Transactional
+Interview Answer
+
+Suppose:
+
+createCustomer()
+ ├── saveCustomer()
+ ├── saveAddress()
+ └── sendWelcomeEmail()
+
+If createCustomer() is annotated with @Transactional:
+
+If saveCustomer() succeeds
+saveAddress() succeeds
+sendWelcomeEmail() throws a RuntimeException
+
+Then:
+
+All database operations inside the transaction are rolled back.
+
+Important Interview Point
+
+If sendWelcomeEmail() calls an external email service, its side effects are not automatically rolled back because they happen outside the database transaction.
+
+A better design is to:
+
+Commit the database transaction.
+Publish an event or send the email afterward.
+
+This avoids rolling back successful database work because an email service is temporarily unavailable.
+
+Question 3: Java Streams
+Second Highest Salary
+Employee secondHighest =
+employees.stream()
+         .sorted(Comparator.comparing(Employee::getSalary).reversed())
+         .skip(1)
+         .findFirst()
+         .orElse(null);
+Find Duplicate Employee Names
+Set<String> names = new HashSet<>();
+
+List<String> duplicates =
+employees.stream()
+         .map(Employee::getName)
+         .filter(name -> !names.add(name))
+         .toList();
+Convert List to Map
+Map<Long, Employee> map =
+employees.stream()
+         .collect(Collectors.toMap(
+                 Employee::getEmployeeId,
+                 Function.identity()
+         ));
+Duplicate Keys in toMap()
+
+If two employees have the same ID:
+
+Collectors.toMap(
+Employee::getEmployeeId,
+Function.identity(),
+(existing,newValue)->existing
+)
+
+The third argument is a merge function that tells Java how to resolve duplicate keys.
+
+Question 4: Duplicate Customer Records
+Interview Answer
+
+Suppose after deployment one click creates two customer records.
+
+Investigation
+Check application logs.
+Check frontend (double-click or duplicate requests).
+Check retry mechanisms.
+Check API gateway.
+Check message queues (if used).
+Verify database unique constraints.
+Fix
+Roll back the release if needed.
+Add a unique constraint on the business key.
+Prevent duplicate submissions.
+Use idempotency for create APIs where appropriate.
+Prevention
+Add unit and integration tests.
+Add monitoring and alerts.
+Review retry configuration.
+Prevent duplicate clicks on the UI.
+⭐ Bonus Question
+Difference between groupingBy() and toMap()
+groupingBy()
+
+Groups multiple objects under the same key.
+
+employees.stream()
+
+.collect(Collectors.groupingBy(Employee::getDepartment))
+
+Output:
+
+IT
+ -> Ram
+ -> Ravi
+
+HR
+ -> Priya
+toMap()
+
+One key → One value.
+
+employees.stream()
+
+.collect(Collectors.toMap(
+Employee::getEmployeeId,
+Function.identity()))
+
+Output:
+
+101 -> Ram
+102 -> Ravi
