@@ -262,6 +262,102 @@ It may create a retry storm if many clients retry simultaneously.
 In production, we'd configure a small number of retries, such as 2 or 3, with a backoff delay. If the service continues to fail,
 the circuit breaker opens and fallback logic is used instead of retrying indefinitely."
 ======================================================
+
+Interview Answer
+
+"Our application follows a microservices architecture using Spring Boot. When a user submits the Online Credit Application form, the request first passes through Spring Security filters where the JWT token is validated. If the token is valid, the request reaches the controller layer. The controller delegates the request to the service layer, where business validations and business logic are performed. The service interacts with the repository layer to perform database operations. The response then travels back through the service and controller layers. If any exception occurs, it is handled globally using @RestControllerAdvice and @ExceptionHandler, and a meaningful HTTP status code and error message are returned to the client."
+
+Question 2: equals() and hashCode()
+What happens if they are not overridden?
+Set<Employee> set = new HashSet<>();
+
+set.add(new Employee(1, "A"));
+set.add(new Employee(1, "A"));
+
+Output:
+
+2
+Why?
+
+Because the default implementations from Object compare object identity (memory addresses), so two different Employee instances 
+are considered different even if their data is the same.
+
+How HashSet checks duplicates
+Calls hashCode() to find the bucket.
+If there's a possible match, calls equals() to verify equality.
+
+Rule to remember:
+
+If you override equals(), you must also override hashCode() so that equal objects produce the same hash code.
+
+Question 3: Concurrency
+Race Condition
+
+Occurs when multiple threads update shared data simultaneously, producing inconsistent results.
+
+When to use each
+
+synchronized
+
+Simple locking within a single JVM.
+Good for protecting a critical section.
+
+ReentrantLock
+
+More flexible than synchronized.
+Supports tryLock(), timeouts, interruptible locking, and fairness.
+
+AtomicInteger
+
+Best for simple atomic counters.
+Avoids explicit locking and performs well under contention.
+Multiple Spring Boot instances
+
+synchronized is not sufficient across multiple application instances because each JVM has its own lock. For distributed systems, 
+consider database locking, optimistic/pessimistic locking, or distributed locking (such as Redis-based locking) depending on
+the use case.
+
+Question 4: Redis Cache
+Cache Flow
+Client
+   │
+   ▼
+Application
+   │
+   ├── Check Redis
+   │      │
+   │      ├── Cache Hit → Return data
+   │      └── Cache Miss
+   │
+   ▼
+Database
+   │
+   ▼
+Store result in Redis
+   │
+   ▼
+Return response
+Cache consistency
+
+When the database is updated, the cache must also be updated or invalidated.
+
+Useful Spring caching annotations:
+
+@Cacheable → Read from cache or populate it if absent.
+@CachePut → Update the cache with the latest value.
+@CacheEvict → Remove stale cache entries.
+Question 5: Biggest Contribution
+
+Your answer had a good topic, but it needs more structure.
+
+Here's how you can present it:
+
+"One of my major contributions was implementing the automatic creation of a Bank Entry Form after an OCR form was submitted.
+Earlier, this process required additional manual steps. I analyzed the existing workflow, identified where the Bank Entry Form 
+should be generated, implemented the backend logic, integrated it into the submission flow, and thoroughly tested the feature.
+After deployment, the process became automatic, reducing manual effort and improving the overall onboarding experience.
+This task strengthened my understanding of the application's workflow and the importance of designing reliable end-to-end business
+processes."
 Does @Transactional roll back for every exception?
 By default, Spring rolls back for unchecked exceptions (RuntimeException and Error).
 It does not automatically roll back for checked exceptions unless you configure it, for example:
